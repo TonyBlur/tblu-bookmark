@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pintree</title>
+  <title>tbluBookmark</title>
   <meta name="keywords" content="Pintree, Bookmarks, Link Management, Export Bookmarks, Website Bookmarks">
   <meta name="description"
     content="Pintree is a powerful tool that helps you manage and export your browser bookmarks, converting them into an aesthetically pleasing website that is easy to share and access.">
@@ -345,14 +345,14 @@
       cardContent.className = 'flex flex-col overflow-hidden'; // Ensure the content is hidden if too long
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-sm font-medium mb-1 truncate dark:text-gray-400';
+      cardTitle.className = 'text-sm font-medium mb-1 text-balance dark:text-gray-400';
       cardTitle.innerText = title;
 
       // Clean URL by removing http(s) and trailing slash
       const cleanUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
 
       const cardUrl = document.createElement('p');
-      cardUrl.className = 'text-xs text-gray-400 dark:text-gray-600 dark:hover:text-gray-400 truncate';
+      cardUrl.className = 'text-xs text-gray-400 dark:text-gray-600 dark:hover:text-gray-400 text-balance';
       cardUrl.innerText = cleanUrl; // Use cleaned URL
 
       cardContent.appendChild(cardTitle);
@@ -387,7 +387,7 @@
       cardIcon.className = 'mb-2';
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-xs font-normal text-center w-full truncate dark:text-gray-400';
+      cardTitle.className = 'text-xs font-normal text-center w-full text-balance dark:text-gray-400';
       cardTitle.innerText = title;
 
       card.appendChild(cardIcon);
@@ -405,7 +405,7 @@
           navItem.className = 'items-center group flex justify-between gap-x-3 rounded-md p-2 text-gray-700 dark:text-gray-400 hover:text-main-500 hover:bg-gray-50 dark:hover:pintree-bg-gray-800 bg-opacity-50';
 
           const navLinkContainer = document.createElement('div');
-          navLinkContainer.className = 'flex items-center space-x-2 truncate';
+          navLinkContainer.className = 'flex items-center space-x-2 text-balance';
 
           const folderIcon = document.createElement('span');
           folderIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h4l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>';
@@ -567,7 +567,7 @@
       // Create folder section
       if (folders.length > 0) {
         const folderSection = document.createElement('div');
-        folderSection.className = 'grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12 gap-6';
+        folderSection.className = 'grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12 gap-x-6 gap-y-8';
         folders.forEach(folder => {
           const card = createFolderCard(folder.title, folder.children, path);
           folderSection.appendChild(card);

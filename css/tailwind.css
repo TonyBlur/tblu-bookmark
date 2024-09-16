@@ -2310,8 +2310,8 @@ select {
     display: none;
   }
 
-  .lg\:w-60 {
-    width: 15rem;
+  .lg\:w-72 {
+    width: 18rem;
   }
 
   .lg\:grid-cols-4 {
@@ -2336,8 +2336,8 @@ select {
     padding-right: 2rem;
   }
 
-  .lg\:pl-60 {
-    padding-left: 15rem;
+  .lg\:pl-72 {
+    padding-left: 18rem;
   }
 }
 

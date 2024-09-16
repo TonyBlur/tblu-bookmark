@@ -75,9 +75,9 @@
   <div>
     <!-- Mobile Off-Canvas Menu -->
     <div id="off-canvas-menu" class="relative z-50 lg:hidden hidden" role="dialog" aria-modal="true">
-      <div id="off-canvas-backdrop"
-        class="fixed inset-0 bg-gray-900/80 opacity-0 transition-opacity ease-linear duration-300"></div>
       <div class="fixed inset-0 flex">
+        <div id="off-canvas-backdrop"
+          class="fixed inset-0 bg-gray-900/80 opacity-0 transition-opacity ease-linear duration-300" style="backdrop-filter: blur(20px);"></div>
         <div id="off-canvas-content"
           class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
           <!-- Close button for the off-canvas menu -->
@@ -95,7 +95,7 @@
           <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-white dark:pintree-bg-gray-900 px-6 pb-4">
             <div class="flex h-16 shrink-0 items-center">
               <img class="pl-2 h-8 w-auto" src="assets/logo.svg" alt="Pintree">
-              <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">Pintree</a>
+              <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a>
             </div>
             <div id="sidebar-2" class="flex flex-1 flex-col">
               <!-- Sidebar content will be injected here -->
@@ -263,6 +263,7 @@
         setTimeout(() => {
           offCanvasMenu.classList.add('hidden');
         }, 300); // Match the duration of the transition
+        document.getElementById('sidebar-2').innerHTML = '';
       };
 
       // Event listeners for open and close buttons

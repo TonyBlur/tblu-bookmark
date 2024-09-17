@@ -131,10 +131,12 @@
           <div class="flex gap-x-4 justify-between">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
             <button id="open-sidebar-button" class="lg:hidden">
+              <span class="sr-only">Open sidebar</span>
               <svg class="absolute inset-y-0 h-full w-5 text-gray-400" viewBox="0 0 1024 1024" width="20" height="20" fill="currentColor">
                 <path d="M85.333333 512a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 512zM85.333333 256a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 256zM85.333333 768a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 768z"></path>
               </svg>
             </button>
+            <!-- Desktop Searchbar -->
             <div class="hidden lg:block relative w-72 h-full items-center justify-between">
               <button id="searchButton" class="absolute h-full text-gray-400 rounded">
                 <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
@@ -150,7 +152,22 @@
               <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
             </div>
           </div>
-          <a href="" class="lg:hidden ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a>
+          <!-- Mobile Searchbar  -->
+          <div class="lg:hidden relative pl-8 w-72 h-full items-center justify-between">
+            <!-- <a href="" class="lg:hidden ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a> -->
+            <button id="searchButton2" class="absolute h-full text-gray-400 rounded">
+              <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
+                fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <input id="searchInput2" type="search"
+              class="text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
+              placeholder="Search...">
+            <button id="clearSearchButton2" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
+          </div>
           <div class="relative">
             <button id="themeToggleButton" type="button" aria-label="Switch theme"
               class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">

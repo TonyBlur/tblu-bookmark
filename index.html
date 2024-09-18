@@ -138,7 +138,7 @@
             </button>
             <!-- Desktop Searchbar -->
             <div class="hidden lg:block relative w-72 h-full items-center justify-between">
-              <button id="searchButton" class="absolute h-full text-gray-400 rounded">
+              <button id="searchButton" class="searchButton absolute h-full text-gray-400 rounded">
                 <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
                   fill="currentColor" aria-hidden="true">
                   <path fill-rule="evenodd"
@@ -147,15 +147,15 @@
                 </svg>
               </button>
               <input id="searchInput" type="search"
-                class="text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
+                class="searchInput text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
                 placeholder="Search...">
-              <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
+              <button id="clearSearchButton" class="clearSearchButton text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
             </div>
           </div>
           <!-- Mobile Searchbar  -->
           <div class="lg:hidden relative pl-8 w-72 h-full items-center justify-between">
             <!-- <a href="" class="lg:hidden ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a> -->
-            <button id="searchButton" class="absolute h-full text-gray-400 rounded">
+            <button id="searchButton2" class="searchButton absolute h-full text-gray-400 rounded">
               <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
                 fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd"
@@ -163,10 +163,10 @@
                   clip-rule="evenodd"></path>
               </svg>
             </button>
-            <input id="searchInput" type="search"
-              class="text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
+            <input id="searchInput2" type="search"
+              class="searchInput text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900"
               placeholder="Search...">
-            <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
+            <button id="clearSearchButton2" class="clearSearchButton text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
           </div>
           <div class="relative">
             <button id="themeToggleButton" type="button" aria-label="Switch theme"
@@ -316,8 +316,8 @@
       return results;
     }
 
-    document.getElementById('searchButton').addEventListener('click', () => {
-      const query = document.getElementById('searchInput').value;
+    document.getElementsByClassName('searchButton').addEventListener('click', () => {
+      const query = document.getElementsByClassName('searchInput').value;
       searchBookmarks(query);
     });
 
@@ -329,13 +329,13 @@
           const secondLayer = data[0].children;
           renderNavigation(secondLayer, document.getElementById('navigation'));
           renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
-          document.getElementById('searchInput').value = '';
-          document.getElementById('clearSearchButton').classList.add('hidden');
+          document.getElementsByClassName('searchInput').value = '';
+          document.getElementsByClassName('clearSearchButton').classList.add('hidden');
         })
         .catch(error => console.error('Error clearing search results:', error));
     }
 
-    document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
+    document.getElementsByClassName('clearSearchButton').addEventListener('click', clearSearchResults);
 
     function searchBookmarks(query) {
       fetch('json/pintree.json')
@@ -343,7 +343,7 @@
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
           renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-          document.getElementById('clearSearchButton').classList.remove('hidden');
+          document.getElementsByClassName('clearSearchButton').classList.remove('hidden');
         })
         .catch(error => console.error('Error searching bookmarks:', error));
     }
@@ -498,7 +498,7 @@
           const newPath = path.slice(0, index + 1);
           renderBookmarks(item.children, newPath);
           updateSidebarActiveState(newPath); // Update sidebar active state
-          document.getElementById('clearSearchButton').classList.add('hidden'); // Hide clear button when navigating through breadcrumbs
+          document.getElementsByClassName('clearSearchButton').classList.add('hidden'); // Hide clear button when navigating through breadcrumbs
         };
 
         breadcrumbsPath.appendChild(breadcrumb);
@@ -641,7 +641,7 @@
       .catch(error => console.error('Error loading bookmarks:', error));
 
     // Search functionality on pressing Enter
-    document.getElementById('searchInput').addEventListener('keydown', function (event) {
+    document.getElementsByClassName('searchInput').addEventListener('keydown', function (event) {
       if (event.key === 'Enter') {
         const query = event.target.value;
         searchBookmarks(query);
@@ -649,8 +649,8 @@
     });
 
     // Search functionality on button click
-    document.getElementById('searchButton').addEventListener('click', function () {
-      const query = document.getElementById('searchInput').value;
+    document.getElementsByClassName('searchButton').addEventListener('click', function () {
+      const query = document.getElementsByClassName('searchInput').value;
       searchBookmarks(query);
     });
 

@@ -554,6 +554,13 @@
             "title": "MSHR",
             "icon": "https://logo.clearbit.com/www.mshr.app",
             "url": "https://www.mshr.app/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726479722080,
+            "title": "Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.",
+            "icon": "https://logo.clearbit.com/tailwindcss.com",
+            "url": "https://tailwindcss.com/"
           }
         ]
       },
@@ -1635,13 +1642,6 @@
           },
           {
             "type": "link",
-            "addDate": 1679887805029,
-            "title": "爱看影院",
-            "icon": "https://logo.clearbit.com/www.2wyy.com",
-            "url": "https://www.2wyy.com/"
-          },
-          {
-            "type": "link",
             "addDate": 1689987874862,
             "title": "咪咕影视在线免费看热播电视剧高清电影 _ 咪咕影院",
             "icon": "https://logo.clearbit.com/www.hebeilaibang.com",
@@ -2086,7 +2086,7 @@
       {
         "type": "link",
         "addDate": 1719384840579,
-        "title": "Cyberduck | Libre server and cloud storage browser for Mac and Windows with support for FTP, SFTP, WebDAV, Amazon S3, OpenStack Swift, Backblaze B2, Microsoft Azure & OneDrive, Google Drive and Dropbox",
+        "title": "Cyberduck | Libre server and cloud storage browser",
         "icon": "https://logo.clearbit.com/cyberduck.io",
         "url": "https://cyberduck.io/"
       },

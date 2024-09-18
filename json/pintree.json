@@ -75,14 +75,14 @@
           {
             "type": "link",
             "addDate": 1718769678279,
-            "title": "Send and Transfer Large Files Online - Free up to 2GB - woc.space",
+            "title": "Send and Transfer Large Files Online - woc.space",
             "icon": "https://logo.clearbit.com/woc.space",
             "url": "https://woc.space/"
           },
           {
             "type": "link",
             "addDate": 1718769794506,
-            "title": "WeTransfer - Send Large Files & Share Photos Online - Up to 2GB Free",
+            "title": "WeTransfer - Send Large Files & Share Photos Online",
             "icon": "https://logo.clearbit.com/wetransfer.com",
             "url": "https://wetransfer.com/"
           },
@@ -481,7 +481,7 @@
           {
             "type": "link",
             "addDate": 1702458449218,
-            "title": "APP喵-软件猫：阿喵软件分享 – 软件猫：优质APP软件资源分享下载站",
+            "title": "APP喵-软件猫：优质APP软件资源分享下载站",
             "icon": "https://logo.clearbit.com/www.appmiu.com",
             "url": "https://www.appmiu.com/"
           },
@@ -1202,7 +1202,7 @@
           {
             "type": "link",
             "addDate": 1721485085151,
-            "title": "GetComics – GetComics is an awesome place to download DC, Marvel, Image, Dark Horse, Dynamite, IDW, Oni, Valiant, Zenescope and many more Comics totally for FREE.",
+            "title": "GetComics – download Comics totally for FREE",
             "icon": "https://logo.clearbit.com/getcomics.org",
             "url": "https://getcomics.org/"
           }
@@ -1251,7 +1251,7 @@
           {
             "type": "link",
             "addDate": 1639122016987,
-            "title": "刘明野的工具箱 | 刘明野的工具箱提供好用、易用的工具，还在不断添加中，欢迎访问！",
+            "title": "刘明野的工具箱 | 提供好用、易用的工具",
             "icon": "https://logo.clearbit.com/tool.liumingye.cn",
             "url": "http://tool.liumingye.cn/"
           },
@@ -1516,6 +1516,13 @@
           },
           {
             "type": "link",
+            "addDate": 1726226078831,
+            "title": "Musicca – 免费学习乐理",
+            "icon": "https://logo.clearbit.com/www.musicca.com",
+            "url": "https://www.musicca.com/zh"
+          },
+          {
+            "type": "link",
             "addDate": 1648050254680,
             "title": "编曲资源网 - 编曲资源",
             "icon": "https://logo.clearbit.com/www.bianquzy.com",
@@ -1573,14 +1580,14 @@
           {
             "type": "link",
             "addDate": 1561098770590,
-            "title": "最新电视剧_迅雷电影下载_2019最新电影_西瓜影音_电影电视剧在线观看_酷播网-原碟调网",
+            "title": "电影电视剧在线观看_酷播网-原碟调网",
             "icon": "https://logo.clearbit.com/www.vkubo.com",
             "url": "http://www.vkubo.com/"
           },
           {
             "type": "link",
             "addDate": 1534450851640,
-            "title": "人人美剧-英剧美剧免播放器手机在线云播放-字幕组资源下载-美剧天堂实时更新",
+            "title": "人人美剧-英剧美剧免播放器手机在线云播放",
             "icon": "https://logo.clearbit.com/m.rrmeiju.com",
             "url": "http://m.rrmeiju.com/"
           },
@@ -2009,7 +2016,7 @@
       {
         "type": "link",
         "addDate": 1638144452244,
-        "title": "CNS学术导航 | 科研从这里开始！Google学术（镜像）、SCI-hub网址、科研资源",
+        "title": "CNS学术导航 | Google学术（镜像）、SCI-hub网址、科研资源",
         "icon": "https://logo.clearbit.com/cnspub.com",
         "url": "https://cnspub.com/"
       },
@@ -2029,13 +2036,6 @@
       },
       {
         "type": "link",
-        "addDate": 1726226078831,
-        "title": "Musicca – 免费学习乐理",
-        "icon": "https://logo.clearbit.com/www.musicca.com",
-        "url": "https://www.musicca.com/zh"
-      },
-      {
-        "type": "link",
         "addDate": 1726227495765,
         "title": "Home | Linux Journey",
         "icon": "https://logo.clearbit.com/linuxjourney.com",
@@ -2051,7 +2051,7 @@
       {
         "type": "link",
         "addDate": 1699069119372,
-        "title": "雅思真题免费在线测试及答案-雅思考试真题-雅思答案-雅思在线 | IELTS Online Tests",
+        "title": "雅思真题免费在线测试及答案 | IELTS Online Tests",
         "icon": "https://logo.clearbit.com/ieltsonlinetests.com",
         "url": "https://ieltsonlinetests.com/zh-hans/ielts-exam-library"
       },
@@ -2107,7 +2107,7 @@
       {
         "type": "link",
         "addDate": 1720082593974,
-        "title": "流光卡片 - 让分享更优雅，最好看具创意的文字卡片工具 | nuxt-app",
+        "title": "流光卡片 - 文字卡片工具 | nuxt-app",
         "icon": "https://logo.clearbit.com/fireflycard.shushiai.com",
         "url": "https://fireflycard.shushiai.com/"
       },

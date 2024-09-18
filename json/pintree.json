@@ -1819,6 +1819,34 @@
       },
       {
         "type": "folder",
+        "addDate": 1726661764190,
+        "title": "Resume Builder | 简历制作工具",
+        "children": [
+          {
+            "type": "link",
+            "addDate": 1726661741129,
+            "title": "91化简-一款免费开源的简历制作神器",
+            "icon": "https://logo.clearbit.com/91huajian.cn",
+            "url": "https://91huajian.cn/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726661721976,
+            "title": "Reactive Resume - A free and open-source resume builder",
+            "icon": "https://logo.clearbit.com/rxresu.me",
+            "url": "https://rxresu.me/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726661708777,
+            "title": "CodeCV简历 - 免费的专业在线Markdown简历制作工具",
+            "icon": "https://logo.clearbit.com/codecv.top",
+            "url": "https://codecv.top/"
+          }
+        ]
+      },
+      {
+        "type": "folder",
         "addDate": 1711182214016,
         "title": "Crypto Tools | 加密货币工具",
         "children": [
@@ -1939,9 +1967,16 @@
       {
         "type": "link",
         "addDate": 1725534258664,
-        "title": "思绪思维导图",
+        "title": "思绪思维导图 by tblu",
         "icon": "https://logo.clearbit.com/mindmap.tblu.xyz",
         "url": "https://mindmap.tblu.xyz/"
+      },
+      {
+        "type": "link",
+        "addDate": 1726662234383,
+        "title": "iKuuu 免费节点",
+        "icon": "https://logo.clearbit.com/ikuuu.pw",
+        "url": "https://ikuuu.pw/"
       },
       {
         "type": "link",
@@ -1988,7 +2023,7 @@
       {
         "type": "link",
         "addDate": 1720684480448,
-        "title": "UUP dump",
+        "title": "UUP dump - 轻松从 Windows 更新服务器下载 UUP 文件",
         "icon": "https://logo.clearbit.com/uupdump.net",
         "url": "https://uupdump.net/"
       },
@@ -2012,6 +2047,13 @@
         "title": "QEMU",
         "icon": "https://logo.clearbit.com/www.qemu.org",
         "url": "https://www.qemu.org/"
+      },
+      {
+        "type": "link",
+        "addDate": 1726224372224,
+        "title": "Quick Reference - 开发人员参考备忘清单",
+        "icon": "https://logo.clearbit.com/wangchujiang.com",
+        "url": "https://wangchujiang.com/reference/index.html"
       },
       {
         "type": "link",
@@ -2082,6 +2124,13 @@
         "title": "LKs 网站推荐合集",
         "icon": "https://logo.clearbit.com/lkssite.vip",
         "url": "https://lkssite.vip/"
+      },
+      {
+        "type": "link",
+        "addDate": 1726661925433,
+        "title": "tbluBookmark | 忧蓝的网站集",
+        "icon": "https://logo.clearbit.com/bookmark.tblu.xyz",
+        "url": "https://bookmark.tblu.xyz/"
       },
       {
         "type": "link",
@@ -2156,23 +2205,16 @@
       {
         "type": "link",
         "addDate": 1726148883875,
-        "title": "Blurmatic",
+        "title": "Blurmatic - 给图片添加景深虚化",
         "icon": "https://logo.clearbit.com/www.blurmatic.com",
         "url": "https://www.blurmatic.com/"
       },
       {
         "type": "link",
         "addDate": 1726212985063,
-        "title": "MS365 E5 Renew X",
+        "title": "MS365 E5 Renew X - E5续订",
         "icon": "https://logo.clearbit.com/renew.509605.xyz",
         "url": "https://renew.509605.xyz/"
-      },
-      {
-        "type": "link",
-        "addDate": 1726224372224,
-        "title": "Quick Reference & Quick Reference",
-        "icon": "https://logo.clearbit.com/wangchujiang.com",
-        "url": "https://wangchujiang.com/reference/index.html"
       },
       {
         "type": "link",
@@ -2184,7 +2226,7 @@
       {
         "type": "link",
         "addDate": 1726401934095,
-        "title": "Text Compare: Real-Time Diff & Merge Tool Online | Free",
+        "title": "Text Compare: Real-Time Diff & Merge Tool Online",
         "icon": "https://logo.clearbit.com/diffsuite.com",
         "url": "https://diffsuite.com/"
       }

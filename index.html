@@ -275,7 +275,7 @@
     
     // Bookmark data URL
     const defaultBookmarkDataURL = 'json/pintree.json';
-    const bookmarkDataURL = process.env.BOOKMARK_DATA_URL || defaultBookmarkDataURL;
+    const bookmarkDataURL = defaultBookmarkDataURL || process.env.BOOKMARK_DATA_URL;
 
     console.log('Bookmark Data URL:', bookmarkDataURL);
 

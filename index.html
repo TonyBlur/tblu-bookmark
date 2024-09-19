@@ -20,9 +20,6 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
-  <script>
-    window.BOOKMARK_DATA_URL = window.BOOKMARK_DATA_URL || 'json/pintree.json';
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
   <script>
@@ -277,7 +274,8 @@
     });
 
     // Bookmark data URL
-    const BookmarkDataURL = window.BOOKMARK_DATA_URL;
+    const defaultBookmarkDataURL = 'json/pintree.json';
+    const BookmarkDataURL = process.env.BOOKMARK_DATA_URL || defaultBookmarkDataURL;
     console.log(BookmarkDataURL);
 
     // Search functionality

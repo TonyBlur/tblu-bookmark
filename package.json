@@ -9,7 +9,7 @@
     "dev": "concurrently \"npm run watch:css\" \"npm run generate-env\" \"npm run serve\"",
     "serve": "http-server -a 127.0.0.1 -p 8080",
     "generate-env": "node generate-env.js",
-    "build": "npm run generate-env && npm run build:css"
+    "build": "npm run build:css"
   },
   "keywords": [],
   "author": "",

@@ -274,7 +274,7 @@
     });
 
     // Get Environment Variable
-    fetch('.env')
+    fetch('/.env')
       .then(response => response.json())
       .then(data => {
         const BOOKMARK_DATA_URL = data.BOOKMARK_DATA_URL;

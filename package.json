@@ -8,7 +8,8 @@
     "watch:css": "nodemon -e html,css,js -x \"npm run build:css\"",
     "dev": "concurrently \"npm run watch:css\" \"npm run generate-env\" \"npm run serve\"",
     "serve": "http-server -a 127.0.0.1 -p 8080",
-    "generate-env": "node generate-env.js"
+    "generate-env": "node generate-env.js",
+    "build": "npm run build:css && npm run generate-env"
   },
   "keywords": [],
   "author": "",

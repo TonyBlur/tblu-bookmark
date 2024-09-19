@@ -463,6 +463,13 @@
             "title": "Vave BG - Unsplash but for background",
             "icon": "https://logo.clearbit.com/vavebg.com",
             "url": "https://vavebg.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726724617236,
+            "title": "Public Work by Cosmos",
+            "icon": "https://logo.clearbit.com/public.work",
+            "url": "https://public.work/"
           }
         ]
       },
@@ -471,6 +478,13 @@
         "addDate": 1715944665022,
         "title": "Software | 软件资源站",
         "children": [
+          {
+            "type": "link",
+            "addDate": 1722439461223,
+            "title": "Open Source Alternatives to Popular Software – OpenAlternative开源替代",
+            "icon": "https://logo.clearbit.com/openalternative.co",
+            "url": "https://openalternative.co/"
+          },
           {
             "type": "link",
             "addDate": 1702458505882,
@@ -1205,6 +1219,20 @@
             "title": "GetComics – download Comics totally for FREE",
             "icon": "https://logo.clearbit.com/getcomics.org",
             "url": "https://getcomics.org/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726716426124,
+            "title": "Z-Library – 世界上最大的电子图书馆。自由访问知识和文化。",
+            "icon": "https://logo.clearbit.com/zh.z-lib.gd",
+            "url": "https://zh.z-lib.gd/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726716500985,
+            "title": "Z-Library – the world’s largest e-book library. Your gateway to knowledge and culture.",
+            "icon": "https://logo.clearbit.com/singlelogin.re",
+            "url": "https://singlelogin.re/"
           }
         ]
       },
@@ -1303,6 +1331,13 @@
             "title": "在线工具 - 你的工具箱",
             "icon": "https://logo.clearbit.com/tool.lu",
             "url": "https://tool.lu/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726721250360,
+            "title": "Sinqi Tools",
+            "icon": "https://logo.clearbit.com/sinqi.tools",
+            "url": "https://sinqi.tools/"
           }
         ]
       },
@@ -2106,13 +2141,6 @@
       },
       {
         "type": "link",
-        "addDate": 1722439461223,
-        "title": "Open Source Alternatives to Popular Software – OpenAlternative开源替代",
-        "icon": "https://logo.clearbit.com/openalternative.co",
-        "url": "https://openalternative.co/"
-      },
-      {
-        "type": "link",
         "addDate": 1657267295961,
         "title": "LKs - 良心到难以置信的网站推荐",
         "icon": "https://logo.clearbit.com/xiangjianan.github.io",
@@ -2131,6 +2159,13 @@
         "title": "tbluBookmark | 忧蓝的网站集",
         "icon": "https://logo.clearbit.com/bookmark.tblu.xyz",
         "url": "https://bookmark.tblu.xyz/"
+      },
+      {
+        "type": "link",
+        "addDate": 1726725072160,
+        "title": "30tool-可能是最好的工具网",
+        "icon": "https://logo.clearbit.com/www.30aitool.com",
+        "url": "https://www.30aitool.com/"
       },
       {
         "type": "link",
@@ -2229,6 +2264,13 @@
         "title": "Text Compare: Real-Time Diff & Merge Tool Online",
         "icon": "https://logo.clearbit.com/diffsuite.com",
         "url": "https://diffsuite.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1726725252145,
+        "title": "玩最好的在线游戏 - Silvergames.com",
+        "icon": "https://logo.clearbit.com/www.silvergames.com",
+        "url": "https://www.silvergames.com/"
       }
     ]
   }

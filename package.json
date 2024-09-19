@@ -7,8 +7,7 @@
     "build:css": "tailwindcss build ./css/styles.css -o ./css/tailwind.css",
     "watch:css": "nodemon -e html,css,js -x \"npm run build:css\"",
     "dev": "concurrently \"npm run watch:css\" \"npm run serve\"",
-    "serve": "http-server -a 127.0.0.1 -p 8080",
-    "build": "node build.js"
+    "serve": "http-server -a 127.0.0.1 -p 8080"
   },
   "keywords": [],
   "author": "",

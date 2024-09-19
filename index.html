@@ -273,6 +273,15 @@
       offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
     });
 
+    // Get Environment Variable
+    fetch('/env')
+      .then(response => response.json())
+      .then(data => {
+        const BOOKMARK_DATA_URL = data.BOOKMARK_DATA_URL;
+        console.log(BOOKMARK_DATA_URL);
+      })
+      .catch(error => console.error('Error fetching environment variables:', error));
+    
     // Bookmark data URL
     const defaultBookmarkDataURL = 'json/pintree.json';
     const bookmarkDataURL = process.env.BOOKMARK_DATA_URL;

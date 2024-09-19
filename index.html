@@ -275,11 +275,7 @@
 
     // Bookmark data URL
     const defaultBookmarkDataURL = 'json/pintree.json';
-    const bookmarkDataURL = process.env.BOOKMARK_DATA_URL;
-    
-    if (!bookmarkDataURL) {
-        bookmarkDataURL = defaultBookmarkDataURL;
-    }
+    const bookmarkDataURL = 'https://gist.githubusercontent.com/tonyblur/470ab7deffb1724a879d7268a8b8e572/raw/pintree.json';
 
     console.log('Bookmark Data URL:', bookmarkDataURL);
 

@@ -20,6 +20,22 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
+  <script>
+    const uniqueParam = new Date().getTime();
+    const script = document.createElement('script');
+    const defaultBookmarkDataURL = 'json/pintree.json';
+    script.src = `env-data.js?v=${uniqueParam}`;
+    let bookmarkDataURL = defaultBookmarkDataURL;
+    script.onload = function() {
+      if (window.env && window.env.BOOKMARK_DATA_URL) {
+        bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
+        console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
+      } else {
+        console.log('use default BookmarkDataURL');
+      }
+    };
+    document.head.appendChild(script);
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
   <script>
@@ -271,14 +287,6 @@
       openSidebarButton.addEventListener('click', openSidebar);
       closeSidebarButton.addEventListener('click', closeSidebar);
       offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
-    });
-    
-    // Bookmark data URL
-    document.addEventListener('DOMContentLoaded', () => {
-      const defaultBookmarkDataURL = 'json/pintree.json';
-      const bookmarkDataURL = process.env.BOOKMARK_DATA_URL || defaultBookmarkDataURL;
-
-      console.log('Bookmark Data URL:', bookmarkDataURL);
     });
 
     // Search functionality

@@ -6,8 +6,9 @@
   "scripts": {
     "build:css": "tailwindcss build ./css/styles.css -o ./css/tailwind.css",
     "watch:css": "nodemon -e html,css,js -x \"npm run build:css\"",
-    "dev": "concurrently \"npm run watch:css\" \"npm run serve\"",
-    "serve": "http-server -a 127.0.0.1 -p 8080"
+    "dev": "concurrently \"npm run watch:css\" \"npm run generate-env\" \"npm run serve\"",
+    "serve": "http-server -a 127.0.0.1 -p 8080",
+    "generate-env": "node generate-env.js"
   },
   "keywords": [],
   "author": "",
@@ -20,9 +21,7 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
-    "dotenv-webpack": "^8.1.0",
     "http-server": "^14.1.1",
-    "nodemon": "^3.1.3",
-    "webpack": "^5.94.0"
+    "nodemon": "^3.1.3"
   }
 }

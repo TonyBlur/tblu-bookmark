@@ -20,9 +20,6 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
-  <script>
-    window.BOOKMARK_DATA_URL = 'REPLACE_WITH_BOOKMARK_DATA_URL';
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
   <script>
@@ -278,9 +275,9 @@
 
     // Bookmark data URL
     const defaultBookmarkDataURL = 'json/pintree.json';
-    let BookmarkDataURL = window.BOOKMARK_DATA_URL;
+    let BookmarkDataURL = process.env.BOOKMARK_DATA_URL;
     
-    if (!BookmarkDataURL || BookmarkDataURL === 'REPLACE_WITH_BOOKMARK_DATA_URL') {
+    if (!BookmarkDataURL) {
         BookmarkDataURL = defaultBookmarkDataURL;
     }
 

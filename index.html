@@ -275,13 +275,13 @@
 
     // Bookmark data URL
     const defaultBookmarkDataURL = 'json/pintree.json';
-    let BookmarkDataURL = process.env.BOOKMARK_DATA_URL;
+    let bookmarkDataURL = process.env.BOOKMARK_DATA_URL;
     
-    if (!BookmarkDataURL) {
-        BookmarkDataURL = defaultBookmarkDataURL;
+    if (!bookmarkDataURL) {
+        bookmarkDataURL = defaultBookmarkDataURL;
     }
 
-    console.log('Bookmark Data URL:', BookmarkDataURL);
+    console.log('Bookmark Data URL:', bookmarkDataURL);
 
     // Search functionality
     function searchBookmarks(query) {

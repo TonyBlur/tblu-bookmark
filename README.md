@@ -82,4 +82,4 @@ Please note that the `main` branch is the source code branch of the project, whi
 
 - [Pintree](https://pintree.io/)
 
-Thank you for using and supporting Pintree!
+Thank you for using and supporting!

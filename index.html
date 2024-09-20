@@ -24,7 +24,7 @@
     const uniqueParam = new Date().getTime();
     const script = document.createElement('script');
     const defaultBookmarkDataURL = 'json/pintree.json';
-    script.src = `env-data.js?v=${uniqueParam}`;
+    script.src = `js/env-data.js?v=${uniqueParam}`;
     let bookmarkDataURL = defaultBookmarkDataURL;
     script.onload = function() {
       if (window.env && window.env.BOOKMARK_DATA_URL) {

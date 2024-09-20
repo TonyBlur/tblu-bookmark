@@ -1542,7 +1542,7 @@ select {
 }
 
 :root {
-  --folderColor: #3CB884;
+  --folderColor: #1B9DE2;
   --paperColor: #ffffff;
 }
 
@@ -1556,7 +1556,7 @@ select {
 }
 
 .folder__back {
-  fill: #0BA665;
+  fill: #0078D4;
   rx: 10;
   ry: 10;
 }
@@ -1630,7 +1630,7 @@ select {
 }
 
 .loader {
-  border-top-color: #0BA665;
+  border-top-color: #0078D4;
   /* You can change this color as needed */
   animation: spin 1s linear infinite;
 }

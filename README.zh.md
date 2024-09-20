@@ -4,7 +4,7 @@
 
 tbluBookmark 是一个开源项目，旨在将浏览器书签导出成导航网站。通过简单的几步操作，就可以将书签转换成一个美观且易用的导航页面。
 
-![](https://github.com/Pintree-io/pintree/blob/main/assets/preview.png)
+![](https://github.com/TonyBlur/tblu-bookmark/blob/main/assets/preview.png)
 
 ## ✨ 项目功能和目标
 

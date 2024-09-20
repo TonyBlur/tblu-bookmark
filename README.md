@@ -4,7 +4,7 @@
 
 tbluBookmark is an open-source project that aims to convert browser bookmarks into a navigation website. With just a few simple steps, you can transform your bookmarks into a beautiful and user-friendly navigation page.
 
-![](https://github.com/Pintree-io/pintree/blob/main/assets/preview.png)
+![](https://github.com/TonyBlur/tblu-bookmark/blob/main/assets/preview.png)
 
 ## ✨ Features and Goals
 

@@ -1505,7 +1505,7 @@ select {
 
 .text-main-500{
   --tw-text-opacity: 1;
-  color: rgba(11, 166, 101, var(--tw-text-opacity))
+  color: rgba(96, 165, 250, var(--tw-text-opacity))
 }
 
 .dark{
@@ -1519,7 +1519,7 @@ select {
   background-color: rgba(156, 163, 175, var(--tw-bg-opacity));
   /* bg-gray-400 */
   --tw-text-opacity: 1;
-  color: rgba(11, 166, 101, var(--tw-text-opacity))
+  color: rgba(96, 165, 250, var(--tw-text-opacity))
   /* text-indigo-500 */
 }
 
@@ -1984,20 +1984,20 @@ select {
 }
 
 @media(prefers-color-scheme:dark) {
-  .\[\@media\(prefers-color-scheme\:dark\)\]\:fill-teal-50 {
-    fill: #f0fdfa;
+  .\[\@media\(prefers-color-scheme\:dark\)\]\:fill-sky-50 {
+    fill: #f0f9ff;
   }
 
-  .\[\@media\(prefers-color-scheme\:dark\)\]\:stroke-teal-500 {
-    stroke: #14b8a6;
+  .\[\@media\(prefers-color-scheme\:dark\)\]\:stroke-sky-500 {
+    stroke: #0ea5e9;
   }
 
-  .group:hover .\[\@media\(prefers-color-scheme\:dark\)\]\:group-hover\:fill-teal-50 {
-    fill: #f0fdfa;
+  .group:hover .\[\@media\(prefers-color-scheme\:dark\)\]\:group-hover\:fill-sky-50 {
+    fill: #f0f9ff;
   }
 
-  .group:hover .\[\@media\(prefers-color-scheme\:dark\)\]\:group-hover\:stroke-teal-600 {
-    stroke: #0d9488;
+  .group:hover .\[\@media\(prefers-color-scheme\:dark\)\]\:group-hover\:stroke-sky-600 {
+    stroke: #0284c7;
   }
 
   .group:hover .\[\@media\(prefers-color-scheme\:dark\)\]\:group-hover\:stroke-zinc-400 {
@@ -2006,12 +2006,12 @@ select {
 }
 
 @media not (prefers-color-scheme:dark) {
-  .\[\@media_not_\(prefers-color-scheme\:dark\)\]\:fill-teal-400\/10 {
-    fill: rgb(45 212 191 / 0.1);
+  .\[\@media_not_\(prefers-color-scheme\:dark\)\]\:fill-sky-400\/10 {
+    fill: rgb(56 189 248 / 0.1);
   }
 
-  .\[\@media_not_\(prefers-color-scheme\:dark\)\]\:stroke-teal-500 {
-    stroke: #14b8a6;
+  .\[\@media_not_\(prefers-color-scheme\:dark\)\]\:stroke-sky-500 {
+    stroke: #0ea5e9;
   }
 }
 

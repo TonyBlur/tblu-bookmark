@@ -113,8 +113,10 @@
               <img class="pl-2 h-8 w-auto" src="assets/logo.svg" alt="Pintree">
               <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a>
             </div>
-            <div id="sidebar-2" class="flex flex-1 flex-col">
-              <!-- Sidebar content will be injected here -->
+            <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
+              <div id="sidebar-2" class="flex flex-1 flex-col">
+                <!-- Sidebar content will be injected here -->
+              </div>
             </div>
           </div>
         </div>
@@ -271,6 +273,9 @@
           offCanvasBackdrop.classList.add('opacity-100');
           offCanvasContent.classList.add('translate-x-0');
         }, 10);
+        document.getElementById('sidebar-2').innerHTML = '';
+        var navigation = document.getElementById('navigation').cloneNode(true);
+        document.getElementById('sidebar-2').appendChild(navigation);
       };
 
       // Function to close the sidebar
@@ -280,7 +285,6 @@
         setTimeout(() => {
           offCanvasMenu.classList.add('hidden');
         }, 300); // Match the duration of the transition
-        document.getElementById('sidebar-2').innerHTML = '';
       };
 
       // Event listeners for open and close buttons
@@ -730,12 +734,6 @@
     // Listen for changes in the color theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
       applyColorTheme(event.matches ? 'dark' : 'light');
-    });
-
-    // Open mobile menu
-    document.getElementById('open-sidebar-button').addEventListener('click', function () {
-      var navigation = document.getElementById('navigation').cloneNode(true);
-      document.getElementById('sidebar-2').appendChild(navigation);
     });
 
   </script>

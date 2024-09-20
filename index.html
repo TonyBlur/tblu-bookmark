@@ -115,7 +115,9 @@
             </div>
             <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
               <div id="sidebar-2" class="flex flex-1 flex-col">
-                <!-- Sidebar content will be injected here -->
+                <ul id="navigation-2" class="navigation space-y-1">
+                  <!-- Navigation items will be inserted here -->
+                </ul>
               </div>
             </div>
           </div>
@@ -133,7 +135,7 @@
         </div>
         <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
           <div id="sidebar" class="flex flex-1 flex-col">
-            <ul id="navigation" class="space-y-1">
+            <ul id="navigation" class="navigation space-y-1">
               <!-- Navigation items will be inserted here -->
             </ul>
           </div>
@@ -273,9 +275,6 @@
           offCanvasBackdrop.classList.add('opacity-100');
           offCanvasContent.classList.add('translate-x-0');
         }, 10);
-        document.getElementById('sidebar-2').innerHTML = '';
-        var navigation = document.getElementById('navigation').cloneNode(true);
-        document.getElementById('sidebar-2').appendChild(navigation);
       };
 
       // Function to close the sidebar
@@ -468,7 +467,7 @@
 
             navItem.onclick = (e) => {
               e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
               navItem.classList.add('sidebar-active');
               subList.classList.toggle('hidden');
               if (subList.children.length > 0) {
@@ -479,7 +478,7 @@
           } else {
             navItem.onclick = (e) => {
               e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
               navItem.classList.add('sidebar-active');
               renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
             };
@@ -517,9 +516,9 @@
 
     // Update the active state of sidebar items
     function updateSidebarActiveState(path) {
-      document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+      document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
 
-      let currentNav = document.getElementById('navigation');
+      let currentNav = document.querySelector('.navigation');
 
       path.forEach((item, index) => {
         const items = currentNav.querySelectorAll('li');
@@ -697,7 +696,11 @@
           // Use the first layer of the data directly
           const firstLayer = data;
           // Render navigation using the first layer of data
-          renderNavigation(firstLayer, document.getElementById('navigation'), true);
+          const navigationElements = document.getElementsByClassName('navigation');
+          for (let i = 0; i < navigationElements.length; i++) {
+            const navElement = navigationElements[i];
+            renderNavigation(firstLayer, navElement, true);
+          }
           // Render bookmarks using the first layer of data, starting from the Bookmark
           renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
 

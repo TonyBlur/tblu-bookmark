@@ -54,6 +54,8 @@ tbluBookmark is an open-source project that aims to convert browser bookmarks in
 
 You can also deploy the tbluBookmark project for free using Vercel. Click the button below and follow the instructions to easily deploy the project to the Vercel platform.
 
+On Vercel, you can also specify the URL of the bookmark file by setting the environment variable `BOOKMARK_DATA_URL`.
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FTonyBlur%2Ftblu-bookmark%2Ftree%2Fmain&project-name=tblu-bookmark&repository-name=tblu-bookmark)
 
 ---

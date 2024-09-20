@@ -54,6 +54,8 @@ tbluBookmark 是一个开源项目，旨在将浏览器书签导出成导航网�
 
 您也可以使用 Vercel 免费部署 tbluBookmark 项目。点击下面的按钮，跟随指引即可轻松将项目部署到 Vercel 平台。
 
+在Vercel上，您还可以通过设置环境变量 `BOOKMARK_DATA_URL` 来指定书签文件的URL。
+
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FTonyBlur%2Ftblu-bookmark%2Ftree%2Fmain&project-name=tblu-bookmark&repository-name=tblu-bookmark)
 
 ---

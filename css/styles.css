@@ -40,7 +40,7 @@
 
   
   :root {
-    --folderColor: #3CB884;
+    --folderColor: #1B9DE2;
     --paperColor: #ffffff;
   }
   
@@ -54,7 +54,7 @@
   }
   
   .folder__back {
-    fill: #0BA665;
+    fill: #0078D4;
     rx: 10;
     ry: 10;
   }
@@ -126,7 +126,7 @@
   }
 
   .loader {
-    border-top-color: #0BA665; /* You can change this color as needed */
+    border-top-color: #0078D4; /* You can change this color as needed */
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
   }

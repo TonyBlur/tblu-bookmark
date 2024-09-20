@@ -4,7 +4,7 @@
 
 .text-main-500{
   --tw-text-opacity: 1;
-  color: rgba(11, 166, 101, var(--tw-text-opacity)) 
+  color: rgba(96, 165, 250, var(--tw-text-opacity)) 
 }
 .dark{
   --tw-bg-opacity: 1;
@@ -15,7 +15,7 @@
     /* background-color: rgba(243, 244, 246, var(--tw-bg-opacity)); bg-gray-100 */
     background-color: rgba(156, 163, 175, var(--tw-bg-opacity)); /* bg-gray-400 */
     --tw-text-opacity: 1;
-    color: rgba(11, 166, 101, var(--tw-text-opacity)) /* text-indigo-500 */
+    color: rgba(96, 165, 250, var(--tw-text-opacity)) /* text-indigo-500 */
 
   }
 
@@ -40,7 +40,7 @@
 
   
   :root {
-    --folderColor: #3CB884;
+    --folderColor: #1B9DE2;
     --paperColor: #ffffff;
   }
   
@@ -54,7 +54,7 @@
   }
   
   .folder__back {
-    fill: #0BA665;
+    fill: #0078D4;
     rx: 10;
     ry: 10;
   }
@@ -126,7 +126,7 @@
   }
 
   .loader {
-    border-top-color: #0BA665; /* You can change this color as needed */
+    border-top-color: #0078D4; /* You can change this color as needed */
     -webkit-animation: spin 1s linear infinite;
     animation: spin 1s linear infinite;
   }

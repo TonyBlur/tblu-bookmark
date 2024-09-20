@@ -20,6 +20,22 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
+  <script>
+    const uniqueParam = new Date().getTime();
+    const script = document.createElement('script');
+    const defaultBookmarkDataURL = 'json/pintree.json';
+    script.src = `js/env-data.js?v=${uniqueParam}`;
+    let bookmarkDataURL = defaultBookmarkDataURL;
+    script.onload = function() {
+      if (window.env && window.env.BOOKMARK_DATA_URL) {
+        bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
+        console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
+      } else {
+        console.log('use default BookmarkDataURL');
+      }
+    };
+    document.head.appendChild(script);
+  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
   <script>
@@ -97,8 +113,12 @@
               <img class="pl-2 h-8 w-auto" src="assets/logo.svg" alt="Pintree">
               <a href="" class="ml-4 font-extrabold text-2xl dark:text-white">tbluBookmark</a>
             </div>
-            <div id="sidebar-2" class="flex flex-1 flex-col">
-              <!-- Sidebar content will be injected here -->
+            <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
+              <div id="sidebar-2" class="flex flex-1 flex-col">
+                <ul id="navigation-2" class="navigation space-y-1">
+                  <!-- Navigation items will be inserted here -->
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +135,7 @@
         </div>
         <div class="flex flex-1 flex-col overflow-y-auto no-scrollbar p-1 cursor-pointer">
           <div id="sidebar" class="flex flex-1 flex-col">
-            <ul id="navigation" class="space-y-1">
+            <ul id="navigation" class="navigation space-y-1">
               <!-- Navigation items will be inserted here -->
             </ul>
           </div>
@@ -157,7 +177,7 @@
               class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
               <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                 aria-hidden="true"
-                class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600">
+                class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-sky-50 [@media(prefers-color-scheme:dark)]:stroke-sky-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-sky-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-sky-600">
                 <path
                   d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z">
                 </path>
@@ -166,7 +186,7 @@
                   fill="none"></path>
               </svg>
               <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true"
-                class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500">
+                class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-sky-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-sky-500">
                 <path
                   d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
                   stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -264,7 +284,6 @@
         setTimeout(() => {
           offCanvasMenu.classList.add('hidden');
         }, 300); // Match the duration of the transition
-        document.getElementById('sidebar-2').innerHTML = '';
       };
 
       // Event listeners for open and close buttons
@@ -275,7 +294,7 @@
 
     // Search functionality
     function searchBookmarks(query) {
-      fetch('json/pintree.json')
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
@@ -307,7 +326,7 @@
 
     // Clear search results and reset UI
     function clearSearchResults() {
-      fetch('json/pintree.json')
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const secondLayer = data[0].children;
@@ -322,7 +341,7 @@
     document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
 
     function searchBookmarks(query) {
-      fetch('json/pintree.json')
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
@@ -448,7 +467,7 @@
 
             navItem.onclick = (e) => {
               e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
               navItem.classList.add('sidebar-active');
               subList.classList.toggle('hidden');
               if (subList.children.length > 0) {
@@ -459,7 +478,7 @@
           } else {
             navItem.onclick = (e) => {
               e.stopPropagation();
-              document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
               navItem.classList.add('sidebar-active');
               renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
             };
@@ -497,9 +516,9 @@
 
     // Update the active state of sidebar items
     function updateSidebarActiveState(path) {
-      document.querySelectorAll('#navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
+      document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
 
-      let currentNav = document.getElementById('navigation');
+      let currentNav = document.querySelector('.navigation');
 
       path.forEach((item, index) => {
         const items = currentNav.querySelectorAll('li');
@@ -605,7 +624,7 @@
     }
 
     // Fetch and render data
-    fetch('json/pintree.json')
+    fetch(bookmarkDataURL)
       .then(response => response.json())
       .then(data => {
         // Use the first layer of the data directly
@@ -668,7 +687,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Fetch and render data
-      fetch('json/pintree.json')
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           // Hide loading spinner
@@ -677,7 +696,11 @@
           // Use the first layer of the data directly
           const firstLayer = data;
           // Render navigation using the first layer of data
-          renderNavigation(firstLayer, document.getElementById('navigation'), true);
+          const navigationElements = document.getElementsByClassName('navigation');
+          for (let i = 0; i < navigationElements.length; i++) {
+            const navElement = navigationElements[i];
+            renderNavigation(firstLayer, navElement, true);
+          }
           // Render bookmarks using the first layer of data, starting from the Bookmark
           renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
 
@@ -714,12 +737,6 @@
     // Listen for changes in the color theme
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
       applyColorTheme(event.matches ? 'dark' : 'light');
-    });
-
-    // Open mobile menu
-    document.getElementById('open-sidebar-button').addEventListener('click', function () {
-      var navigation = document.getElementById('navigation').cloneNode(true);
-      document.getElementById('sidebar-2').appendChild(navigation);
     });
 
   </script>

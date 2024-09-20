@@ -4,12 +4,12 @@
   "description": "[English](README.md) | [中文](README.zh.md)",
   "main": "index.js",
   "scripts": {
-    "build:css": "tailwindcss build ./css/styles.css -o ./css/tailwind.css",
+    "build:css": "tailwindcss build ./css/styles.css -o ./build/css/tailwind.css",
     "watch:css": "nodemon -e html,css,js -x \"npm run build:css\"",
     "dev": "concurrently \"npm run watch:css\" \"npm run generate-env\" \"npm run serve\"",
     "serve": "http-server -a 127.0.0.1 -p 8080",
     "generate-env": "node js/generate-env.js",
-    "build": "npm run generate-env && npm run build:css"
+    "build": "npm run generate-env && npm run build:css && mkdir -p build && cp index.html build/ && cp -r assets build/"
   },
   "keywords": [],
   "author": "",

@@ -9,7 +9,8 @@
     "dev": "concurrently \"npm run watch:css\" \"npm run generate-env\" \"npm run serve\"",
     "serve": "http-server -a 127.0.0.1 -p 8080",
     "generate-env": "node js/generate-env.js",
-    "build": "npm run generate-env && npm run build:css"
+    "build": "npm run generate-env && npm run build:css",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -21,9 +22,13 @@
     "vercel": "^37.5.2"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "commitlint-config-gitmoji": "^2.3.1",
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
     "http-server": "^14.1.1",
+    "husky": "^8.0.0",
     "nodemon": "^3.1.3"
   }
 }

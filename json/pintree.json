@@ -134,6 +134,13 @@
             "title": "Send and Transfer Large Files Online - DROP",
             "icon": "https://logo.clearbit.com/drop.space",
             "url": "https://drop.space/"
+          },
+          {
+            "type": "link",
+            "addDate": 1731160758771,
+            "title": "Send",
+            "icon": "https://logo.clearbit.com/send.vis.ee",
+            "url": "https://send.vis.ee/"
           }
         ]
       },
@@ -167,6 +174,13 @@
                 "title": "即时设计 - 可实时协作的专业 UI 设计工具",
                 "icon": "https://logo.clearbit.com/js.design",
                 "url": "https://js.design/"
+              },
+              {
+                "type": "link",
+                "addDate": 1730913460956,
+                "title": "Rive - Build interactive motion graphics that run anywhere",
+                "icon": "https://logo.clearbit.com/rive.app",
+                "url": "https://rive.app/"
               },
               {
                 "type": "link",
@@ -788,6 +802,13 @@
                     "title": "Spotify Downloader - Download Spotify songs, playlists, and albums",
                     "icon": "https://logo.clearbit.com/spotify-downloader.com",
                     "url": "https://spotify-downloader.com/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1731648426535,
+                    "title": "MP3 Downloader - Free Mp3 Cloud",
+                    "icon": "https://logo.clearbit.com/g2.freemp3cloud.com",
+                    "url": "https://g2.freemp3cloud.com/"
                   }
                 ]
               },
@@ -1036,8 +1057,36 @@
       {
         "type": "folder",
         "addDate": 1715944665022,
-        "title": "Software | 软件资源站",
+        "title": "Software & Websites Share | 软件与网站分享站",
         "children": [
+          {
+            "type": "link",
+            "addDate": 1657267295961,
+            "title": "LKs - 良心到难以置信的网站推荐",
+            "icon": "https://logo.clearbit.com/xiangjianan.github.io",
+            "url": "https://xiangjianan.github.io/lks/"
+          },
+          {
+            "type": "link",
+            "addDate": 1719292402656,
+            "title": "LKs 网站推荐合集",
+            "icon": "https://logo.clearbit.com/lkssite.vip",
+            "url": "https://lkssite.vip/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726661925433,
+            "title": "tbluBookmark | 忧蓝的网站集",
+            "icon": "https://logo.clearbit.com/bookmark.tblu.xyz",
+            "url": "https://bookmark.tblu.xyz/"
+          },
+          {
+            "type": "link",
+            "addDate": 1726725072160,
+            "title": "30tool-可能是最好的工具网",
+            "icon": "https://logo.clearbit.com/www.30aitool.com",
+            "url": "https://www.30aitool.com/"
+          },
           {
             "type": "link",
             "addDate": 1702458505882,
@@ -1107,6 +1156,20 @@
             "title": "Appstorrent - Игры и программы для macOS",
             "icon": "https://logo.clearbit.com/appstorrent.ru",
             "url": "https://appstorrent.ru/"
+          },
+          {
+            "type": "link",
+            "addDate": 1730981333437,
+            "title": "App热-点亮未来，见证精彩",
+            "icon": "https://logo.clearbit.com/apphot.cc",
+            "url": "https://apphot.cc/"
+          },
+          {
+            "type": "link",
+            "addDate": 1729338329304,
+            "title": "反斗限免-反斗软件旗下软件限免资讯网站",
+            "icon": "https://logo.clearbit.com/free.apprcn.com",
+            "url": "https://free.apprcn.com/"
           }
         ]
       },
@@ -1296,6 +1359,13 @@
             "title": "简单TV - 搜索一下 即刻观看",
             "icon": "https://logo.clearbit.com/jiandantv.com",
             "url": "https://jiandantv.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1731612265230,
+            "title": "七味 - 七味网",
+            "icon": "https://logo.clearbit.com/www.qwavi.com",
+            "url": "https://www.qwavi.com/"
           }
         ]
       },
@@ -1539,6 +1609,20 @@
                 "title": "DuckDuckGo AI Chat at DuckDuckGo",
                 "icon": "https://logo.clearbit.com/duckduckgo.com",
                 "url": "https://duckduckgo.com/?q=DuckDuckGo+AI+Chat&ia=chat&duckai=1"
+              },
+              {
+                "type": "link",
+                "addDate": 1731647092676,
+                "title": "xAI Grok",
+                "icon": "https://logo.clearbit.com/x.ai",
+                "url": "https://x.ai/grok"
+              },
+              {
+                "type": "link",
+                "addDate": 1731647148201,
+                "title": "Next.js Chatbot Template",
+                "icon": "https://logo.clearbit.com/chat.vercel.ai",
+                "url": "https://chat.vercel.ai/"
               }
             ]
           },
@@ -1707,6 +1791,13 @@
                 "title": "免费AI音乐生成器 - ai-music-generator.ai",
                 "icon": "https://logo.clearbit.com/ai-music-generator.ai",
                 "url": "https://ai-music-generator.ai/zh"
+              },
+              {
+                "type": "link",
+                "addDate": 1731649507291,
+                "title": "免费 AI 歌曲生成器 - 使用 AI 创建自定义音乐",
+                "icon": "https://logo.clearbit.com/aisonggenerator.ai",
+                "url": "https://aisonggenerator.ai/zh-CN"
               }
             ]
           },
@@ -1999,13 +2090,6 @@
           },
           {
             "type": "link",
-            "addDate": 1726056646208,
-            "title": "大白话的ChatGPT Prompt调教指南 - 雨凝",
-            "icon": "https://logo.clearbit.com/www.rainng.com",
-            "url": "https://www.rainng.com/chatgpt-prompt-tutorial/"
-          },
-          {
-            "type": "link",
             "addDate": 1730296522008,
             "title": "Molmo by Ai2",
             "icon": "https://logo.clearbit.com/molmo.allenai.org",
@@ -2024,6 +2108,34 @@
             "title": "Llama Coder – AI Code Generator",
             "icon": "https://logo.clearbit.com/llamacoder.together.ai",
             "url": "https://llamacoder.together.ai/"
+          },
+          {
+            "type": "link",
+            "addDate": 1731594405126,
+            "title": "east.im | AI文本工具箱",
+            "icon": "https://logo.clearbit.com/east.im",
+            "url": "https://east.im/"
+          },
+          {
+            "type": "link",
+            "addDate": 1731610442680,
+            "title": "免费在线AI一键生成PPT",
+            "icon": "https://logo.clearbit.com/aipptmaker.ai",
+            "url": "https://aipptmaker.ai/cn"
+          },
+          {
+            "type": "link",
+            "addDate": 1731647487599,
+            "title": "人人AI - AI图片音视频工具箱",
+            "icon": "https://logo.clearbit.com/ogsoftware.cn",
+            "url": "https://ogsoftware.cn/home"
+          },
+          {
+            "type": "link",
+            "addDate": 1726056646208,
+            "title": "大白话的ChatGPT Prompt调教指南 - 雨凝",
+            "icon": "https://logo.clearbit.com/www.rainng.com",
+            "url": "https://www.rainng.com/chatgpt-prompt-tutorial/"
           }
         ]
       },
@@ -2157,6 +2269,20 @@
             "title": "SLUM: The Shadow Library Uptime Monitor",
             "icon": "https://logo.clearbit.com/open-slum.org",
             "url": "https://open-slum.org/"
+          },
+          {
+            "type": "link",
+            "addDate": 1731609089221,
+            "title": "飞库文学网 - 飞库小说网_精品图书_在线听书_精校小说_经典名著_校对全本txt小说网_txt精校_听书网|追书网",
+            "icon": "https://logo.clearbit.com/www.feiku6.com",
+            "url": "https://www.feiku6.com/index.html"
+          },
+          {
+            "type": "link",
+            "addDate": 1731610008234,
+            "title": "502book - 免费小说搜索引擎",
+            "icon": "https://logo.clearbit.com/502book.com",
+            "url": "https://502book.com/"
           }
         ]
       },
@@ -2491,6 +2617,13 @@
                 "title": "YAY.BOO!",
                 "icon": "https://logo.clearbit.com/yay.boo",
                 "url": "https://yay.boo/"
+              },
+              {
+                "type": "link",
+                "addDate": 1731609917745,
+                "title": "Professional Free Hosting",
+                "icon": "https://logo.clearbit.com/gzbak.com",
+                "url": "http://gzbak.com/"
               }
             ]
           },
@@ -2553,39 +2686,46 @@
         ]
       },
       {
-        "type": "link",
-        "addDate": 1613273137631,
-        "title": "网盘直链下载助手",
-        "icon": "https://logo.clearbit.com/www.baiduyun.wiki",
-        "url": "https://www.baiduyun.wiki/"
-      },
-      {
-        "type": "link",
-        "addDate": 1697387959447,
-        "title": "Netdisk fast download",
-        "icon": "https://logo.clearbit.com/lz.qaiu.top",
-        "url": "https://lz.qaiu.top/"
-      },
-      {
-        "type": "link",
-        "addDate": 1728126034303,
-        "title": "盘搜VIP - 人工亲测精选的网盘搜索工具导航 - pansou.vip",
-        "icon": "https://logo.clearbit.com/www.pansou.vip",
-        "url": "https://www.pansou.vip/"
-      },
-      {
-        "type": "link",
-        "addDate": 1727341502457,
-        "title": "OneDrive网盘永久外链地址生成工具 OneDrive直链在线生成 | Gimhoy Studio",
-        "icon": "https://logo.clearbit.com/onedrive.gimhoy.com",
-        "url": "https://onedrive.gimhoy.com/"
-      },
-      {
-        "type": "link",
-        "addDate": 1725537565802,
-        "title": "Download and play torrents | Webtor.io",
-        "icon": "https://logo.clearbit.com/webtor.io",
-        "url": "https://webtor.io/"
+        "type": "folder",
+        "addDate": 1731660229265,
+        "title": "Netdisk & Download | 网盘与下载",
+        "children": [
+          {
+            "type": "link",
+            "addDate": 1613273137631,
+            "title": "网盘直链下载助手",
+            "icon": "https://logo.clearbit.com/www.baiduyun.wiki",
+            "url": "https://www.baiduyun.wiki/"
+          },
+          {
+            "type": "link",
+            "addDate": 1697387959447,
+            "title": "NFD网盘直链解析 Netdisk fast download",
+            "icon": "https://logo.clearbit.com/lz.qaiu.top",
+            "url": "https://lz.qaiu.top/"
+          },
+          {
+            "type": "link",
+            "addDate": 1728126034303,
+            "title": "盘搜VIP - 人工亲测精选的网盘搜索工具导航 - pansou.vip",
+            "icon": "https://logo.clearbit.com/www.pansou.vip",
+            "url": "https://www.pansou.vip/"
+          },
+          {
+            "type": "link",
+            "addDate": 1727341502457,
+            "title": "OneDrive网盘永久外链地址生成工具 OneDrive直链在线生成 | Gimhoy Studio",
+            "icon": "https://logo.clearbit.com/onedrive.gimhoy.com",
+            "url": "https://onedrive.gimhoy.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1725537565802,
+            "title": "Download and play torrents | Webtor.io",
+            "icon": "https://logo.clearbit.com/webtor.io",
+            "url": "https://webtor.io/"
+          }
+        ]
       },
       {
         "type": "link",
@@ -2614,6 +2754,13 @@
         "title": "Temp Mail - Disposable Temporary E-Mail Address",
         "icon": "https://logo.clearbit.com/mail.cx",
         "url": "https://mail.cx/"
+      },
+      {
+        "type": "link",
+        "addDate": 1731590946714,
+        "title": "Temp.now 临时邮箱",
+        "icon": "https://logo.clearbit.com/temp.now",
+        "url": "https://temp.now/zh/"
       },
       {
         "type": "link",
@@ -2764,41 +2911,6 @@
       },
       {
         "type": "link",
-        "addDate": 1657267295961,
-        "title": "LKs - 良心到难以置信的网站推荐",
-        "icon": "https://logo.clearbit.com/xiangjianan.github.io",
-        "url": "https://xiangjianan.github.io/lks/"
-      },
-      {
-        "type": "link",
-        "addDate": 1719292402656,
-        "title": "LKs 网站推荐合集",
-        "icon": "https://logo.clearbit.com/lkssite.vip",
-        "url": "https://lkssite.vip/"
-      },
-      {
-        "type": "link",
-        "addDate": 1726661925433,
-        "title": "tbluBookmark | 忧蓝的网站集",
-        "icon": "https://logo.clearbit.com/bookmark.tblu.xyz",
-        "url": "https://bookmark.tblu.xyz/"
-      },
-      {
-        "type": "link",
-        "addDate": 1726725072160,
-        "title": "30tool-可能是最好的工具网",
-        "icon": "https://logo.clearbit.com/www.30aitool.com",
-        "url": "https://www.30aitool.com/"
-      },
-      {
-        "type": "link",
-        "addDate": 1719384840579,
-        "title": "Cyberduck | Libre server and cloud storage browser",
-        "icon": "https://logo.clearbit.com/cyberduck.io",
-        "url": "https://cyberduck.io/"
-      },
-      {
-        "type": "link",
         "addDate": 1720081444479,
         "title": "Z2H字帖 | 超级好用的字帖生成工具",
         "icon": "https://logo.clearbit.com/paper.z2h.cn",
@@ -2897,6 +3009,13 @@
       },
       {
         "type": "link",
+        "addDate": 1730714313588,
+        "title": "乐猪游戏-单机游戏_单机游戏下载_安卓游戏网游单机手机游戏",
+        "icon": "https://logo.clearbit.com/www.lezhugame.com",
+        "url": "https://www.lezhugame.com/"
+      },
+      {
+        "type": "link",
         "addDate": 1726725252145,
         "title": "玩最好的在线游戏 - Silvergames.com",
         "icon": "https://logo.clearbit.com/www.silvergames.com",
@@ -2988,13 +3107,6 @@
       },
       {
         "type": "link",
-        "addDate": 1729338329304,
-        "title": "反斗限免-反斗软件旗下软件限免资讯网站",
-        "icon": "https://logo.clearbit.com/free.apprcn.com",
-        "url": "https://free.apprcn.com/"
-      },
-      {
-        "type": "link",
         "addDate": 1730277817876,
         "title": "SiliconCat.net - CPU, GPU and SoC Comparisons, Ratings and Benchmarks",
         "icon": "https://logo.clearbit.com/siliconcat.net",
@@ -3009,10 +3121,66 @@
       },
       {
         "type": "link",
+        "addDate": 1731610106692,
+        "title": "简易图片加水印，防盗图称心如意",
+        "icon": "https://logo.clearbit.com/jiashuiyin.com",
+        "url": "https://jiashuiyin.com/"
+      },
+      {
+        "type": "link",
         "addDate": 1730316458756,
         "title": "draw.io - 在线图表编辑",
         "icon": "https://logo.clearbit.com/app.diagrams.net",
         "url": "https://app.diagrams.net/"
+      },
+      {
+        "type": "link",
+        "addDate": 1730713637115,
+        "title": "OneIMG - 文字转图片",
+        "icon": "https://logo.clearbit.com/oneimgai.com",
+        "url": "https://oneimgai.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1731660467330,
+        "title": "Microsoft Store - Generation Project (v1.2.3) [by @rgadguard & mkuba50]",
+        "icon": "https://logo.clearbit.com/store.rg-adguard.net",
+        "url": "https://store.rg-adguard.net/"
+      },
+      {
+        "type": "link",
+        "addDate": 1730713774217,
+        "title": "Windows ARM software | ‎Home",
+        "icon": "https://logo.clearbit.com/armrepo.ver.lt",
+        "url": "https://armrepo.ver.lt/"
+      },
+      {
+        "type": "link",
+        "addDate": 1730714194530,
+        "title": "Cursor Directory",
+        "icon": "https://logo.clearbit.com/cursor.directory",
+        "url": "https://cursor.directory/"
+      },
+      {
+        "type": "link",
+        "addDate": 1731260034197,
+        "title": "OneCommander - Modern files manager for Windows 11 and Windows 10",
+        "icon": "https://logo.clearbit.com/onecommander.com",
+        "url": "https://onecommander.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1731648649712,
+        "title": "iCraft Editor - 3D架构图绘制工具",
+        "icon": "https://logo.clearbit.com/icraft.gantcloud.com",
+        "url": "https://icraft.gantcloud.com/zh-CN"
+      },
+      {
+        "type": "link",
+        "addDate": 1731649706702,
+        "title": "躺平计算器 - Future Planner",
+        "icon": "https://logo.clearbit.com/retire.money",
+        "url": "https://retire.money/"
       }
     ]
   }

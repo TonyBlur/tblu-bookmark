@@ -809,6 +809,13 @@
                     "title": "MP3 Downloader - Free Mp3 Cloud",
                     "icon": "https://logo.clearbit.com/g2.freemp3cloud.com",
                     "url": "https://g2.freemp3cloud.com/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1732282704303,
+                    "title": "音乐魔石官网-全网无损音乐mp3歌曲免费下载网站",
+                    "icon": "https://logo.clearbit.com/yym4.com",
+                    "url": "https://yym4.com/"
                   }
                 ]
               },
@@ -1465,6 +1472,13 @@
               },
               {
                 "type": "link",
+                "addDate": 1732035918851,
+                "title": "Le Chat - Mistral AI",
+                "icon": "https://logo.clearbit.com/chat.mistral.ai",
+                "url": "https://chat.mistral.ai/chat"
+              },
+              {
+                "type": "link",
                 "addDate": 1719060449079,
                 "title": "智谱清言",
                 "icon": "https://logo.clearbit.com/chatglm.cn",
@@ -1623,14 +1637,98 @@
                 "title": "Next.js Chatbot Template",
                 "icon": "https://logo.clearbit.com/chat.vercel.ai",
                 "url": "https://chat.vercel.ai/"
+              },
+              {
+                "type": "link",
+                "addDate": 1727323277995,
+                "title": "Hume AI",
+                "icon": "https://logo.clearbit.com/app.hume.ai",
+                "url": "https://app.hume.ai/"
+              },
+              {
+                "type": "link",
+                "addDate": 1727323411210,
+                "title": "Pi, your personal AI",
+                "icon": "https://logo.clearbit.com/pi.ai",
+                "url": "https://pi.ai/"
               }
             ]
           },
           {
             "type": "folder",
             "addDate": 1725797058635,
-            "title": "AI Painting | AI绘画",
+            "title": "Image Generators & Editors | 图像生成与编辑",
             "children": [
+              {
+                "type": "folder",
+                "addDate": 1723365694113,
+                "title": "Video Generators | 视频生成",
+                "children": [
+                  {
+                    "type": "link",
+                    "addDate": 1723464760417,
+                    "title": "PixVerse - Create breath-taking videos with PixVerse AI",
+                    "icon": "https://logo.clearbit.com/pixverse.ai",
+                    "url": "https://pixverse.ai/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1703764000680,
+                    "title": "Pika",
+                    "icon": "https://logo.clearbit.com/pika.art",
+                    "url": "https://pika.art/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1695570132231,
+                    "title": "Genmo. Create videos, images and 3D objects with AI.",
+                    "icon": "https://logo.clearbit.com/www.genmo.ai",
+                    "url": "https://www.genmo.ai/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1718697076028,
+                    "title": "Dashboard - Runway",
+                    "icon": "https://logo.clearbit.com/app.runwayml.com",
+                    "url": "https://app.runwayml.com/video-tools/teams/TonyBlu/dashboard"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1718697025978,
+                    "title": "Luma Dream Machine",
+                    "icon": "https://logo.clearbit.com/lumalabs.ai",
+                    "url": "https://lumalabs.ai/dream-machine"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1722396315721,
+                    "title": "Vidu",
+                    "icon": "https://logo.clearbit.com/www.vidu.studio",
+                    "url": "https://www.vidu.studio/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1719141606909,
+                    "title": "VIGGLE",
+                    "icon": "https://logo.clearbit.com/www.viggle.ai",
+                    "url": "https://www.viggle.ai/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1723366110432,
+                    "title": "可灵大模型",
+                    "icon": "https://logo.clearbit.com/kling.kuaishou.com",
+                    "url": "https://kling.kuaishou.com/"
+                  },
+                  {
+                    "type": "link",
+                    "addDate": 1728473728417,
+                    "title": "MOKI - 我用AI做短片",
+                    "icon": "https://logo.clearbit.com/www.moki.cn",
+                    "url": "https://www.moki.cn/home"
+                  }
+                ]
+              },
               {
                 "type": "link",
                 "addDate": 1684479625699,
@@ -1640,24 +1738,10 @@
               },
               {
                 "type": "link",
-                "addDate": 1724342725157,
-                "title": "Midjourney",
-                "icon": "https://logo.clearbit.com/www.midjourney.com",
-                "url": "https://www.midjourney.com/"
-              },
-              {
-                "type": "link",
-                "addDate": 1725536679089,
-                "title": "AImageGen",
-                "icon": "https://logo.clearbit.com/aimage.tblu.xyz",
-                "url": "https://aimage.tblu.xyz/"
-              },
-              {
-                "type": "link",
-                "addDate": 1625502435682,
-                "title": "NVIDIA Canvas: Turn Simple Brushstrokes into Realistic Images",
-                "icon": "https://logo.clearbit.com/www.nvidia.com",
-                "url": "https://www.nvidia.com/en-us/studio/canvas/"
+                "addDate": 1732254429733,
+                "title": "Free AI Image Generator Online | Recraft",
+                "icon": "https://logo.clearbit.com/www.recraft.ai",
+                "url": "https://www.recraft.ai/"
               },
               {
                 "type": "link",
@@ -1668,6 +1752,13 @@
               },
               {
                 "type": "link",
+                "addDate": 1728324660396,
+                "title": "KREA - Image & Video",
+                "icon": "https://logo.clearbit.com/www.krea.ai",
+                "url": "https://www.krea.ai/home"
+              },
+              {
+                "type": "link",
                 "addDate": 1725889581253,
                 "title": "AI绘画创作平台 - 海鲸AI | AI绘画创意中心",
                 "icon": "https://logo.clearbit.com/www.atalk-ai.com",
@@ -1675,17 +1766,38 @@
               },
               {
                 "type": "link",
-                "addDate": 1726224810216,
-                "title": "FLUX1.Art: Free FLUX.1 Access - State-of-the-art Image Generator",
-                "icon": "https://logo.clearbit.com/flux1.art",
-                "url": "https://flux1.art/"
+                "addDate": 1723464656127,
+                "title": "TensorPix - Enhance Video & Image Quality Online",
+                "icon": "https://logo.clearbit.com/tensorpix.ai",
+                "url": "https://tensorpix.ai/"
               },
               {
                 "type": "link",
-                "addDate": 1728324660396,
-                "title": "KREA",
-                "icon": "https://logo.clearbit.com/www.krea.ai",
-                "url": "https://www.krea.ai/home"
+                "addDate": 1725536679089,
+                "title": "AImageGen",
+                "icon": "https://logo.clearbit.com/aimage.tblu.xyz",
+                "url": "https://aimage.tblu.xyz/"
+              },
+              {
+                "type": "link",
+                "addDate": 1695570044416,
+                "title": "Blockade Labs - Unleash Your Creativity with AI",
+                "icon": "https://logo.clearbit.com/www.blockadelabs.com",
+                "url": "https://www.blockadelabs.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1723464700623,
+                "title": "Colorize Photo | Try Free | Realistic Colors",
+                "icon": "https://logo.clearbit.com/palette.fm",
+                "url": "https://palette.fm/"
+              },
+              {
+                "type": "link",
+                "addDate": 1625502435682,
+                "title": "NVIDIA Canvas: Turn Simple Brushstrokes into Realistic Images",
+                "icon": "https://logo.clearbit.com/www.nvidia.com",
+                "url": "https://www.nvidia.com/en-us/studio/canvas/"
               }
             ]
           },
@@ -1802,76 +1914,6 @@
             ]
           },
           {
-            "type": "folder",
-            "addDate": 1723365694113,
-            "title": "Video LMs | 视频生成大模型",
-            "children": [
-              {
-                "type": "link",
-                "addDate": 1723464760417,
-                "title": "PixVerse - Create breath-taking videos with PixVerse AI",
-                "icon": "https://logo.clearbit.com/pixverse.ai",
-                "url": "https://pixverse.ai/"
-              },
-              {
-                "type": "link",
-                "addDate": 1703764000680,
-                "title": "Pika",
-                "icon": "https://logo.clearbit.com/pika.art",
-                "url": "https://pika.art/"
-              },
-              {
-                "type": "link",
-                "addDate": 1695570132231,
-                "title": "Genmo. Create videos, images and 3D objects with AI.",
-                "icon": "https://logo.clearbit.com/www.genmo.ai",
-                "url": "https://www.genmo.ai/"
-              },
-              {
-                "type": "link",
-                "addDate": 1718697076028,
-                "title": "Dashboard - Runway",
-                "icon": "https://logo.clearbit.com/app.runwayml.com",
-                "url": "https://app.runwayml.com/video-tools/teams/TonyBlu/dashboard"
-              },
-              {
-                "type": "link",
-                "addDate": 1718697025978,
-                "title": "Luma Dream Machine",
-                "icon": "https://logo.clearbit.com/lumalabs.ai",
-                "url": "https://lumalabs.ai/dream-machine"
-              },
-              {
-                "type": "link",
-                "addDate": 1722396315721,
-                "title": "Vidu",
-                "icon": "https://logo.clearbit.com/www.vidu.studio",
-                "url": "https://www.vidu.studio/"
-              },
-              {
-                "type": "link",
-                "addDate": 1719141606909,
-                "title": "VIGGLE",
-                "icon": "https://logo.clearbit.com/www.viggle.ai",
-                "url": "https://www.viggle.ai/"
-              },
-              {
-                "type": "link",
-                "addDate": 1723366110432,
-                "title": "可灵大模型",
-                "icon": "https://logo.clearbit.com/kling.kuaishou.com",
-                "url": "https://kling.kuaishou.com/"
-              },
-              {
-                "type": "link",
-                "addDate": 1728473728417,
-                "title": "MOKI - 我用AI做短片",
-                "icon": "https://logo.clearbit.com/www.moki.cn",
-                "url": "https://www.moki.cn/home"
-              }
-            ]
-          },
-          {
             "type": "link",
             "addDate": 1641192595953,
             "title": "Hugging Face – The AI community building the future.",
@@ -1880,80 +1922,10 @@
           },
           {
             "type": "link",
-            "addDate": 1695570044416,
-            "title": "Blockade Labs - Unleash Your Creativity with AI",
-            "icon": "https://logo.clearbit.com/www.blockadelabs.com",
-            "url": "https://www.blockadelabs.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1723464656127,
-            "title": "TensorPix - Enhance Video & Image Quality Online",
-            "icon": "https://logo.clearbit.com/tensorpix.ai",
-            "url": "https://tensorpix.ai/"
-          },
-          {
-            "type": "link",
-            "addDate": 1728324694660,
-            "title": "Magnific AI — The magic image Upscaler & Enhancer",
-            "icon": "https://logo.clearbit.com/magnific.ai",
-            "url": "https://magnific.ai/"
-          },
-          {
-            "type": "link",
-            "addDate": 1726079416436,
-            "title": "可灵 AI - 新一代 AI 创意生产力平台",
-            "icon": "https://logo.clearbit.com/klingai.kuaishou.com",
-            "url": "https://klingai.kuaishou.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1723464700623,
-            "title": "Colorize Photo | Try Free | Realistic Colors",
-            "icon": "https://logo.clearbit.com/palette.fm",
-            "url": "https://palette.fm/"
-          },
-          {
-            "type": "link",
-            "addDate": 1728289140394,
-            "title": "文本转SVG AI生成器 - AI驱动的SVG工具",
-            "icon": "https://logo.clearbit.com/svg.la",
-            "url": "https://svg.la/"
-          },
-          {
-            "type": "link",
             "addDate": 1719293835779,
             "title": "Calligrapher.ai: Realistic computer-generated handwriting",
             "icon": "https://logo.clearbit.com/www.calligrapher.ai",
             "url": "https://www.calligrapher.ai/"
-          },
-          {
-            "type": "link",
-            "addDate": 1719292212165,
-            "title": "Gamma - Slides Generate",
-            "icon": "https://logo.clearbit.com/gamma.app",
-            "url": "https://gamma.app/"
-          },
-          {
-            "type": "link",
-            "addDate": 1722968644803,
-            "title": "SAM 2 Demo | By Meta FAIR",
-            "icon": "https://logo.clearbit.com/sam2.metademolab.com",
-            "url": "https://sam2.metademolab.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1727323277995,
-            "title": "Hume AI",
-            "icon": "https://logo.clearbit.com/app.hume.ai",
-            "url": "https://app.hume.ai/"
-          },
-          {
-            "type": "link",
-            "addDate": 1727323411210,
-            "title": "Pi, your personal AI",
-            "icon": "https://logo.clearbit.com/pi.ai",
-            "url": "https://pi.ai/"
           },
           {
             "type": "link",
@@ -1978,15 +1950,22 @@
           },
           {
             "type": "link",
+            "addDate": 1731923201926,
+            "title": "RawChat公益站点-ChatGPT",
+            "icon": "https://logo.clearbit.com/chatgptplus.cn",
+            "url": "https://chatgptplus.cn/"
+          },
+          {
+            "type": "link",
             "addDate": 1725437154651,
-            "title": "RawChat公益站点",
+            "title": "RawChat公益站点-Claude",
             "icon": "https://logo.clearbit.com/kelaode.ai",
             "url": "https://kelaode.ai/"
           },
           {
             "type": "link",
             "addDate": 1725536604173,
-            "title": "tbluChat",
+            "title": "tblu LobeChat",
             "icon": "https://logo.clearbit.com/chat.tblu.xyz",
             "url": "https://chat.tblu.xyz/"
           },
@@ -2118,10 +2097,24 @@
           },
           {
             "type": "link",
+            "addDate": 1719292212165,
+            "title": "Gamma - Slides Generate",
+            "icon": "https://logo.clearbit.com/gamma.app",
+            "url": "https://gamma.app/"
+          },
+          {
+            "type": "link",
             "addDate": 1731610442680,
             "title": "免费在线AI一键生成PPT",
             "icon": "https://logo.clearbit.com/aipptmaker.ai",
             "url": "https://aipptmaker.ai/cn"
+          },
+          {
+            "type": "link",
+            "addDate": 1728289140394,
+            "title": "文本转SVG AI生成器 - AI驱动的SVG工具",
+            "icon": "https://logo.clearbit.com/svg.la",
+            "url": "https://svg.la/"
           },
           {
             "type": "link",
@@ -2377,6 +2370,13 @@
           },
           {
             "type": "link",
+            "addDate": 1732282659376,
+            "title": "FreeCompress",
+            "icon": "https://logo.clearbit.com/freecompress.com",
+            "url": "https://freecompress.com/"
+          },
+          {
+            "type": "link",
             "addDate": 1722575035169,
             "title": "Video file compressor",
             "icon": "https://logo.clearbit.com/tools.rotato.app",
@@ -2621,7 +2621,7 @@
               {
                 "type": "link",
                 "addDate": 1731609917745,
-                "title": "Professional Free Hosting",
+                "title": "Gzbak - Professional Free Hosting",
                 "icon": "https://logo.clearbit.com/gzbak.com",
                 "url": "http://gzbak.com/"
               }
@@ -2841,6 +2841,13 @@
       },
       {
         "type": "link",
+        "addDate": 1731916793978,
+        "title": "X-MOL学术平台",
+        "icon": "https://logo.clearbit.com/www.x-mol.com",
+        "url": "https://www.x-mol.com/"
+      },
+      {
+        "type": "link",
         "addDate": 1726918691848,
         "title": "arXiv.org e-Print archive",
         "icon": "https://logo.clearbit.com/arxiv.org",
@@ -2873,6 +2880,13 @@
         "title": "深入浅出PyTorch — 深入浅出PyTorch",
         "icon": "https://logo.clearbit.com/datawhalechina.github.io",
         "url": "https://datawhalechina.github.io/thorough-pytorch/index.html"
+      },
+      {
+        "type": "link",
+        "addDate": 1731767140438,
+        "title": "Hello 算法 - 学习数据结构与算法",
+        "icon": "https://logo.clearbit.com/www.hello-algo.com",
+        "url": "https://www.hello-algo.com/"
       },
       {
         "type": "link",
@@ -3181,6 +3195,20 @@
         "title": "躺平计算器 - Future Planner",
         "icon": "https://logo.clearbit.com/retire.money",
         "url": "https://retire.money/"
+      },
+      {
+        "type": "link",
+        "addDate": 1732189872933,
+        "title": "EloShapes - Mouse Comparison Tools",
+        "icon": "https://logo.clearbit.com/www.eloshapes.com",
+        "url": "https://www.eloshapes.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1732282954778,
+        "title": "五十弦",
+        "icon": "https://logo.clearbit.com/www.wushixian.info",
+        "url": "https://www.wushixian.info/"
       }
     ]
   }

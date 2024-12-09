@@ -141,6 +141,27 @@
             "title": "Send",
             "icon": "https://logo.clearbit.com/send.vis.ee",
             "url": "https://send.vis.ee/"
+          },
+          {
+            "type": "link",
+            "addDate": 1732353593972,
+            "title": "Enclosed - Send private and secure notes",
+            "icon": "https://logo.clearbit.com/enclosed.cc",
+            "url": "https://enclosed.cc/"
+          },
+          {
+            "type": "link",
+            "addDate": 1732354674836,
+            "title": "TransFiles - free file sharing service without registration",
+            "icon": "https://logo.clearbit.com/transfiles.ru",
+            "url": "https://transfiles.ru/"
+          },
+          {
+            "type": "link",
+            "addDate": 1732373065767,
+            "title": "FileCodeBox",
+            "icon": "https://logo.clearbit.com/share.lanol.cn",
+            "url": "https://share.lanol.cn/#/"
           }
         ]
       },
@@ -216,6 +237,13 @@
                 "title": "Frame0 | Sketch your app ideas without stress",
                 "icon": "https://logo.clearbit.com/frame0.app",
                 "url": "https://frame0.app/"
+              },
+              {
+                "type": "link",
+                "addDate": 1732437143749,
+                "title": "Galacean Engine - Web 3D 引擎",
+                "icon": "https://logo.clearbit.com/galacean.antgroup.com",
+                "url": "https://galacean.antgroup.com/engine"
               }
             ]
           },
@@ -1113,7 +1141,7 @@
             "addDate": 1693983411910,
             "title": "FileCR - THE BIGGEST SOFTWARE STORE",
             "icon": "https://logo.clearbit.com/filecr.com",
-            "url": "https://filecr.com/en/?id=231879456000"
+            "url": "https://filecr.com/"
           },
           {
             "type": "link",
@@ -1177,6 +1205,20 @@
             "title": "反斗限免-反斗软件旗下软件限免资讯网站",
             "icon": "https://logo.clearbit.com/free.apprcn.com",
             "url": "https://free.apprcn.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1732856167875,
+            "title": "Download MOD APK, Premium APK for Android - 9MOD.COM",
+            "icon": "https://logo.clearbit.com/9mod.com",
+            "url": "https://9mod.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1733455587175,
+            "title": "RB Community",
+            "icon": "https://logo.clearbit.com/www.rockmods.net",
+            "url": "https://www.rockmods.net/"
           }
         ]
       },
@@ -1231,8 +1273,8 @@
             "type": "link",
             "addDate": 1660533323979,
             "title": "LIBVIO影视 - 超清在线视频站",
-            "icon": "https://logo.clearbit.com/www.libvio.link",
-            "url": "https://www.libvio.link/"
+            "icon": "https://logo.clearbit.com/www.libvio.cc",
+            "url": "https://www.libvio.cc/"
           },
           {
             "type": "link",
@@ -1240,20 +1282,6 @@
             "title": "星辰影院_星辰电影网_星辰影视最新手机电影电视剧在线观看",
             "icon": "https://logo.clearbit.com/www.xcyingy.com",
             "url": "https://www.xcyingy.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1668788215196,
-            "title": "万博剧院-最新电影在线观看-免费电视剧",
-            "icon": "https://logo.clearbit.com/www.wanbotv.com",
-            "url": "https://www.wanbotv.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1673276016616,
-            "title": "七九影视网-www.dj79.cc",
-            "icon": "https://logo.clearbit.com/www.dj79.cc",
-            "url": "https://www.dj79.cc/"
           },
           {
             "type": "link",
@@ -1373,6 +1401,20 @@
             "title": "七味 - 七味网",
             "icon": "https://logo.clearbit.com/www.qwavi.com",
             "url": "https://www.qwavi.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1732353051835,
+            "title": "6v电影-新版",
+            "icon": "https://logo.clearbit.com/www.xb6v.com",
+            "url": "https://www.xb6v.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1733375585937,
+            "title": "水晶影院-最新电视剧-最新电影-电视剧大全-电视剧排行榜-最新好看的综艺",
+            "icon": "https://logo.clearbit.com/www.pgutv.com",
+            "url": "https://www.pgutv.com/"
           }
         ]
       },
@@ -1651,6 +1693,13 @@
                 "title": "Pi, your personal AI",
                 "icon": "https://logo.clearbit.com/pi.ai",
                 "url": "https://pi.ai/"
+              },
+              {
+                "type": "link",
+                "addDate": 1732375900394,
+                "title": "hermes.nousresearch.com",
+                "icon": "https://logo.clearbit.com/hermes.nousresearch.com",
+                "url": "https://hermes.nousresearch.com/"
               }
             ]
           },
@@ -1739,7 +1788,7 @@
               {
                 "type": "link",
                 "addDate": 1732254429733,
-                "title": "Free AI Image Generator Online | Recraft",
+                "title": "Recraft | Free AI Image Generator Online",
                 "icon": "https://logo.clearbit.com/www.recraft.ai",
                 "url": "https://www.recraft.ai/"
               },
@@ -1798,6 +1847,13 @@
                 "title": "NVIDIA Canvas: Turn Simple Brushstrokes into Realistic Images",
                 "icon": "https://logo.clearbit.com/www.nvidia.com",
                 "url": "https://www.nvidia.com/en-us/studio/canvas/"
+              },
+              {
+                "type": "link",
+                "addDate": 1732469450824,
+                "title": "Create Art or Modify Images with AI",
+                "icon": "https://logo.clearbit.com/openart.ai",
+                "url": "https://openart.ai/home"
               }
             ]
           },
@@ -2129,41 +2185,20 @@
             "title": "大白话的ChatGPT Prompt调教指南 - 雨凝",
             "icon": "https://logo.clearbit.com/www.rainng.com",
             "url": "https://www.rainng.com/chatgpt-prompt-tutorial/"
-          }
-        ]
-      },
-      {
-        "type": "folder",
-        "addDate": 1726903021469,
-        "title": "Cloud File Search | 网盘搜索",
-        "children": [
-          {
-            "type": "link",
-            "addDate": 1726902973475,
-            "title": "猫狸盘搜 - 阿里云盘搜索神器",
-            "icon": "https://logo.clearbit.com/www.alipansou.com",
-            "url": "https://www.alipansou.com/"
           },
           {
             "type": "link",
-            "addDate": 1726902969043,
-            "title": "易搜-强大的网盘搜索引擎|百度|阿里|夸克",
-            "icon": "https://logo.clearbit.com/yiso.fun",
-            "url": "https://yiso.fun/"
+            "addDate": 1732989859880,
+            "title": "Learn Prompt: Your CookBook to Communicating with AI",
+            "icon": "https://logo.clearbit.com/www.learnprompt.pro",
+            "url": "https://www.learnprompt.pro/"
           },
           {
             "type": "link",
-            "addDate": 1726902926748,
-            "title": "奇乐搜 - 阿里云盘、夸克网盘综合搜索网站",
-            "icon": "https://logo.clearbit.com/www.qileso.com",
-            "url": "https://www.qileso.com/"
-          },
-          {
-            "type": "link",
-            "addDate": 1726896383611,
-            "title": "PanSearch | 网盘资源搜索 | 网盘搜索引擎",
-            "icon": "https://logo.clearbit.com/www.pansearch.me",
-            "url": "https://www.pansearch.me/"
+            "addDate": 1733549680185,
+            "title": "bolt.new",
+            "icon": "https://logo.clearbit.com/bolt.new",
+            "url": "https://bolt.new/"
           }
         ]
       },
@@ -2691,6 +2726,62 @@
         "title": "Netdisk & Download | 网盘与下载",
         "children": [
           {
+            "type": "folder",
+            "addDate": 1726903021469,
+            "title": "Cloud File Search | 网盘搜索",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1726902973475,
+                "title": "猫狸盘搜 - 阿里云盘搜索神器",
+                "icon": "https://logo.clearbit.com/www.alipansou.com",
+                "url": "https://www.alipansou.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1726902969043,
+                "title": "易搜-强大的网盘搜索引擎|百度|阿里|夸克",
+                "icon": "https://logo.clearbit.com/yiso.fun",
+                "url": "https://yiso.fun/"
+              },
+              {
+                "type": "link",
+                "addDate": 1726902926748,
+                "title": "奇乐搜 - 阿里云盘、夸克网盘综合搜索网站",
+                "icon": "https://logo.clearbit.com/www.qileso.com",
+                "url": "https://www.qileso.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1726896383611,
+                "title": "PanSearch | 网盘资源搜索 | 网盘搜索引擎",
+                "icon": "https://logo.clearbit.com/www.pansearch.me",
+                "url": "https://www.pansearch.me/"
+              },
+              {
+                "type": "link",
+                "addDate": 1732354040907,
+                "title": "网盘搜索-盘搜-网盘资源搜索引擎-阿里云盘资源-夸克云盘资源",
+                "icon": "https://logo.clearbit.com/panso.pro",
+                "url": "https://panso.pro/"
+              },
+              {
+                "type": "link",
+                "addDate": 1732353244251,
+                "title": "搜网盘 - 百度云网盘搜索,百度云资源搜索,免费好用的百度云网盘搜索引擎！",
+                "icon": "https://logo.clearbit.com/www.swangpan.com",
+                "url": "https://www.swangpan.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1728126034303,
+                "title": "盘搜VIP - 人工亲测精选的网盘搜索工具导航 - pansou.vip",
+                "icon": "https://logo.clearbit.com/www.pansou.vip",
+                "url": "https://www.pansou.vip/"
+              }
+            ]
+          },
+          {
             "type": "link",
             "addDate": 1613273137631,
             "title": "网盘直链下载助手",
@@ -2703,13 +2794,6 @@
             "title": "NFD网盘直链解析 Netdisk fast download",
             "icon": "https://logo.clearbit.com/lz.qaiu.top",
             "url": "https://lz.qaiu.top/"
-          },
-          {
-            "type": "link",
-            "addDate": 1728126034303,
-            "title": "盘搜VIP - 人工亲测精选的网盘搜索工具导航 - pansou.vip",
-            "icon": "https://logo.clearbit.com/www.pansou.vip",
-            "url": "https://www.pansou.vip/"
           },
           {
             "type": "link",
@@ -3209,6 +3293,27 @@
         "title": "五十弦",
         "icon": "https://logo.clearbit.com/www.wushixian.info",
         "url": "https://www.wushixian.info/"
+      },
+      {
+        "type": "link",
+        "addDate": 1732353803232,
+        "title": "Code Search | Grep by Vercel",
+        "icon": "https://logo.clearbit.com/grep.app",
+        "url": "https://grep.app/"
+      },
+      {
+        "type": "link",
+        "addDate": 1732701852339,
+        "title": "ScriptCat - 分享你的用户脚本",
+        "icon": "https://logo.clearbit.com/scriptcat.org",
+        "url": "https://scriptcat.org/zh-CN/"
+      },
+      {
+        "type": "link",
+        "addDate": 1732802502055,
+        "title": "首页-云搭万物",
+        "icon": "https://logo.clearbit.com/www.sunmao-design.top",
+        "url": "https://www.sunmao-design.top/sunmao/admin/#/dooring/home"
       }
     ]
   }

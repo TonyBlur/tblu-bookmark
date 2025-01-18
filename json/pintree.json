@@ -301,6 +301,13 @@
                   },
                   {
                     "type": "link",
+                    "addDate": 1737203108149,
+                    "title": "Flaticon - Vector Icons and Stickers - PNG, SVG, EPS, PSD and CSS",
+                    "icon": "https://logo.clearbit.com/www.flaticon.com",
+                    "url": "https://www.flaticon.com/"
+                  },
+                  {
+                    "type": "link",
                     "addDate": 1728474681260,
                     "title": "APPLORE - Discover and Explore App Icons",
                     "icon": "https://logo.clearbit.com/app.uiboy.com",
@@ -1219,6 +1226,13 @@
             "title": "RB Community",
             "icon": "https://logo.clearbit.com/www.rockmods.net",
             "url": "https://www.rockmods.net/"
+          },
+          {
+            "type": "link",
+            "addDate": 1736739762956,
+            "title": "CyberMania",
+            "icon": "https://logo.clearbit.com/www.cybermania.ws",
+            "url": "https://www.cybermania.ws/"
           }
         ]
       },
@@ -1231,8 +1245,8 @@
             "type": "link",
             "addDate": 1670070614108,
             "title": "Vidhub视频库-在线视频网站-海量高清视频在线观看",
-            "icon": "https://logo.clearbit.com/vidhub.top",
-            "url": "https://vidhub.top/"
+            "icon": "https://logo.clearbit.com/vidhub3.top",
+            "url": "https://vidhub3.top/"
           },
           {
             "type": "link",
@@ -1524,7 +1538,7 @@
                 "addDate": 1719060449079,
                 "title": "智谱清言",
                 "icon": "https://logo.clearbit.com/chatglm.cn",
-                "url": "https://chatglm.cn/miniapp/home"
+                "url": "https://chatglm.cn/main/alltoolsdetail"
               },
               {
                 "type": "link",
@@ -1670,8 +1684,8 @@
                 "type": "link",
                 "addDate": 1731647092676,
                 "title": "xAI Grok",
-                "icon": "https://logo.clearbit.com/x.ai",
-                "url": "https://x.ai/grok"
+                "icon": "https://logo.clearbit.com/grok.x.com",
+                "url": "https://grok.x.com/"
               },
               {
                 "type": "link",
@@ -1970,6 +1984,83 @@
             ]
           },
           {
+            "type": "folder",
+            "addDate": 1736910285388,
+            "title": "APIs | API接口",
+            "children": [
+              {
+                "type": "link",
+                "addDate": 1729132967760,
+                "title": "VoAPI",
+                "icon": "https://logo.clearbit.com/demo.voapi.top",
+                "url": "https://demo.voapi.top/"
+              },
+              {
+                "type": "link",
+                "addDate": 1729063268694,
+                "title": "FREE GPT API",
+                "icon": "https://logo.clearbit.com/free.gpt.ge",
+                "url": "https://free.gpt.ge/github"
+              },
+              {
+                "type": "link",
+                "addDate": 1729062864894,
+                "title": "ChatAnywhere",
+                "icon": "https://logo.clearbit.com/api.chatanywhere.tech",
+                "url": "https://api.chatanywhere.tech/#/"
+              },
+              {
+                "type": "link",
+                "addDate": 1725797288802,
+                "title": "头顶冒火 🤯 - 大模型API",
+                "icon": "https://logo.clearbit.com/burn.hair",
+                "url": "https://burn.hair/"
+              },
+              {
+                "type": "link",
+                "addDate": 1721103898956,
+                "title": "2024年顶级免费AI API | Free AI Hunter",
+                "icon": "https://logo.clearbit.com/www.freeaihunter.com",
+                "url": "https://www.freeaihunter.com/cn"
+              },
+              {
+                "type": "link",
+                "addDate": 1729771971481,
+                "title": "tblu New API",
+                "icon": "https://logo.clearbit.com/new-api.tblu.xyz",
+                "url": "https://new-api.tblu.xyz/"
+              },
+              {
+                "type": "link",
+                "addDate": 1734069710671,
+                "title": "智谱AI开放平台",
+                "icon": "https://logo.clearbit.com/bigmodel.cn",
+                "url": "https://bigmodel.cn/console/overview"
+              },
+              {
+                "type": "link",
+                "addDate": 1736910257041,
+                "title": "DeepSeek 开放平台",
+                "icon": "https://logo.clearbit.com/platform.deepseek.com",
+                "url": "https://platform.deepseek.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1736910467654,
+                "title": "获取 API 密钥 | Google AI Studio",
+                "icon": "https://logo.clearbit.com/aistudio.google.com",
+                "url": "https://aistudio.google.com/apikey"
+              },
+              {
+                "type": "link",
+                "addDate": 1736910576122,
+                "title": "xAI Cloud Console",
+                "icon": "https://logo.clearbit.com/console.x.ai",
+                "url": "https://console.x.ai/"
+              }
+            ]
+          },
+          {
             "type": "link",
             "addDate": 1641192595953,
             "title": "Hugging Face – The AI community building the future.",
@@ -1996,13 +2087,6 @@
             "title": "share-chat",
             "icon": "https://logo.clearbit.com/cupgpt.top",
             "url": "https://cupgpt.top/"
-          },
-          {
-            "type": "link",
-            "addDate": 1725536753956,
-            "title": "gpt车队列表",
-            "icon": "https://logo.clearbit.com/share.freegpts.org",
-            "url": "https://share.freegpts.org/list"
           },
           {
             "type": "link",
@@ -2034,52 +2118,10 @@
           },
           {
             "type": "link",
-            "addDate": 1725348221113,
-            "title": "tblu One API",
-            "icon": "https://logo.clearbit.com/tblu-oneapi.zeabur.app",
-            "url": "https://tblu-oneapi.zeabur.app/"
-          },
-          {
-            "type": "link",
-            "addDate": 1729771971481,
-            "title": "tblu New API",
-            "icon": "https://logo.clearbit.com/new-api.tblu.xyz",
-            "url": "https://new-api.tblu.xyz/"
-          },
-          {
-            "type": "link",
-            "addDate": 1721103898956,
-            "title": "2024年顶级免费AI API | Free AI Hunter",
-            "icon": "https://logo.clearbit.com/www.freeaihunter.com",
-            "url": "https://www.freeaihunter.com/cn"
-          },
-          {
-            "type": "link",
-            "addDate": 1725797288802,
-            "title": "头顶冒火 🤯 - 大模型API",
-            "icon": "https://logo.clearbit.com/burn.hair",
-            "url": "https://burn.hair/"
-          },
-          {
-            "type": "link",
-            "addDate": 1729062864894,
-            "title": "ChatAnywhere",
-            "icon": "https://logo.clearbit.com/api.chatanywhere.tech",
-            "url": "https://api.chatanywhere.tech/#/"
-          },
-          {
-            "type": "link",
-            "addDate": 1729063268694,
-            "title": "FREE GPT API",
-            "icon": "https://logo.clearbit.com/free.gpt.ge",
-            "url": "https://free.gpt.ge/github"
-          },
-          {
-            "type": "link",
-            "addDate": 1729132967760,
-            "title": "VoAPI",
-            "icon": "https://logo.clearbit.com/demo.voapi.top",
-            "url": "https://demo.voapi.top/"
+            "addDate": 1725536753956,
+            "title": "gpt车队列表",
+            "icon": "https://logo.clearbit.com/share.freegpts.org",
+            "url": "https://share.freegpts.org/list"
           },
           {
             "type": "link",
@@ -2199,6 +2241,13 @@
             "title": "bolt.new",
             "icon": "https://logo.clearbit.com/bolt.new",
             "url": "https://bolt.new/"
+          },
+          {
+            "type": "link",
+            "addDate": 1733764444917,
+            "title": "Rodin - AI 3D Model Generator for Free",
+            "icon": "https://logo.clearbit.com/hyper3d.ai",
+            "url": "https://hyper3d.ai/rodin"
           }
         ]
       },
@@ -2915,6 +2964,13 @@
         "title": "CNS学术导航 | Google学术（镜像）、SCI-hub网址、科研资源",
         "icon": "https://logo.clearbit.com/cnspub.com",
         "url": "https://cnspub.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1735564197301,
+        "title": "Litmaps - 文献查找与分析",
+        "icon": "https://logo.clearbit.com/app.litmaps.com",
+        "url": "https://app.litmaps.com/"
       },
       {
         "type": "link",

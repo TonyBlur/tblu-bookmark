@@ -16,4 +16,6 @@ try {
   console.log('Error loading env-data.js, using default BookmarkDataURL');
 }
 
-export const bookmarkDataURL = finalBookmarkDataURL;
+const bookmarkDataURL = finalBookmarkDataURL;
+window.bookmarkDataURL = bookmarkDataURL;
+export { bookmarkDataURL };

@@ -43,6 +43,8 @@
         document.head.appendChild(script);
       });
     }
+
+    const bookmarkDataURL = await initializeBookmarkURL();
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
@@ -269,9 +271,6 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Initialize the bookmark data URL
-      let bookmarkDataURL = initializeBookmarkURL();
-
       // Variables for sidebar elements
       const openSidebarButton = document.getElementById('open-sidebar-button');
       const closeSidebarButton = document.getElementById('close-sidebar-button');

@@ -19,6 +19,4 @@
 
   const bookmarkDataURL = finalBookmarkDataURL;
   window.bookmarkDataURL = bookmarkDataURL;
-  })();
-  
-  export { bookmarkDataURL };
+})();

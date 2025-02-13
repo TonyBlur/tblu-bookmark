@@ -20,22 +20,6 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
-  <script>
-    const uniqueParam = new Date().getTime();
-    const script = document.createElement('script');
-    const defaultBookmarkDataURL = 'json/pintree.json';
-    script.src = `js/env-data.js?v=${uniqueParam}`;
-    let bookmarkDataURL = defaultBookmarkDataURL;
-    script.onload = function() {
-      if (window.env && window.env.BOOKMARK_DATA_URL) {
-        bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
-        console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
-      } else {
-        console.log('use default BookmarkDataURL');
-      }
-    };
-    document.head.appendChild(script);
-  </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
   <script>
@@ -84,6 +68,7 @@
     }
   }
   </script>
+  <script src="js/data-url-config.js"></script>
 </head>
 
 <body class="h-full dark:pintree-bg-gray-900 bg-white">
@@ -294,13 +279,21 @@
 
     // Search functionality
     function searchBookmarks(query) {
-      fetch(bookmarkDataURL)
-        .then(response => response.json())
-        .then(data => {
-          const results = searchInData(data, query.toLowerCase());
-          renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-        })
-        .catch(error => console.error('Error searching bookmarks:', error));
+      if (window.bookmarkDataURL) {
+        fetch(window.bookmarkDataURL)
+          .then(response => {
+            if (!response.ok) throw new Error("HTTP error: " + response.statusText);
+            return response.json();
+          })
+          .then(data => {
+            const results = searchInData(data, query.toLowerCase());
+            renderBookmarks(results, [{ title: 'Search Results', children: results }]);
+            document.getElementById('clearSearchButton').classList.remove('hidden');
+          })
+          .catch(error => console.error('Error searching bookmarks:', error));
+      } else {
+        console.error('bookmarkDataURL is not defined');
+      }
     }
 
     function searchInData(data, query) {
@@ -326,30 +319,34 @@
 
     // Clear search results and reset UI
     function clearSearchResults() {
-      fetch(bookmarkDataURL)
-        .then(response => response.json())
-        .then(data => {
-          const secondLayer = data[0].children;
-          renderNavigation(secondLayer, document.getElementById('navigation'));
-          renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
-          document.getElementById('searchInput').value = '';
-          document.getElementById('clearSearchButton').classList.add('hidden');
-        })
-        .catch(error => console.error('Error clearing search results:', error));
+      if (window.bookmarkDataURL) {
+        fetch(window.bookmarkDataURL)
+          .then(response => response.json())
+          .then(data => {
+            const secondLayer = data[0].children;
+            renderNavigation(secondLayer, document.getElementById('navigation'));
+            renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearchButton').classList.add('hidden');
+          })
+          .catch(error => console.error('Error clearing search results:', error));
+      } else {
+        window.addEventListener('load', function () {
+          fetch(window.bookmarkDataURL)
+            .then(response => response.json())
+            .then(data => {
+              const secondLayer = data[0].children;
+              renderNavigation(secondLayer, document.getElementById('navigation'));
+              renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
+              document.getElementById('searchInput').value = '';
+              document.getElementById('clearSearchButton').classList.add('hidden');
+            })
+            .catch(error => console.error('Error clearing search results:', error));
+        });
+      }
     }
 
     document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
-
-    function searchBookmarks(query) {
-      fetch(bookmarkDataURL)
-        .then(response => response.json())
-        .then(data => {
-          const results = searchInData(data, query.toLowerCase());
-          renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-          document.getElementById('clearSearchButton').classList.remove('hidden');
-        })
-        .catch(error => console.error('Error searching bookmarks:', error));
-    }
 
     // Create bookmark card element
     function createCard(title, url, icon) {
@@ -624,24 +621,30 @@
     }
 
     // Fetch and render data
-    fetch(bookmarkDataURL)
-      .then(response => response.json())
-      .then(data => {
-        // Use the first layer of the data directly
-        const firstLayer = data;
-        // Render navigation using the first layer of data
-        renderNavigation(firstLayer, document.getElementById('navigation'), true);
-        // Render bookmarks using the first layer of data, starting from the Bookmark
-        renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
+    window.addEventListener('load', function() {
+      if (window.bookmarkDataURL) {
+        fetch(window.bookmarkDataURL)
+          .then(response => response.json())
+          .then(data => {
+            // Use the first layer of the data directly
+            const firstLayer = data;
+            // Render navigation using the first layer of data
+            renderNavigation(firstLayer, document.getElementById('navigation'), true);
+            // Render bookmarks using the first layer of data, starting from the Bookmark
+            renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
 
-        // Automatically select and show the first item
-        if (firstLayer.length > 0) {
-          const firstItem = firstLayer[0];
-          updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-          renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-        }
-      })
-      .catch(error => console.error('Error loading bookmarks:', error));
+            // Automatically select and show the first item
+            if (firstLayer.length > 0) {
+              const firstItem = firstLayer[0];
+              updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
+              renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
+            }
+          })
+          .catch(error => console.error('Error loading bookmarks:', error));
+      } else {
+        console.error('bookmarkDataURL is not defined');
+      }
+    });
 
     // Search functionality on pressing Enter
     document.getElementById('searchInput').addEventListener('keydown', function (event) {
@@ -687,35 +690,37 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Fetch and render data
-      fetch(bookmarkDataURL)
-        .then(response => response.json())
-        .then(data => {
-          // Hide loading spinner
-          document.getElementById('loading-spinner').style.display = 'none';
+      window.addEventListener('load', function() {
+        fetch(window.bookmarkDataURL)
+          .then(response => response.json())
+          .then(data => {
+            // Hide loading spinner
+            document.getElementById('loading-spinner').style.display = 'none';
 
-          // Use the first layer of the data directly
-          const firstLayer = data;
-          // Render navigation using the first layer of data
-          const navigationElements = document.getElementsByClassName('navigation');
-          for (let i = 0; i < navigationElements.length; i++) {
-            const navElement = navigationElements[i];
-            renderNavigation(firstLayer, navElement, true);
-          }
-          // Render bookmarks using the first layer of data, starting from the Bookmark
-          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
+            // Use the first layer of the data directly
+            const firstLayer = data;
+            // Render navigation using the first layer of data
+            const navigationElements = document.getElementsByClassName('navigation');
+            for (let i = 0; i < navigationElements.length; i++) {
+              const navElement = navigationElements[i];
+              renderNavigation(firstLayer, navElement, true);
+            }
+            // Render bookmarks using the first layer of data, starting from the Bookmark
+            renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
 
-          // Automatically select and show the first item
-          if (firstLayer.length > 0) {
-            const firstItem = firstLayer[0];
-            updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-            renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-          }
-        })
-        .catch(error => {
-          console.error('Error loading bookmarks:', error);
-          // Optionally hide the spinner and show an error message
-          document.getElementById('loading-spinner').style.display = 'none';
-        });
+            // Automatically select and show the first item
+            if (firstLayer.length > 0) {
+              const firstItem = firstLayer[0];
+              updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
+              renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
+            }
+          })
+          .catch(error => {
+            console.error('Error loading bookmarks:', error);
+            // Optionally hide the spinner and show an error message
+            document.getElementById('loading-spinner').style.display = 'none';
+          });
+      });
     });
 
     // Event listener for theme toggle button

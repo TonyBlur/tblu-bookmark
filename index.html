@@ -22,8 +22,6 @@
   </script>
   <script type="module">
     import { bookmarkDataURL } from './js/data-url-config.js';
-    window.bookmarkData = bookmarkDataURL;
-    console.log(window.bookmarkData);
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
@@ -283,7 +281,7 @@
 
     // Search functionality
     function searchBookmarks(query) {
-      fetch(window.bookmarkData)
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
@@ -315,7 +313,7 @@
 
     // Clear search results and reset UI
     function clearSearchResults() {
-      fetch(window.bookmarkData)
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const secondLayer = data[0].children;
@@ -330,7 +328,7 @@
     document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
 
     function searchBookmarks(query) {
-      fetch(window.bookmarkData)
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
@@ -613,7 +611,7 @@
     }
 
     // Fetch and render data
-    fetch(window.bookmarkData)
+    fetch(bookmarkDataURL)
       .then(response => response.json())
       .then(data => {
         // Use the first layer of the data directly
@@ -676,7 +674,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Fetch and render data
-      fetch(window.bookmarkData)
+      fetch(bookmarkDataURL)
         .then(response => response.json())
         .then(data => {
           // Hide loading spinner

@@ -20,31 +20,8 @@
       y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
     })(window, document, "clarity", "script", "n75ecz0sud");
   </script>
-  <script>
-    const uniqueParam = new Date().getTime();
-    const defaultBookmarkDataURL = 'json/pintree.json';
-
-    function initializeBookmarkURL() {
-      return new Promise((resolve) => {
-        const script = document.createElement('script');
-        script.src = `js/env-data.js?v=${uniqueParam}`;
-        
-        script.onload = function() {
-          let bookmarkDataURL = defaultBookmarkDataURL;
-          if (window.env && window.env.BOOKMARK_DATA_URL) {
-            bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
-            console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
-          } else {
-            console.log('use default BookmarkDataURL');
-          }
-          resolve(bookmarkDataURL);
-        };
-
-        document.head.appendChild(script);
-      });
-    }
-
-    let bookmarkDataURL = initializeBookmarkURL();
+  <script type="module">
+    import { bookmarkDataURL } from './js/data-url-config.js';
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>

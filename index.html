@@ -22,22 +22,27 @@
   </script>
   <script>
     const uniqueParam = new Date().getTime();
-    const script = document.createElement('script');
     const defaultBookmarkDataURL = 'json/pintree.json';
-    script.src = `js/env-data.js?v=${uniqueParam}`;
-    
-    let bookmarkDataURL = defaultBookmarkDataURL; // 初始化 bookmarkDataURL
 
-    script.onload = function() {
-      if (window.env && window.env.BOOKMARK_DATA_URL) {
-        bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
-        console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
-      } else {
-        console.log('use default BookmarkDataURL');
-      }
-    };
+    function initializeBookmarkURL() {
+      return new Promise((resolve) => {
+        const script = document.createElement('script');
+        script.src = `js/env-data.js?v=${uniqueParam}`;
+        
+        script.onload = function() {
+          let bookmarkDataURL = defaultBookmarkDataURL;
+          if (window.env && window.env.BOOKMARK_DATA_URL) {
+            bookmarkDataURL = window.env.BOOKMARK_DATA_URL;
+            console.log('use BOOKMARK_DATA_URL:', window.env.BOOKMARK_DATA_URL);
+          } else {
+            console.log('use default BookmarkDataURL');
+          }
+          resolve(bookmarkDataURL);
+        };
 
-    document.head.appendChild(script);
+        document.head.appendChild(script);
+      });
+    }
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>
@@ -264,6 +269,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize the bookmark data URL
+      const bookmarkDataURL = initializeBookmarkURL();
+
       // Variables for sidebar elements
       const openSidebarButton = document.getElementById('open-sidebar-button');
       const closeSidebarButton = document.getElementById('close-sidebar-button');

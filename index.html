@@ -35,9 +35,28 @@
       } else {
         console.log('use default BookmarkDataURL');
       }
+
+      // 在这里调用 fetchBookmarks 函数，确保 bookmarkDataURL 已经被正确赋值
+      fetchBookmarks(bookmarkDataURL);
     };
 
     document.head.appendChild(script);
+
+    // 封装获取 bookmark 数据的函数
+    function fetchBookmarks(url) {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const firstLayer = data;
+          const secondLayer = data[0].children;
+          renderNavigation(firstLayer, document.getElementById('navigation'), true);
+          renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
+        })
+        .catch(error => {
+          console.error('Error fetching bookmarks:', error);
+          document.getElementById('loading-spinner').style.display = 'none';
+        });
+    }
   </script>
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1JF3QTQ79"></script>

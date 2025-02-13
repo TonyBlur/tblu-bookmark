@@ -279,19 +279,21 @@
 
     // Search functionality
     function searchBookmarks(query) {
-      window.addEventListener('load', function() {
-        if (window.bookmarkDataURL) {
-          fetch(window.bookmarkDataURL)
-            .then(response => response.json())
-            .then(data => {
-              const results = searchInData(data, query.toLowerCase());
-              renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-            })
-            .catch(error => console.error('Error searching bookmarks:', error));
-        } else {
-          console.error('bookmarkDataURL is not defined');
-        }
-      });
+      if (window.bookmarkDataURL) {
+        fetch(window.bookmarkDataURL)
+          .then(response => {
+            if (!response.ok) throw new Error("HTTP error: " + response.statusText);
+            return response.json();
+          })
+          .then(data => {
+            const results = searchInData(data, query.toLowerCase());
+            renderBookmarks(results, [{ title: 'Search Results', children: results }]);
+            document.getElementById('clearSearchButton').classList.remove('hidden');
+          })
+          .catch(error => console.error('Error searching bookmarks:', error));
+      } else {
+        console.error('bookmarkDataURL is not defined');
+      }
     }
 
     function searchInData(data, query) {
@@ -345,23 +347,6 @@
     }
 
     document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
-
-    function searchBookmarks(query) {
-      window.addEventListener('load', function() {
-        if (window.bookmarkDataURL) {
-          fetch(window.bookmarkDataURL)
-            .then(response => response.json())
-            .then(data => {
-              const results = searchInData(data, query.toLowerCase());
-              renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-              document.getElementById('clearSearchButton').classList.remove('hidden');
-            })
-            .catch(error => console.error('Error searching bookmarks:', error));
-        } else {
-          console.error('bookmarkDataURL is not defined');
-        }
-      });
-    }
 
     // Create bookmark card element
     function createCard(title, url, icon) {

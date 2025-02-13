@@ -705,35 +705,37 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Fetch and render data
-      fetch(window.bookmarkDataURL)
-        .then(response => response.json())
-        .then(data => {
-          // Hide loading spinner
-          document.getElementById('loading-spinner').style.display = 'none';
+      window.addEventListener('load', function() {
+        fetch(window.bookmarkDataURL)
+          .then(response => response.json())
+          .then(data => {
+            // Hide loading spinner
+            document.getElementById('loading-spinner').style.display = 'none';
 
-          // Use the first layer of the data directly
-          const firstLayer = data;
-          // Render navigation using the first layer of data
-          const navigationElements = document.getElementsByClassName('navigation');
-          for (let i = 0; i < navigationElements.length; i++) {
-            const navElement = navigationElements[i];
-            renderNavigation(firstLayer, navElement, true);
-          }
-          // Render bookmarks using the first layer of data, starting from the Bookmark
-          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
+            // Use the first layer of the data directly
+            const firstLayer = data;
+            // Render navigation using the first layer of data
+            const navigationElements = document.getElementsByClassName('navigation');
+            for (let i = 0; i < navigationElements.length; i++) {
+              const navElement = navigationElements[i];
+              renderNavigation(firstLayer, navElement, true);
+            }
+            // Render bookmarks using the first layer of data, starting from the Bookmark
+            renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
 
-          // Automatically select and show the first item
-          if (firstLayer.length > 0) {
-            const firstItem = firstLayer[0];
-            updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-            renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-          }
-        })
-        .catch(error => {
-          console.error('Error loading bookmarks:', error);
-          // Optionally hide the spinner and show an error message
-          document.getElementById('loading-spinner').style.display = 'none';
-        });
+            // Automatically select and show the first item
+            if (firstLayer.length > 0) {
+              const firstItem = firstLayer[0];
+              updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
+              renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
+            }
+          })
+          .catch(error => {
+            console.error('Error loading bookmarks:', error);
+            // Optionally hide the spinner and show an error message
+            document.getElementById('loading-spinner').style.display = 'none';
+          });
+      });
     });
 
     // Event listener for theme toggle button

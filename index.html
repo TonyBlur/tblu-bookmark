@@ -48,9 +48,8 @@
         .then(response => response.json())
         .then(data => {
           const firstLayer = data;
-          const secondLayer = data[0].children;
           renderNavigation(firstLayer, document.getElementById('navigation'), true);
-          renderBookmarks(secondLayer, [{ title: 'Bookmark', children: firstLayer }]);
+          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
           document.getElementById('loading-spinner').style.display = 'none';
         })
         .catch(error => {

@@ -620,29 +620,55 @@
       updateSidebarActiveState(path);
     }
 
-    // Fetch and render data
+    // Unified load function to fetch and render bookmarks safely.
+    function loadAndRenderBookmarks(url) {
+      if (!url) return Promise.reject(new Error('No bookmark data URL'));
+      return fetch(url)
+        .then(response => {
+          if (!response.ok) throw new Error('HTTP error: ' + response.status);
+          return response.json();
+        })
+        .then(data => {
+          const firstLayer = data;
+          const navigationElements = document.getElementsByClassName('navigation');
+          for (let i = 0; i < navigationElements.length; i++) {
+            const navElement = navigationElements[i];
+            renderNavigation(firstLayer, navElement, true);
+          }
+          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
+
+          if (firstLayer.length > 0) {
+            const firstItem = firstLayer[0];
+            updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
+            renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
+          }
+          // Hide loading spinner once rendered
+          var spinner = document.getElementById('loading-spinner');
+          if (spinner) spinner.style.display = 'none';
+        })
+        .catch(error => {
+          console.error('Error loading bookmarks:', error);
+          var spinner = document.getElementById('loading-spinner');
+          if (spinner) spinner.style.display = 'none';
+          showNoResultsMessage();
+        });
+    }
++
++
+    // Try immediate load with whatever value is currently set, then wait for final URL event.
++
     window.addEventListener('load', function() {
       if (window.bookmarkDataURL) {
-        fetch(window.bookmarkDataURL)
-          .then(response => response.json())
-          .then(data => {
-            // Use the first layer of the data directly
-            const firstLayer = data;
-            // Render navigation using the first layer of data
-            renderNavigation(firstLayer, document.getElementById('navigation'), true);
-            // Render bookmarks using the first layer of data, starting from the Bookmark
-            renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
-
-            // Automatically select and show the first item
-            if (firstLayer.length > 0) {
-              const firstItem = firstLayer[0];
-              updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-              renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-            }
-          })
-          .catch(error => console.error('Error loading bookmarks:', error));
-      } else {
-        console.error('bookmarkDataURL is not defined');
+        loadAndRenderBookmarks(window.bookmarkDataURL);
+      }
+    });
++
++
+    // If data-url-config later dispatches the ready event, load/refresh using final URL.
++
++    document.addEventListener('bookmarkDataURLReady', function (e) {
+      if (e && e.detail && e.detail.url) {
++        loadAndRenderBookmarks(e.detail.url);
       }
     });
 

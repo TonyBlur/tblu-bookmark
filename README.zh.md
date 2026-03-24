@@ -47,6 +47,13 @@ Tag 生效优先级：
 1. 若条目中存在 `tags`，优先直接使用手动 tags。
 2. 若未提供 `tags`，则回退到 `json/tag-rules.json` 的规则匹配结果。
 
+补充说明：
+- 文件夹上的 tag 会自动继承给其下级文件夹和书签。
+- `json/tag-rules.json` 支持 i18n tag 写法，例如：
+  ```json
+  { "tag": { "zh": "文件传输", "en": "File Transfer" } }
+  ```
+
 ## 🚀 快速开始
 
 ### 方法1 - 使用Github Pages

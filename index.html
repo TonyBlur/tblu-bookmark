@@ -383,6 +383,9 @@
         const key = node.dataset.i18n;
         node.textContent = t(key);
       });
+      if (appState.rawData.length) {
+        appState.flattened = flattenData(appState.rawData);
+      }
       DOM.searchInput.placeholder = t('searchPlaceholder');
       renderTagFilters();
       performSearch();
@@ -420,9 +423,16 @@
           const byKeyword = (rule.keywords || []).some(keyword => keywordMatch(text, String(keyword).toLowerCase()));
           return byDomain || byKeyword;
         })
-        .map(rule => rule.tag)
+        .map(rule => getRuleTagLabel(rule))
         .filter(Boolean);
       return [...new Set(matched)];
+    }
+
+    function getRuleTagLabel(rule) {
+      if (!rule) return '';
+      if (typeof rule.tag === 'string') return rule.tag;
+      if (typeof rule.tag === 'object') return rule.tag[appState.locale] || rule.tag.zh || rule.tag.en || '';
+      return '';
     }
 
     function keywordMatch(text, keyword) {
@@ -438,14 +448,16 @@
       return url.replace('https://', '').replace('http://', '').replace(/\/$/, '');
     }
 
-    function flattenData(nodes, parentPath = []) {
+    function flattenData(nodes, parentPath = [], inheritedTags = []) {
       const items = [];
       nodes.forEach(node => {
         const currentPath = parentPath.concat({ title: node.title, children: node.children || [] });
-        const tags = getItemTags(node);
+        const ownTags = getItemTags(node);
+        const tags = [...new Set([...(inheritedTags || []), ...ownTags])];
+        node.__resolvedTags = tags;
         items.push({ ...node, tags, path: node.type === 'folder' ? currentPath : parentPath });
         if (Array.isArray(node.children) && node.children.length) {
-          items.push(...flattenData(node.children, currentPath));
+          items.push(...flattenData(node.children, currentPath, tags));
         }
       });
       return items;
@@ -492,11 +504,17 @@
           const text = [item.title, item.url || '', ...(item.tags || [])].join(' ');
           const score = fuzzyScore(text, q);
           const tagMatch = selectedTag ? item.tags.some(t => normalize(t) === normalize(selectedTag)) : true;
-          return { item, score, tagMatch };
+          const keywordMatch = !q || score >= 0.55;
+          return { item, score, tagMatch, keywordMatch };
         })
-        .filter(({ item, score, tagMatch }) => item.type === 'link' && tagMatch && (!q || score >= 0.55))
+        .filter(({ item, tagMatch, keywordMatch }) =>
+          (item.type === 'link' || item.type === 'folder') && tagMatch && keywordMatch,
+        )
         .sort((a, b) => b.score - a.score)
-        .map(({ item }) => item);
+        .map(({ item, tagMatch }) => ({
+          item,
+          hitType: selectedTag && tagMatch ? 'tag' : item.type,
+        }));
     }
 
     function createTagBadge(tag, onClick, active = false) {
@@ -718,15 +736,28 @@
         DOM.searchResultsPanel.appendChild(empty);
         return;
       }
-      results.slice(0, 80).forEach(item => {
+      results.slice(0, 80).forEach(result => {
+        const item = result.item;
         const row = document.createElement('button');
         row.className = 'w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:pintree-bg-gray-800';
-        row.innerHTML = `<div class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">${item.title}</div>
-          <div class="text-xs text-slate-400 truncate">${cleanDisplayUrl(item.url || '')}</div>`;
+        const typeIcon = result.hitType === 'folder'
+          ? '📁'
+          : result.hitType === 'tag'
+            ? '🏷️'
+            : '🔗';
+        row.innerHTML = `<div class="flex items-center gap-2">
+            <span class="text-sm">${typeIcon}</span>
+            <div class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">${item.title}</div>
+          </div>
+          <div class="text-xs text-slate-400 truncate pl-6">${cleanDisplayUrl(item.url || '')}</div>`;
         row.addEventListener('click', () => {
           const targetPath = item.path || [];
-          const parent = targetPath[targetPath.length - 1];
-          renderBookmarks(parent?.children || [], targetPath);
+          if (item.type === 'folder') {
+            renderBookmarks(item.children || [], targetPath);
+          } else {
+            const parent = targetPath[targetPath.length - 1];
+            renderBookmarks(parent?.children || [], targetPath);
+          }
           closeSearchModal();
         });
         DOM.searchResultsPanel.appendChild(row);
@@ -764,14 +795,14 @@
       if (folders.length) {
         const folderSection = document.createElement('div');
         folderSection.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4';
-        folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, getItemTags(folder))));
+        folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, folder.__resolvedTags || getItemTags(folder))));
         DOM.bookmarks.appendChild(folderSection);
       }
 
       if (links.length) {
         const linkSection = document.createElement('div');
         linkSection.className = 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4';
-        links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, getItemTags(link))));
+        links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, link.__resolvedTags || getItemTags(link))));
         DOM.bookmarks.appendChild(linkSection);
       }
     }

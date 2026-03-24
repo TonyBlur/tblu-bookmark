@@ -47,6 +47,13 @@ Tag behavior priority:
 1. If `tags` exists on an item, these tags are used directly.
 2. If `tags` is missing, fallback rule matching from `json/tag-rules.json` is used.
 
+Additional notes:
+- Folder tags are inherited by child bookmarks/folders.
+- `json/tag-rules.json` supports i18n tags via object format:
+  ```json
+  { "tag": { "zh": "文件传输", "en": "File Transfer" } }
+  ```
+
 ## 🚀 Quick Start
 
 ### Method 1 - Use GitHub Pages

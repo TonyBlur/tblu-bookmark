@@ -281,7 +281,9 @@
   height: 124px;
   overflow: hidden;
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
@@ -290,6 +292,10 @@
   z-index: 8;
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
   height: auto;
+}
+
+.dark .card-unified:hover {
+  box-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
 }
 
 .card-unified:hover h2,

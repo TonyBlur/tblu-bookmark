@@ -133,7 +133,7 @@
       <div
         class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:pintree-bg-gray-900 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
-          <div class="flex gap-x-4 justify-between">
+          <div class="flex gap-x-3 justify-between items-center">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
             <button id="open-sidebar-button" class="lg:hidden">
               <span class="sr-only">Open sidebar</span>
@@ -141,53 +141,59 @@
                 <path d="M85.333333 512a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 512zM85.333333 256a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 256zM85.333333 768a42.666667 42.666667 0 0 1 42.666667-42.666667h768a42.666667 42.666667 0 0 1 0 85.333334h-768A42.666667 42.666667 0 0 1 85.333333 768z"></path>
               </svg>
             </button>
-            <!-- Searchbar -->
-            <div id="searchBar" class="lg:block relative pl-8 w-[20rem] md:w-[30rem] h-full flex items-center justify-between">
-              <button id="searchButton" class="absolute h-full text-gray-400 rounded">
-                <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
-                  fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd"
-                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                    clip-rule="evenodd"></path>
-                </svg>
-              </button>
-              <input id="searchInput" type="search"
-                class="text-sm text-gray-900 dark:text-gray-200 pl-10 pr-20 h-10 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800 flex-1 max-w-auto shadow-sm"
-                placeholder="搜索书签 / 标签 / 网址...">
-              <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden" data-i18n="clear">Clear</button>
-            </div>
+            <button id="openSearchModalButton" class="icon-action-btn" aria-label="Search">
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd"
+                  d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+                  clip-rule="evenodd"></path>
+              </svg>
+            </button>
+            <button id="toggleTagPanelButton" class="icon-action-btn" aria-label="Toggle tags">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                  d="m7.5 7.5 9 9M4.5 4.5h6l9 9-6 6-9-9v-6Z"></path>
+              </svg>
+            </button>
           </div>
           <div class="relative flex items-center gap-2">
-            <button id="languageToggleButton" type="button" aria-label="Switch language"
-              class="text-xs rounded-full bg-white/90 px-3 py-2 shadow ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
-              <span id="languageLabel">中文</span>
-            </button>
-            <button id="themeToggleButton" type="button" aria-label="Switch theme"
-              class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
-              <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                aria-hidden="true"
-                class="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-sky-50 [@media(prefers-color-scheme:dark)]:stroke-sky-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-sky-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-sky-600">
-                <path
-                  d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z">
-                </path>
-                <path
-                  d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
-                  fill="none"></path>
-              </svg>
-              <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true"
-                class="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-sky-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-sky-500">
-                <path
-                  d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
-                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </button>
+            <div class="relative">
+              <button id="languageToggleButton" type="button" aria-label="Switch language" class="icon-action-btn">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M4.5 5.25h15M9 5.25c.6 4.5 2.1 8.4 6 12.75M15 5.25c-.4 3-1.4 5.9-3.3 8.55M5.25 18.75h7.5M9 15.75l-1.5 3m0 0L6 15.75m1.5 3h3.75"></path>
+                </svg>
+              </button>
+              <div id="languageMenu" class="menu-panel hidden">
+                <button class="menu-item" data-locale="zh">中文</button>
+                <button class="menu-item" data-locale="en">English</button>
+              </div>
+            </div>
+            <div class="relative">
+              <button id="themeToggleButton" type="button" aria-label="Switch theme" class="icon-action-btn">
+                <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true" class="h-5 w-5 dark:hidden">
+                  <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
+                  <path d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061" fill="none"></path>
+                </svg>
+                <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true" class="hidden h-5 w-5 dark:block">
+                  <path
+                    d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
+                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+              <div id="themeMenu" class="menu-panel hidden">
+                <button class="menu-item" data-theme="system" data-i18n="themeSystem">跟随系统</button>
+                <button class="menu-item" data-theme="light" data-i18n="themeLight">浅色</button>
+                <button class="menu-item" data-theme="dark" data-i18n="themeDark">深色</button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Main content area -->
       <main class="mt-4 dark:pintree-bg-gray-900 flex-grow">
-        <section class="px-6 lg:px-8 mb-3">
+        <section id="tagPanel" class="px-6 lg:px-8 mb-3 hidden">
           <div class="panel-card p-3 md:p-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
             <div class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="tagFilter">Tag 筛选</div>
             <div id="tagFilters" class="flex-1 flex flex-wrap gap-2"></div>
@@ -202,6 +208,12 @@
             <!-- Breadcrumbs will be inserted here -->
           </div>
         </div>
+        <section id="folderTagSection" class="px-6 lg:px-8 mt-2 hidden">
+          <div class="panel-card p-3">
+            <div class="text-xs text-slate-500 dark:text-slate-400 mb-2" data-i18n="folderTags">当前文件夹标签</div>
+            <div id="folderTags" class="flex flex-wrap gap-2"></div>
+          </div>
+        </section>
         <div id="bookmarks" class="grid gap-6 p-6 lg:px-8">
           <!-- Bookmark cards will be inserted here -->
         </div>
@@ -255,6 +267,24 @@
     </div>
   </div>
 
+  <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-slate-900/40 p-4 pt-20 backdrop-blur-sm">
+    <div class="panel-card w-full max-w-2xl p-4">
+      <div class="relative">
+        <svg class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20"
+          fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd"
+            d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <input id="searchInput" type="search"
+          class="w-full text-sm text-gray-900 dark:text-gray-100 pl-10 pr-24 h-11 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800"
+          placeholder="搜索书签 / 标签 / 网址...">
+        <button id="clearSearchButton" class="absolute right-16 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded hidden" data-i18n="clear">Clear</button>
+        <button id="closeSearchModalButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded" data-i18n="close">关闭</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const I18N = {
       zh: {
@@ -269,6 +299,11 @@
         home: '主页',
         records: '条记录',
         languageLabel: '中文',
+        close: '关闭',
+        folderTags: '当前文件夹标签',
+        themeSystem: '跟随系统',
+        themeLight: '浅色',
+        themeDark: '深色',
       },
       en: {
         clear: 'Clear',
@@ -282,6 +317,11 @@
         home: 'Home',
         records: 'records',
         languageLabel: 'EN',
+        close: 'Close',
+        folderTags: 'Folder tags',
+        themeSystem: 'System',
+        themeLight: 'Light',
+        themeDark: 'Dark',
       }
     };
 
@@ -292,6 +332,7 @@
       query: '',
       flattened: [],
       locale: localStorage.getItem('tblu-locale') || (navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en'),
+      themeMode: localStorage.getItem('tblu-theme-mode') || 'system',
     };
 
     const DOM = {
@@ -300,17 +341,24 @@
       offCanvasMenu: document.getElementById('off-canvas-menu'),
       offCanvasBackdrop: document.getElementById('off-canvas-backdrop'),
       offCanvasContent: document.getElementById('off-canvas-content'),
+      openSearchModalButton: document.getElementById('openSearchModalButton'),
+      closeSearchModalButton: document.getElementById('closeSearchModalButton'),
+      searchModal: document.getElementById('searchModal'),
       searchInput: document.getElementById('searchInput'),
       clearSearchButton: document.getElementById('clearSearchButton'),
-      searchButton: document.getElementById('searchButton'),
+      toggleTagPanelButton: document.getElementById('toggleTagPanelButton'),
+      tagPanel: document.getElementById('tagPanel'),
       bookmarks: document.getElementById('bookmarks'),
       breadcrumbsPath: document.getElementById('breadcrumbs-path'),
+      folderTagSection: document.getElementById('folderTagSection'),
+      folderTags: document.getElementById('folderTags'),
       loadingSpinner: document.getElementById('loading-spinner'),
       tagFilters: document.getElementById('tagFilters'),
       resetTagFilter: document.getElementById('resetTagFilter'),
       languageToggleButton: document.getElementById('languageToggleButton'),
-      languageLabel: document.getElementById('languageLabel'),
+      languageMenu: document.getElementById('languageMenu'),
       themeToggleButton: document.getElementById('themeToggleButton'),
+      themeMenu: document.getElementById('themeMenu'),
       sunIcon: document.getElementById('sunIcon'),
       moonIcon: document.getElementById('moonIcon'),
     };
@@ -325,7 +373,6 @@
         node.textContent = t(key);
       });
       DOM.searchInput.placeholder = t('searchPlaceholder');
-      DOM.languageLabel.textContent = t('languageLabel');
       renderTagFilters();
       performSearch();
     }
@@ -501,32 +548,48 @@
       cardTitle.innerText = title;
 
       card.append(cardIcon, cardTitle);
-      if (tags.length) {
-        const tag = document.createElement('span');
-        tag.className = 'mini-chip mt-1';
-        tag.textContent = `#${tags[0]}`;
-        card.appendChild(tag);
-      }
       return card;
     }
 
-    function renderNavigation(folders, container, path = []) {
+    function renderNavigation(folders, container, path = [], level = 0) {
       container.innerHTML = '';
       folders.forEach(folder => {
         if (folder.type !== 'folder') return;
-        const navItem = document.createElement('li');
-        navItem.className = 'items-center group flex justify-between gap-x-3 rounded-xl p-2 text-gray-700 dark:text-gray-300 hover:text-main-500 hover:bg-slate-100 dark:hover:pintree-bg-gray-800 bg-opacity-50';
+        const li = document.createElement('li');
 
-        const navLink = document.createElement('a');
-        navLink.className = 'flex text-sm leading-6 font-semibold dark:text-gray-300';
-        navLink.innerText = folder.title;
-        navItem.appendChild(navLink);
+        const navItem = document.createElement('div');
+        navItem.className = 'items-center group flex justify-between gap-x-2 rounded-xl p-2 text-gray-700 dark:text-gray-300 hover:text-main-500 hover:bg-slate-100 dark:hover:pintree-bg-gray-800';
+        navItem.style.paddingLeft = `${8 + level * 12}px`;
 
-        navItem.onclick = (e) => {
+        const title = document.createElement('button');
+        title.className = 'text-sm leading-6 font-semibold text-left flex-1';
+        title.innerText = folder.title;
+
+        const hasChildrenFolder = (folder.children || []).some(item => item.type === 'folder');
+        const toggleIcon = document.createElement('span');
+        toggleIcon.className = 'text-xs transition-transform';
+        toggleIcon.textContent = hasChildrenFolder ? '▸' : '';
+
+        navItem.append(title, toggleIcon);
+        li.appendChild(navItem);
+        container.appendChild(li);
+
+        const subList = document.createElement('ul');
+        subList.className = 'space-y-1 hidden';
+        li.appendChild(subList);
+
+        if (hasChildrenFolder) {
+          renderNavigation(folder.children, subList, path.concat({ title: folder.title, children: folder.children || [] }), level + 1);
+        }
+
+        navItem.addEventListener('click', (e) => {
           e.stopPropagation();
           renderBookmarks(folder.children || [], path.concat({ title: folder.title, children: folder.children || [] }));
-        };
-        container.appendChild(navItem);
+          if (hasChildrenFolder) {
+            subList.classList.toggle('hidden');
+            toggleIcon.classList.toggle('rotate-90');
+          }
+        });
       });
     }
 
@@ -557,10 +620,28 @@
       DOM.bookmarks.appendChild(message);
     }
 
+    function renderFolderTags(path) {
+      const current = path[path.length - 1];
+      const tags = current ? getItemTags(current) : [];
+      DOM.folderTags.innerHTML = '';
+      if (!tags.length) {
+        DOM.folderTagSection.classList.add('hidden');
+        return;
+      }
+      tags.forEach(tag => {
+        const chip = document.createElement('span');
+        chip.className = 'mini-chip';
+        chip.textContent = `#${tag}`;
+        DOM.folderTags.appendChild(chip);
+      });
+      DOM.folderTagSection.classList.remove('hidden');
+    }
+
     function renderBookmarks(data, path) {
       appState.activePath = path;
       DOM.bookmarks.innerHTML = '';
       renderBreadcrumbs(path);
+      renderFolderTags(path);
 
       const folders = data.filter(item => item.type === 'folder');
       const links = data.filter(item => item.type === 'link');
@@ -604,6 +685,17 @@
       setTimeout(() => DOM.offCanvasMenu.classList.add('hidden'), 300);
     }
 
+    function openSearchModal() {
+      DOM.searchModal.classList.remove('hidden');
+      DOM.searchModal.classList.add('flex');
+      setTimeout(() => DOM.searchInput.focus(), 20);
+    }
+
+    function closeSearchModal() {
+      DOM.searchModal.classList.add('hidden');
+      DOM.searchModal.classList.remove('flex');
+    }
+
     function loadAndRenderBookmarks(url) {
       if (!url) return;
       fetch(url)
@@ -643,6 +735,14 @@
       DOM.moonIcon.classList.add('hidden');
     }
 
+    function applyThemeMode(mode) {
+      appState.themeMode = mode;
+      localStorage.setItem('tblu-theme-mode', mode);
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const shouldDark = mode === 'dark' || (mode === 'system' && prefersDark);
+      shouldDark ? applyDarkTheme() : applyLightTheme();
+    }
+
     DOM.openSidebarButton.addEventListener('click', () => {
       DOM.offCanvasMenu.classList.remove('hidden');
       setTimeout(() => {
@@ -653,9 +753,17 @@
     DOM.closeSidebarButton.addEventListener('click', closeSidebar);
     DOM.offCanvasBackdrop.addEventListener('click', closeSidebar);
 
-    DOM.searchButton.addEventListener('click', performSearch);
+    DOM.openSearchModalButton.addEventListener('click', openSearchModal);
+    DOM.closeSearchModalButton.addEventListener('click', closeSearchModal);
+    DOM.searchModal.addEventListener('click', (e) => {
+      if (e.target === DOM.searchModal) closeSearchModal();
+    });
     DOM.searchInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') performSearch();
+      if (event.key === 'Enter') {
+        performSearch();
+        closeSearchModal();
+      }
+      if (event.key === 'Escape') closeSearchModal();
     });
     DOM.searchInput.addEventListener('input', () => {
       if (!DOM.searchInput.value.trim() && !appState.activeTag) performSearch();
@@ -676,22 +784,49 @@
       performSearch();
     });
 
+    DOM.toggleTagPanelButton.addEventListener('click', () => {
+      DOM.tagPanel.classList.toggle('hidden');
+    });
+
     DOM.languageToggleButton.addEventListener('click', () => {
-      appState.locale = appState.locale === 'zh' ? 'en' : 'zh';
-      localStorage.setItem('tblu-locale', appState.locale);
-      applyLocale();
+      DOM.languageMenu.classList.toggle('hidden');
+      DOM.themeMenu.classList.add('hidden');
     });
 
     DOM.themeToggleButton.addEventListener('click', () => {
-      if (document.documentElement.classList.contains('dark')) {
-        applyLightTheme();
-      } else {
-        applyDarkTheme();
+      DOM.themeMenu.classList.toggle('hidden');
+      DOM.languageMenu.classList.add('hidden');
+    });
+
+    DOM.languageMenu.querySelectorAll('[data-locale]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        appState.locale = btn.dataset.locale;
+        localStorage.setItem('tblu-locale', appState.locale);
+        DOM.languageMenu.classList.add('hidden');
+        applyLocale();
+      });
+    });
+
+    DOM.themeMenu.querySelectorAll('[data-theme]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        applyThemeMode(btn.dataset.theme);
+        DOM.themeMenu.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!DOM.languageToggleButton.contains(e.target) && !DOM.languageMenu.contains(e.target)) {
+        DOM.languageMenu.classList.add('hidden');
+      }
+      if (!DOM.themeToggleButton.contains(e.target) && !DOM.themeMenu.contains(e.target)) {
+        DOM.themeMenu.classList.add('hidden');
       }
     });
 
-    const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    prefersDarkTheme ? applyDarkTheme() : applyLightTheme();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if (appState.themeMode === 'system') applyThemeMode('system');
+    });
+    applyThemeMode(appState.themeMode);
     applyLocale();
 
     window.addEventListener('load', () => {

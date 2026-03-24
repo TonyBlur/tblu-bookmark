@@ -417,12 +417,21 @@
       const matched = appState.tagRules
         .filter(rule => {
           const byDomain = (rule.domains || []).some(domain => hostname === domain || hostname.endsWith(`.${domain}`));
-          const byKeyword = (rule.keywords || []).some(keyword => text.includes(String(keyword).toLowerCase()));
+          const byKeyword = (rule.keywords || []).some(keyword => keywordMatch(text, String(keyword).toLowerCase()));
           return byDomain || byKeyword;
         })
         .map(rule => rule.tag)
         .filter(Boolean);
       return [...new Set(matched)];
+    }
+
+    function keywordMatch(text, keyword) {
+      if (!keyword) return false;
+      const hasCJK = /[\u4e00-\u9fff]/.test(keyword);
+      if (hasCJK) return text.includes(keyword);
+      const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const pattern = new RegExp(`(^|[^a-z0-9])${escaped}([^a-z0-9]|$)`, 'i');
+      return pattern.test(text);
     }
 
     function cleanDisplayUrl(url = '') {

@@ -270,6 +270,31 @@
   background: rgba(51, 65, 85, 0.8);
 }
 
+.card-unified {
+  min-height: 124px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-unified:hover {
+  transform: scale(1.04);
+  z-index: 8;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+}
+
+.card-unified:hover h2,
+.card-unified:hover p,
+.card-unified:hover .mini-chip {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.search-no-native::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
 
   .dark\:pintree-bg-gray-900:is(.dark *) {
     --tw-bg-opacity: 1;

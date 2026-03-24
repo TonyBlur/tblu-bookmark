@@ -148,19 +148,13 @@
                   clip-rule="evenodd"></path>
               </svg>
             </button>
-            <button id="toggleTagPanelButton" class="icon-action-btn" aria-label="Toggle tags">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                  d="m7.5 7.5 9 9M4.5 4.5h6l9 9-6 6-9-9v-6Z"></path>
-              </svg>
-            </button>
           </div>
           <div class="relative flex items-center gap-2">
             <div class="relative">
               <button id="languageToggleButton" type="button" aria-label="Switch language" class="icon-action-btn">
-                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <svg class="h-5 w-5 text-slate-500 dark:text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M4.5 5.25h15M9 5.25c.6 4.5 2.1 8.4 6 12.75M15 5.25c-.4 3-1.4 5.9-3.3 8.55M5.25 18.75h7.5M9 15.75l-1.5 3m0 0L6 15.75m1.5 3h3.75"></path>
+                    d="M12 2.5a9.5 9.5 0 1 0 0 19m0-19c2.8 2.6 4.3 6.2 4.3 9.5S14.8 18.9 12 21.5m0-19c-2.8 2.6-4.3 6.2-4.3 9.5s1.5 6.9 4.3 9.5M2.5 12h19"></path>
                 </svg>
               </button>
               <div id="languageMenu" class="menu-panel hidden">
@@ -171,11 +165,11 @@
             <div class="relative">
               <button id="themeToggleButton" type="button" aria-label="Switch theme" class="icon-action-btn">
                 <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true" class="h-5 w-5 dark:hidden">
+                  aria-hidden="true" class="h-5 w-5 text-slate-500 dark:text-slate-400 dark:hidden">
                   <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
                   <path d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061" fill="none"></path>
                 </svg>
-                <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true" class="hidden h-5 w-5 dark:block">
+                <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true" class="hidden h-5 w-5 text-slate-500 dark:text-slate-400 dark:block">
                   <path
                     d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -193,13 +187,6 @@
 
       <!-- Main content area -->
       <main class="mt-4 dark:pintree-bg-gray-900 flex-grow">
-        <section id="tagPanel" class="px-6 lg:px-8 mb-3 hidden">
-          <div class="panel-card p-3 md:p-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
-            <div class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="tagFilter">Tag 筛选</div>
-            <div id="tagFilters" class="flex-1 flex flex-wrap gap-2"></div>
-            <button id="resetTagFilter" class="text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:pintree-border-gray-700 text-slate-500 dark:text-slate-300 hidden" data-i18n="clearTags">清除标签</button>
-          </div>
-        </section>
         <div id="loading-spinner" class="flex justify-center items-center h-full">
           <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-400 h-6 w-6"></div>
         </div>
@@ -269,7 +256,8 @@
 
   <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-slate-900/40 p-4 pt-20 backdrop-blur-sm">
     <div class="panel-card w-full max-w-2xl p-4">
-      <div class="relative">
+      <div class="flex items-center gap-2 mb-3">
+        <div class="relative flex-1">
         <svg class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20"
           fill="currentColor" aria-hidden="true">
           <path fill-rule="evenodd"
@@ -277,11 +265,24 @@
             clip-rule="evenodd"></path>
         </svg>
         <input id="searchInput" type="search"
-          class="w-full text-sm text-gray-900 dark:text-gray-100 pl-10 pr-24 h-11 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800"
+          class="search-no-native w-full text-sm text-gray-900 dark:text-gray-300 pl-10 pr-24 h-11 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800"
           placeholder="搜索书签 / 标签 / 网址...">
         <button id="clearSearchButton" class="absolute right-16 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded hidden" data-i18n="clear">Clear</button>
-        <button id="closeSearchModalButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded" data-i18n="close">关闭</button>
+          <button id="closeSearchModalButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded" data-i18n="close">关闭</button>
+        </div>
+        <div class="relative">
+          <button id="searchTagFilterButton" class="icon-action-btn" aria-label="Filter tags">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5.25h18M6 12h12m-9 6.75h6"></path>
+            </svg>
+          </button>
+          <div id="searchTagPopup" class="menu-panel hidden max-h-56 overflow-y-auto w-64">
+            <div id="searchTagFilters" class="flex flex-wrap gap-2"></div>
+            <button id="resetTagFilter" class="mt-2 text-xs px-2 py-1 rounded border border-slate-200 dark:pintree-border-gray-700 text-slate-500 dark:text-slate-300 hidden" data-i18n="clearTags">清除标签</button>
+          </div>
+        </div>
       </div>
+      <div id="searchResultsPanel" class="max-h-[55vh] overflow-y-auto space-y-2"></div>
     </div>
   </div>
 
@@ -346,14 +347,15 @@
       searchModal: document.getElementById('searchModal'),
       searchInput: document.getElementById('searchInput'),
       clearSearchButton: document.getElementById('clearSearchButton'),
-      toggleTagPanelButton: document.getElementById('toggleTagPanelButton'),
-      tagPanel: document.getElementById('tagPanel'),
+      searchResultsPanel: document.getElementById('searchResultsPanel'),
+      searchTagFilterButton: document.getElementById('searchTagFilterButton'),
+      searchTagPopup: document.getElementById('searchTagPopup'),
+      searchTagFilters: document.getElementById('searchTagFilters'),
       bookmarks: document.getElementById('bookmarks'),
       breadcrumbsPath: document.getElementById('breadcrumbs-path'),
       folderTagSection: document.getElementById('folderTagSection'),
       folderTags: document.getElementById('folderTags'),
       loadingSpinner: document.getElementById('loading-spinner'),
-      tagFilters: document.getElementById('tagFilters'),
       resetTagFilter: document.getElementById('resetTagFilter'),
       languageToggleButton: document.getElementById('languageToggleButton'),
       languageMenu: document.getElementById('languageMenu'),
@@ -386,9 +388,24 @@
     }
 
     function getItemTags(item) {
-      const titleTags = (item.title || '').split('|').map(v => v.trim()).filter(Boolean);
       const raw = Array.isArray(item.tags) ? item.tags : [];
-      return [...new Set([...raw, ...titleTags])];
+      const functional = inferFunctionalTags(item);
+      return [...new Set([...raw, ...functional])];
+    }
+
+    function inferFunctionalTags(item) {
+      const text = `${item.title || ''} ${item.url || ''}`.toLowerCase();
+      const rules = [
+        { key: 'ai', words: ['ai', 'gpt', 'llm', 'midjourney', 'claude', 'gemini'] },
+        { key: 'design', words: ['design', 'figma', 'photo', 'image', 'icon'] },
+        { key: 'video', words: ['video', 'youtube', 'vimeo', 'bilibili'] },
+        { key: 'dev', words: ['github', 'gitlab', 'developer', 'code', 'api', 'docs'] },
+        { key: 'tools', words: ['tool', 'convert', 'generator', 'editor'] },
+        { key: 'learning', words: ['learn', 'course', 'tutorial', 'doc', 'wiki'] },
+        { key: 'cloud', words: ['cloud', 'drive', 'storage', 'transfer', 'send'] },
+      ];
+      const matched = rules.filter(rule => rule.words.some(word => text.includes(word))).map(rule => rule.key);
+      return matched.length ? matched : ['misc'];
     }
 
     function flattenData(nodes, parentPath = []) {
@@ -396,7 +413,7 @@
       nodes.forEach(node => {
         const currentPath = parentPath.concat({ title: node.title, children: node.children || [] });
         const tags = getItemTags(node);
-        items.push({ ...node, tags, path: currentPath });
+        items.push({ ...node, tags, path: node.type === 'folder' ? currentPath : parentPath });
         if (Array.isArray(node.children) && node.children.length) {
           items.push(...flattenData(node.children, currentPath));
         }
@@ -468,7 +485,7 @@
         });
       });
 
-      DOM.tagFilters.innerHTML = '';
+      DOM.searchTagFilters.innerHTML = '';
       Array.from(tagCount.entries())
         .sort((a, b) => b[1] - a[1])
         .slice(0, 40)
@@ -480,31 +497,38 @@
             renderTagFilters();
           }, appState.activeTag === tag);
           badge.title = `${count} ${t('records')}`;
-          DOM.tagFilters.appendChild(badge);
+          DOM.searchTagFilters.appendChild(badge);
         });
     }
 
     function createCard(title, url, icon, tags = []) {
       const card = document.createElement('div');
-      card.className = 'bookmark-card cursor-pointer flex items-start hover:shadow-md transition-all p-4 bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl hover:-translate-y-0.5 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
+      card.className = 'bookmark-card card-unified cursor-pointer flex items-start transition-all p-4 bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
 
       const cardIcon = document.createElement('img');
-      cardIcon.src = icon || 'assets/default-icon.svg';
+      cardIcon.src = getIconUrl(url, icon);
       cardIcon.alt = title;
       cardIcon.className = 'w-10 h-10 mr-4 rounded-xl flex-shrink-0 card-icon-bg p-1';
-      cardIcon.onerror = () => { cardIcon.src = 'assets/default-icon.svg'; };
+      cardIcon.onerror = () => {
+        if (cardIcon.dataset.fallbackApplied) {
+          cardIcon.src = 'assets/default-icon.svg';
+          return;
+        }
+        cardIcon.dataset.fallbackApplied = '1';
+        cardIcon.src = getIconUrl(url);
+      };
 
       const cardContent = document.createElement('div');
       cardContent.className = 'flex flex-col overflow-hidden w-full';
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-sm font-semibold mb-1 text-slate-700 dark:text-slate-100';
+      cardTitle.className = 'text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300 truncate';
       cardTitle.innerText = title;
 
       const cleanUrl = (url || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
       const cardUrl = document.createElement('p');
-      cardUrl.className = 'text-xs text-slate-400 dark:text-slate-400 truncate';
+      cardUrl.className = 'text-xs text-slate-400 dark:text-slate-500 truncate';
       cardUrl.innerText = cleanUrl;
 
       const tagWrap = document.createElement('div');
@@ -522,9 +546,20 @@
       return card;
     }
 
+    function getIconUrl(url, icon) {
+      if (icon && !icon.includes('logo.clearbit.com')) return icon;
+      if (!url) return icon || 'assets/default-icon.svg';
+      try {
+        const hostname = new URL(url).hostname;
+        return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
+      } catch {
+        return icon || 'assets/default-icon.svg';
+      }
+    }
+
     function createFolderCard(title, children, path, tags = []) {
       const card = document.createElement('div');
-      card.className = 'folder-card text-gray rounded-2xl cursor-pointer flex flex-col items-center p-2';
+      card.className = 'folder-card card-unified text-gray rounded-2xl cursor-pointer flex flex-col items-center p-2';
       card.onclick = () => {
         const newPath = path.concat({ title, children });
         appState.query = '';
@@ -544,7 +579,7 @@
       `;
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-xs font-medium text-center w-full text-balance dark:text-gray-200';
+      cardTitle.className = 'text-xs font-medium text-center w-full truncate dark:text-gray-400';
       cardTitle.innerText = title;
 
       card.append(cardIcon, cardTitle);
@@ -561,16 +596,21 @@
         navItem.className = 'items-center group flex justify-between gap-x-2 rounded-xl p-2 text-gray-700 dark:text-gray-300 hover:text-main-500 hover:bg-slate-100 dark:hover:pintree-bg-gray-800';
         navItem.style.paddingLeft = `${8 + level * 12}px`;
 
+        const titleWrap = document.createElement('div');
+        titleWrap.className = 'flex items-center flex-1 min-w-0 gap-2';
+        const folderIcon = document.createElement('span');
+        folderIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 shrink-0" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h4l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>';
         const title = document.createElement('button');
-        title.className = 'text-sm leading-6 font-semibold text-left flex-1';
+        title.className = 'text-sm leading-6 font-semibold text-left flex-1 truncate';
         title.innerText = folder.title;
+        titleWrap.append(folderIcon, title);
 
         const hasChildrenFolder = (folder.children || []).some(item => item.type === 'folder');
         const toggleIcon = document.createElement('span');
         toggleIcon.className = 'text-xs transition-transform';
-        toggleIcon.textContent = hasChildrenFolder ? '▸' : '';
+        toggleIcon.innerHTML = hasChildrenFolder ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>' : '';
 
-        navItem.append(title, toggleIcon);
+        navItem.append(titleWrap, toggleIcon);
         li.appendChild(navItem);
         container.appendChild(li);
 
@@ -620,6 +660,30 @@
       DOM.bookmarks.appendChild(message);
     }
 
+    function renderSearchResultsPanel(results) {
+      DOM.searchResultsPanel.innerHTML = '';
+      if (!results.length) {
+        const empty = document.createElement('p');
+        empty.className = 'text-sm text-slate-500 dark:text-slate-400 px-1 py-2';
+        empty.textContent = t('noResultsDesc');
+        DOM.searchResultsPanel.appendChild(empty);
+        return;
+      }
+      results.slice(0, 80).forEach(item => {
+        const row = document.createElement('button');
+        row.className = 'w-full text-left p-3 rounded-xl hover:bg-slate-100 dark:hover:pintree-bg-gray-800';
+        row.innerHTML = `<div class="text-sm font-medium text-slate-700 dark:text-slate-300 truncate">${item.title}</div>
+          <div class="text-xs text-slate-400 truncate">${(item.url || '').replace(/^https?:\\/\\//, '')}</div>`;
+        row.addEventListener('click', () => {
+          const targetPath = item.path || [];
+          const parent = targetPath[targetPath.length - 1];
+          renderBookmarks(parent?.children || [], targetPath);
+          closeSearchModal();
+        });
+        DOM.searchResultsPanel.appendChild(row);
+      });
+    }
+
     function renderFolderTags(path) {
       const current = path[path.length - 1];
       const tags = current ? getItemTags(current) : [];
@@ -650,14 +714,14 @@
 
       if (folders.length) {
         const folderSection = document.createElement('div');
-        folderSection.className = 'panel-card p-4 grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-10 gap-x-4 gap-y-6';
+        folderSection.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4';
         folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, getItemTags(folder))));
         DOM.bookmarks.appendChild(folderSection);
       }
 
       if (links.length) {
         const linkSection = document.createElement('div');
-        linkSection.className = 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4';
+        linkSection.className = 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4';
         links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, getItemTags(link))));
         DOM.bookmarks.appendChild(linkSection);
       }
@@ -669,14 +733,12 @@
       DOM.clearSearchButton.classList.toggle('hidden', !query && !appState.activeTag);
 
       if (!query && !appState.activeTag) {
-        const root = appState.rawData;
-        if (!root.length) return;
-        renderBookmarks(root[0]?.children || root, [{ title: t('bookmark'), children: root }, { title: root[0]?.title || t('home'), children: root[0]?.children || root }]);
+        DOM.searchResultsPanel.innerHTML = '';
         return;
       }
 
       const results = searchInFlattenedData(query, appState.activeTag);
-      renderBookmarks(results, [{ title: t('searchResults'), children: results }]);
+      renderSearchResultsPanel(results);
     }
 
     function closeSidebar() {
@@ -689,6 +751,7 @@
       DOM.searchModal.classList.remove('hidden');
       DOM.searchModal.classList.add('flex');
       setTimeout(() => DOM.searchInput.focus(), 20);
+      performSearch();
     }
 
     function closeSearchModal() {
@@ -707,11 +770,12 @@
           appState.rawData = data;
           appState.flattened = flattenData(data);
           const navigationElements = document.getElementsByClassName('navigation');
+          const rootFolders = data.filter(item => item.type === 'folder');
           for (let i = 0; i < navigationElements.length; i++) {
-            renderNavigation(data, navigationElements[i], [{ title: t('bookmark'), children: data }]);
+            renderNavigation(rootFolders, navigationElements[i], []);
           }
-          const first = data[0];
-          renderBookmarks(first?.children || data, [{ title: t('bookmark'), children: data }, { title: first?.title || t('home'), children: first?.children || data }]);
+          const first = rootFolders[0];
+          renderBookmarks(first?.children || rootFolders, [{ title: first?.title || t('home'), children: first?.children || rootFolders }]);
           renderTagFilters();
           applyLocale();
           DOM.loadingSpinner.style.display = 'none';
@@ -766,7 +830,8 @@
       if (event.key === 'Escape') closeSearchModal();
     });
     DOM.searchInput.addEventListener('input', () => {
-      if (!DOM.searchInput.value.trim() && !appState.activeTag) performSearch();
+      DOM.clearSearchButton.classList.toggle('hidden', !DOM.searchInput.value.trim() && !appState.activeTag);
+      performSearch();
     });
 
     DOM.clearSearchButton.addEventListener('click', () => {
@@ -784,8 +849,9 @@
       performSearch();
     });
 
-    DOM.toggleTagPanelButton.addEventListener('click', () => {
-      DOM.tagPanel.classList.toggle('hidden');
+    DOM.searchTagFilterButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      DOM.searchTagPopup.classList.toggle('hidden');
     });
 
     DOM.languageToggleButton.addEventListener('click', () => {
@@ -820,6 +886,9 @@
       }
       if (!DOM.themeToggleButton.contains(e.target) && !DOM.themeMenu.contains(e.target)) {
         DOM.themeMenu.classList.add('hidden');
+      }
+      if (!DOM.searchTagFilterButton.contains(e.target) && !DOM.searchTagPopup.contains(e.target)) {
+        DOM.searchTagPopup.classList.add('hidden');
       }
     });
 

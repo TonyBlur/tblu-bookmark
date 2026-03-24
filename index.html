@@ -391,6 +391,18 @@
       performSearch();
     }
 
+    function remapActiveTagForLocale(previousLocale, nextLocale) {
+      if (!appState.activeTag || !appState.tagRules.length) return;
+      const rule = appState.tagRules.find(r => {
+        if (!r || typeof r.tag !== 'object') return false;
+        const prevLabel = r.tag[previousLocale];
+        const nextLabel = r.tag[nextLocale];
+        return appState.activeTag === prevLabel || appState.activeTag === nextLabel;
+      });
+      if (!rule || typeof rule.tag !== 'object') return;
+      appState.activeTag = rule.tag[nextLocale] || rule.tag.zh || rule.tag.en || appState.activeTag;
+    }
+
     function normalize(str = '') {
       return str.toLowerCase().trim();
     }
@@ -970,7 +982,9 @@
 
     DOM.languageMenu.querySelectorAll('[data-locale]').forEach(btn => {
       btn.addEventListener('click', () => {
+        const previousLocale = appState.locale;
         appState.locale = btn.dataset.locale;
+        remapActiveTagForLocale(previousLocale, appState.locale);
         localStorage.setItem('tblu-locale', appState.locale);
         DOM.languageMenu.classList.add('hidden');
         applyLocale();

@@ -339,6 +339,7 @@
       activeTag: null,
       query: '',
       flattened: [],
+      tagRules: [],
       locale: localStorage.getItem('tblu-locale') || (navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en'),
       themeMode: localStorage.getItem('tblu-theme-mode') || 'system',
     };
@@ -400,23 +401,28 @@
       if (raw.length > 0) {
         return [...new Set(raw.map(tag => String(tag).trim()).filter(Boolean))];
       }
-      const functional = inferFunctionalTags(item);
-      return [...new Set(functional)];
+      return deriveTagsFromRules(item);
     }
 
-    function inferFunctionalTags(item) {
+    function deriveTagsFromRules(item) {
+      if (!appState.tagRules.length) return [];
       const text = `${item.title || ''} ${item.url || ''}`.toLowerCase();
-      const rules = [
-        { key: 'ai', words: ['ai', 'gpt', 'llm', 'midjourney', 'claude', 'gemini'] },
-        { key: 'design', words: ['design', 'figma', 'photo', 'image', 'icon'] },
-        { key: 'video', words: ['video', 'youtube', 'vimeo', 'bilibili'] },
-        { key: 'dev', words: ['github', 'gitlab', 'developer', 'code', 'api', 'docs'] },
-        { key: 'tools', words: ['tool', 'convert', 'generator', 'editor'] },
-        { key: 'learning', words: ['learn', 'course', 'tutorial', 'doc', 'wiki'] },
-        { key: 'cloud', words: ['cloud', 'drive', 'storage', 'transfer', 'send'] },
-      ];
-      const matched = rules.filter(rule => rule.words.some(word => text.includes(word))).map(rule => rule.key);
-      return matched.length ? matched : ['misc'];
+      let hostname = '';
+      try {
+        hostname = item.url ? new URL(item.url).hostname.toLowerCase() : '';
+      } catch (_) {
+        hostname = '';
+      }
+
+      const matched = appState.tagRules
+        .filter(rule => {
+          const byDomain = (rule.domains || []).some(domain => hostname === domain || hostname.endsWith(`.${domain}`));
+          const byKeyword = (rule.keywords || []).some(keyword => text.includes(String(keyword).toLowerCase()));
+          return byDomain || byKeyword;
+        })
+        .map(rule => rule.tag)
+        .filter(Boolean);
+      return [...new Set(matched)];
     }
 
     function cleanDisplayUrl(url = '') {
@@ -814,13 +820,18 @@
 
     function loadAndRenderBookmarks(url) {
       if (!url) return;
-      fetch(url)
-        .then(response => {
+      Promise.all([
+        fetch(url).then(response => {
           if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           return response.json();
-        })
-        .then(data => {
+        }),
+        fetch('json/tag-rules.json')
+          .then(response => (response.ok ? response.json() : []))
+          .catch(() => []),
+      ])
+        .then(([data, tagRules]) => {
           appState.rawData = data;
+          appState.tagRules = Array.isArray(tagRules) ? tagRules : [];
           appState.flattened = flattenData(data);
           const navigationElements = document.getElementsByClassName('navigation');
           const rootFolders = data.filter(item => item.type === 'folder');

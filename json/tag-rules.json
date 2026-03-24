@@ -1,0 +1,27 @@
+[
+  {
+    "tag": "开发工具",
+    "domains": ["github.com", "gitlab.com", "stackoverflow.com", "npmjs.com", "vercel.com"],
+    "keywords": ["api", "sdk", "code", "developer", "dev", "programming", "github", "gitlab"]
+  },
+  {
+    "tag": "设计创作",
+    "domains": ["figma.com", "canva.com", "photopea.com", "behance.net", "dribbble.com"],
+    "keywords": ["design", "designer", "ui", "ux", "photo", "image", "icon", "mockup"]
+  },
+  {
+    "tag": "文件传输",
+    "domains": ["wenshushu.cn", "airportal.cn", "wetransfer.com", "pairdrop.net", "transfer.zip", "fastsend.ing"],
+    "keywords": ["transfer", "send", "upload", "file", "share", "传输", "快传"]
+  },
+  {
+    "tag": "学习文档",
+    "domains": ["wikipedia.org", "mdn.io", "developer.mozilla.org", "coursera.org", "edx.org", "udemy.com"],
+    "keywords": ["learn", "course", "tutorial", "doc", "wiki", "guide", "学习", "教程", "文档"]
+  },
+  {
+    "tag": "AI 工具",
+    "domains": ["openai.com", "claude.ai", "gemini.google.com", "midjourney.com", "huggingface.co"],
+    "keywords": ["ai", "gpt", "llm", "prompt", "chatbot", "模型"]
+  }
+]

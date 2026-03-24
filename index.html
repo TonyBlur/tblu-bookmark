@@ -397,8 +397,11 @@
 
     function getItemTags(item) {
       const raw = Array.isArray(item.tags) ? item.tags : [];
+      if (raw.length > 0) {
+        return [...new Set(raw.map(tag => String(tag).trim()).filter(Boolean))];
+      }
       const functional = inferFunctionalTags(item);
-      return [...new Set([...raw, ...functional])];
+      return [...new Set(functional)];
     }
 
     function inferFunctionalTags(item) {

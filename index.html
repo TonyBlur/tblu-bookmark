@@ -152,9 +152,12 @@
           <div class="relative flex items-center gap-2">
             <div class="relative">
               <button id="languageToggleButton" type="button" aria-label="Switch language" class="icon-action-btn">
-                <svg class="h-5 w-5 text-slate-500 dark:text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M4 5h12M4 9h8m-8 4h12m-12 4h8m10-9 2 2-2 2m0-4 2 2m-2 6 2 2-2 2m0-4 2 2"></path>
+                <svg fill="none" viewBox="0 0 24 24" class="h-5 w-5 text-slate-500 dark:text-slate-400" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12Z" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M13 2.04932C13 2.04932 16 5.99994 16 11.9999C16 17.9999 13 21.9506 13 21.9506" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M11 21.9506C11 21.9506 8 17.9999 8 11.9999C8 5.99994 11 2.04932 11 2.04932" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.62964 15.5H21.3704" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2.62964 8.5H21.3704" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </button>
               <div id="languageMenu" class="menu-panel hidden">
@@ -165,11 +168,14 @@
             <div class="relative">
               <button id="themeToggleButton" type="button" aria-label="Switch theme" class="icon-action-btn">
                 <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true" class="h-5 w-5 text-slate-500 dark:text-slate-400 dark:hidden">
-                  <path fill="none" d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
-                  <path d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061" fill="none"></path>
+                  aria-hidden="true"
+                  class="h-5 w-5 fill-zinc-100 stroke-zinc-500 dark:hidden">
+                  <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
+                  <path d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
+                    fill="none"></path>
                 </svg>
-                <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true" class="hidden h-5 w-5 text-slate-500 dark:text-slate-400 dark:block">
+                <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true"
+                  class="hidden h-5 w-5 fill-zinc-700 stroke-zinc-500 dark:block">
                   <path
                     d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -283,6 +289,7 @@
         </div>
       </div>
       <div id="searchResultsPanel" class="max-h-[55vh] overflow-y-auto space-y-2"></div>
+      <div id="selectedTagIndicator" class="text-xs text-sky-600 dark:text-sky-400 pt-2 hidden"></div>
     </div>
   </div>
 
@@ -348,6 +355,7 @@
       searchInput: document.getElementById('searchInput'),
       clearSearchButton: document.getElementById('clearSearchButton'),
       searchResultsPanel: document.getElementById('searchResultsPanel'),
+      selectedTagIndicator: document.getElementById('selectedTagIndicator'),
       searchTagFilterButton: document.getElementById('searchTagFilterButton'),
       searchTagPopup: document.getElementById('searchTagPopup'),
       searchTagFilters: document.getElementById('searchTagFilters'),
@@ -476,7 +484,8 @@
     function createTagBadge(tag, onClick, active = false) {
       const badge = document.createElement('button');
       badge.className = `tag-chip ${active ? 'tag-chip-active' : ''}`;
-      badge.textContent = tag;
+      badge.textContent = active ? `✓ ${tag}` : tag;
+      badge.setAttribute('aria-pressed', active ? 'true' : 'false');
       badge.addEventListener('click', onClick);
       return badge;
     }
@@ -503,9 +512,18 @@
           badge.title = `${count} ${t('records')}`;
           DOM.searchTagFilters.appendChild(badge);
         });
+      if (appState.activeTag) {
+        DOM.selectedTagIndicator.textContent = `${t('tagFilter')}: ${appState.activeTag}`;
+        DOM.selectedTagIndicator.classList.remove('hidden');
+      } else {
+        DOM.selectedTagIndicator.classList.add('hidden');
+      }
     }
 
     function createCard(title, url, icon, tags = []) {
+      const wrap = document.createElement('div');
+      wrap.className = 'card-wrap';
+
       const card = document.createElement('div');
       card.className = 'bookmark-card card-unified cursor-pointer flex items-start transition-all p-4 bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -547,7 +565,8 @@
       cardContent.append(cardTitle, cardUrl);
       if (tags.length) cardContent.appendChild(tagWrap);
       card.append(cardIcon, cardContent);
-      return card;
+      wrap.appendChild(card);
+      return wrap;
     }
 
     function getIconUrl(url, icon) {
@@ -562,6 +581,9 @@
     }
 
     function createFolderCard(title, children, path, tags = []) {
+      const wrap = document.createElement('div');
+      wrap.className = 'card-wrap';
+
       const card = document.createElement('div');
       card.className = 'folder-card card-unified text-gray rounded-2xl cursor-pointer flex flex-col items-center p-2';
       card.onclick = () => {
@@ -587,7 +609,8 @@
       cardTitle.innerText = title;
 
       card.append(cardIcon, cardTitle);
-      return card;
+      wrap.appendChild(card);
+      return wrap;
     }
 
     function renderNavigation(folders, container, path = [], level = 0) {
@@ -874,7 +897,7 @@
 
     DOM.searchTagFilterButton.addEventListener('click', (e) => {
       e.stopPropagation();
-      DOM.searchTagPopup.classList.toggle('hidden');
+      toggleAnimatedMenu(DOM.searchTagPopup);
     });
 
     DOM.languageToggleButton.addEventListener('click', () => {

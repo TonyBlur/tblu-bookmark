@@ -385,10 +385,23 @@
       });
       if (appState.rawData.length) {
         appState.flattened = flattenData(appState.rawData);
+        rerenderCurrentBookmarksView();
       }
       DOM.searchInput.placeholder = t('searchPlaceholder');
       renderTagFilters();
       performSearch();
+    }
+
+    function rerenderCurrentBookmarksView() {
+      if (!appState.rawData.length) return;
+      if (appState.activePath && appState.activePath.length > 0) {
+        const current = appState.activePath[appState.activePath.length - 1];
+        renderBookmarks(current.children || [], appState.activePath);
+        return;
+      }
+      const rootFolders = appState.rawData.filter(item => item.type === 'folder');
+      const first = rootFolders[0];
+      renderBookmarks(first?.children || rootFolders, [{ title: first?.title || t('home'), children: first?.children || rootFolders }]);
     }
 
     function remapActiveTagForLocale(previousLocale, nextLocale) {

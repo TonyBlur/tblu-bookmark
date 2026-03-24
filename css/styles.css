@@ -153,6 +153,65 @@
   background-color: rgb(129 132 138 / 10%);
 }
 
+.app-shell {
+  background-image: radial-gradient(circle at top, rgba(14, 165, 233, 0.08), transparent 40%);
+}
+
+.panel-card {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.dark .panel-card {
+  background: rgba(34, 37, 42, 0.75);
+  border-color: rgba(71, 85, 105, 0.35);
+}
+
+.tag-chip {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgb(71, 85, 105);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 9999px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0.45rem 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+  border-color: rgba(14, 165, 233, 0.8);
+  color: rgb(2, 132, 199);
+}
+
+.tag-chip-active {
+  color: white;
+  border-color: rgba(2, 132, 199, 0.9);
+  background: linear-gradient(135deg, rgba(2, 132, 199, 1), rgba(14, 116, 144, 1));
+}
+
+.mini-chip {
+  font-size: 11px;
+  color: rgb(71, 85, 105);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(241, 245, 249, 0.85);
+  border-radius: 9999px;
+  padding: 0.2rem 0.5rem;
+}
+
+.dark .tag-chip {
+  color: rgb(203, 213, 225);
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(100, 116, 139, 0.4);
+}
+
+.dark .mini-chip {
+  color: rgb(203, 213, 225);
+  border-color: rgba(100, 116, 139, 0.35);
+  background: rgba(30, 41, 59, 0.75);
+}
+
 
   .dark\:pintree-bg-gray-900:is(.dark *) {
     --tw-bg-opacity: 1;
@@ -224,4 +283,3 @@
     --tw-bg-opacity: 1;
     --tw-ring-color: rgb(45 49 57 / var(--tw-bg-opacity));
   }
-

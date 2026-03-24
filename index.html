@@ -71,7 +71,7 @@
   <script src="js/data-url-config.js"></script>
 </head>
 
-<body class="h-full dark:pintree-bg-gray-900 bg-white">
+<body class="h-full app-shell dark:pintree-bg-gray-900 bg-slate-50">
 
   <div>
     <!-- Mobile Off-Canvas Menu -->
@@ -131,7 +131,7 @@
     <!-- Main Content Area -->
     <div class="lg:pl-72 dark:pintree-bg-gray-900 flex flex-col min-h-screen">
       <div
-        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-gray-200 dark:pintree-border-gray-800 bg-white dark:pintree-bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:pintree-bg-gray-900 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
           <div class="flex gap-x-4 justify-between">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
@@ -142,7 +142,7 @@
               </svg>
             </button>
             <!-- Searchbar -->
-            <div id="searchBar" class="lg:block relative pl-8 w-72 h-full flex items-center justify-between">
+            <div id="searchBar" class="lg:block relative pl-8 w-[20rem] md:w-[30rem] h-full flex items-center justify-between">
               <button id="searchButton" class="absolute h-full text-gray-400 rounded">
                 <svg class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400" viewBox="0 0 20 20"
                   fill="currentColor" aria-hidden="true">
@@ -152,12 +152,16 @@
                 </svg>
               </button>
               <input id="searchInput" type="search"
-                class="text-sm text-gray-900 dark:text-gray-400 pl-8 h-full border-0 focus:outline-none focus:ring-0 dark:pintree-bg-gray-900 flex-1 max-w-auto"
-                placeholder="Search...">
-              <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden">Clear</button>
+                class="text-sm text-gray-900 dark:text-gray-200 pl-10 pr-20 h-10 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800 flex-1 max-w-auto shadow-sm"
+                placeholder="搜索书签 / 标签 / 网址...">
+              <button id="clearSearchButton" class="text-sm text-gray-500 mr-4 rounded hidden" data-i18n="clear">Clear</button>
             </div>
           </div>
-          <div class="relative">
+          <div class="relative flex items-center gap-2">
+            <button id="languageToggleButton" type="button" aria-label="Switch language"
+              class="text-xs rounded-full bg-white/90 px-3 py-2 shadow ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
+              <span id="languageLabel">中文</span>
+            </button>
             <button id="themeToggleButton" type="button" aria-label="Switch theme"
               class="group rounded-full bg-white/90 px-3 py-2 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur transition dark:pintree-bg-gray-900 dark:ring-white/10 dark:hover:ring-white/20">
               <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -183,15 +187,22 @@
 
       <!-- Main content area -->
       <main class="mt-4 dark:pintree-bg-gray-900 flex-grow">
+        <section class="px-6 lg:px-8 mb-3">
+          <div class="panel-card p-3 md:p-4 flex flex-col md:flex-row md:items-center gap-3 md:gap-6">
+            <div class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400" data-i18n="tagFilter">Tag 筛选</div>
+            <div id="tagFilters" class="flex-1 flex flex-wrap gap-2"></div>
+            <button id="resetTagFilter" class="text-xs px-3 py-1.5 rounded-lg border border-slate-200 dark:pintree-border-gray-700 text-slate-500 dark:text-slate-300 hidden" data-i18n="clearTags">清除标签</button>
+          </div>
+        </section>
         <div id="loading-spinner" class="flex justify-center items-center h-full">
           <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-400 h-6 w-6"></div>
         </div>
-        <div id="breadcrumbs" class="mt-2 px-6 text-sm text-gray-400 flex justify-between items-center">
+        <div id="breadcrumbs" class="mt-2 px-6 lg:px-8 text-sm text-gray-400 flex justify-between items-center">
           <div id="breadcrumbs-path" class="">
             <!-- Breadcrumbs will be inserted here -->
           </div>
         </div>
-        <div id="bookmarks" class="grid gap-6 p-6">
+        <div id="bookmarks" class="grid gap-6 p-6 lg:px-8">
           <!-- Bookmark cards will be inserted here -->
         </div>
       </main>
@@ -245,156 +256,233 @@
   </div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Variables for sidebar elements
-      const openSidebarButton = document.getElementById('open-sidebar-button');
-      const closeSidebarButton = document.getElementById('close-sidebar-button');
-      const offCanvasMenu = document.getElementById('off-canvas-menu');
-      const offCanvasBackdrop = document.getElementById('off-canvas-backdrop');
-      const offCanvasContent = document.getElementById('off-canvas-content');
-
-      // Function to open the sidebar
-      const openSidebar = () => {
-        offCanvasMenu.classList.remove('hidden');
-        setTimeout(() => {
-          offCanvasBackdrop.classList.add('opacity-100');
-          offCanvasContent.classList.add('translate-x-0');
-        }, 10);
-      };
-
-      // Function to close the sidebar
-      const closeSidebar = () => {
-        offCanvasBackdrop.classList.remove('opacity-100');
-        offCanvasContent.classList.remove('translate-x-0');
-        setTimeout(() => {
-          offCanvasMenu.classList.add('hidden');
-        }, 300); // Match the duration of the transition
-      };
-
-      // Event listeners for open and close buttons
-      openSidebarButton.addEventListener('click', openSidebar);
-      closeSidebarButton.addEventListener('click', closeSidebar);
-      offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
-    });
-
-    // Search functionality
-    function searchBookmarks(query) {
-      if (window.bookmarkDataURL) {
-        fetch(window.bookmarkDataURL)
-          .then(response => {
-            if (!response.ok) throw new Error("HTTP error: " + response.statusText);
-            return response.json();
-          })
-          .then(data => {
-            const results = searchInData(data, query.toLowerCase());
-            renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-            document.getElementById('clearSearchButton').classList.remove('hidden');
-          })
-          .catch(error => console.error('Error searching bookmarks:', error));
-      } else {
-        console.error('bookmarkDataURL is not defined');
+    const I18N = {
+      zh: {
+        clear: '清除',
+        clearTags: '清除标签',
+        tagFilter: 'Tag 筛选',
+        searchPlaceholder: '搜索书签 / 标签 / 网址...',
+        noResultsTitle: '没有找到匹配内容',
+        noResultsDesc: '试试更短关键词、同义词或切换标签筛选。',
+        searchResults: '搜索结果',
+        bookmark: '书签',
+        home: '主页',
+        records: '条记录',
+        languageLabel: '中文',
+      },
+      en: {
+        clear: 'Clear',
+        clearTags: 'Clear tags',
+        tagFilter: 'Tag filters',
+        searchPlaceholder: 'Search bookmarks / tags / URLs...',
+        noResultsTitle: 'No matching results',
+        noResultsDesc: 'Try shorter keywords, synonyms, or switch tag filters.',
+        searchResults: 'Search Results',
+        bookmark: 'Bookmark',
+        home: 'Home',
+        records: 'records',
+        languageLabel: 'EN',
       }
+    };
+
+    const appState = {
+      rawData: [],
+      activePath: [],
+      activeTag: null,
+      query: '',
+      flattened: [],
+      locale: localStorage.getItem('tblu-locale') || (navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en'),
+    };
+
+    const DOM = {
+      openSidebarButton: document.getElementById('open-sidebar-button'),
+      closeSidebarButton: document.getElementById('close-sidebar-button'),
+      offCanvasMenu: document.getElementById('off-canvas-menu'),
+      offCanvasBackdrop: document.getElementById('off-canvas-backdrop'),
+      offCanvasContent: document.getElementById('off-canvas-content'),
+      searchInput: document.getElementById('searchInput'),
+      clearSearchButton: document.getElementById('clearSearchButton'),
+      searchButton: document.getElementById('searchButton'),
+      bookmarks: document.getElementById('bookmarks'),
+      breadcrumbsPath: document.getElementById('breadcrumbs-path'),
+      loadingSpinner: document.getElementById('loading-spinner'),
+      tagFilters: document.getElementById('tagFilters'),
+      resetTagFilter: document.getElementById('resetTagFilter'),
+      languageToggleButton: document.getElementById('languageToggleButton'),
+      languageLabel: document.getElementById('languageLabel'),
+      themeToggleButton: document.getElementById('themeToggleButton'),
+      sunIcon: document.getElementById('sunIcon'),
+      moonIcon: document.getElementById('moonIcon'),
+    };
+
+    function t(key) {
+      return I18N[appState.locale]?.[key] || I18N.zh[key] || key;
     }
 
-    function searchInData(data, query) {
-      let results = [];
-      data.forEach(item => {
-        if (item.title.toLowerCase().includes(query)) {
-          results.push(item);
-        }
-        if (item.children) {
-          const childResults = searchInData(item.children, query);
-          if (childResults.length > 0) {
-            results = results.concat(childResults);
-          }
+    function applyLocale() {
+      document.querySelectorAll('[data-i18n]').forEach(node => {
+        const key = node.dataset.i18n;
+        node.textContent = t(key);
+      });
+      DOM.searchInput.placeholder = t('searchPlaceholder');
+      DOM.languageLabel.textContent = t('languageLabel');
+      renderTagFilters();
+      performSearch();
+    }
+
+    function normalize(str = '') {
+      return str.toLowerCase().trim();
+    }
+
+    function tokenize(str = '') {
+      return normalize(str).split(/\s+/).filter(Boolean);
+    }
+
+    function getItemTags(item) {
+      const titleTags = (item.title || '').split('|').map(v => v.trim()).filter(Boolean);
+      const raw = Array.isArray(item.tags) ? item.tags : [];
+      return [...new Set([...raw, ...titleTags])];
+    }
+
+    function flattenData(nodes, parentPath = []) {
+      const items = [];
+      nodes.forEach(node => {
+        const currentPath = parentPath.concat({ title: node.title, children: node.children || [] });
+        const tags = getItemTags(node);
+        items.push({ ...node, tags, path: currentPath });
+        if (Array.isArray(node.children) && node.children.length) {
+          items.push(...flattenData(node.children, currentPath));
         }
       });
-      return results;
+      return items;
     }
 
-    document.getElementById('searchButton').addEventListener('click', () => {
-      const query = document.getElementById('searchInput').value;
-      searchBookmarks(query);
-    });
+    function fuzzyScore(text, query) {
+      if (!query) return 1;
+      const t = normalize(text);
+      const q = normalize(query);
+      if (!q) return 1;
+      if (t.includes(q)) return 1;
+      const words = tokenize(t);
+      const qWords = tokenize(q);
+      let matchedWords = 0;
+      qWords.forEach(qw => {
+        if (words.some(w => w.includes(qw) || levenshteinDistance(w, qw) <= 1)) {
+          matchedWords += 1;
+        }
+      });
+      return qWords.length ? matchedWords / qWords.length : 0;
+    }
 
-    // Clear search results and reset UI
-    function clearSearchResults() {
-      if (window.bookmarkDataURL) {
-        fetch(window.bookmarkDataURL)
-          .then(response => response.json())
-          .then(data => {
-            const secondLayer = data[0].children;
-            renderNavigation(secondLayer, document.getElementById('navigation'));
-            renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
-            document.getElementById('searchInput').value = '';
-            document.getElementById('clearSearchButton').classList.add('hidden');
-          })
-          .catch(error => console.error('Error clearing search results:', error));
-      } else {
-        window.addEventListener('load', function () {
-          fetch(window.bookmarkDataURL)
-            .then(response => response.json())
-            .then(data => {
-              const secondLayer = data[0].children;
-              renderNavigation(secondLayer, document.getElementById('navigation'));
-              renderBookmarks(secondLayer, [{ title: 'Bookmark', children: secondLayer }]);
-              document.getElementById('searchInput').value = '';
-              document.getElementById('clearSearchButton').classList.add('hidden');
-            })
-            .catch(error => console.error('Error clearing search results:', error));
-        });
+    function levenshteinDistance(a, b) {
+      const dp = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
+      for (let i = 0; i <= a.length; i++) dp[i][0] = i;
+      for (let j = 0; j <= b.length; j++) dp[0][j] = j;
+      for (let i = 1; i <= a.length; i++) {
+        for (let j = 1; j <= b.length; j++) {
+          const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + cost,
+          );
+        }
       }
+      return dp[a.length][b.length];
     }
 
-    document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
+    function searchInFlattenedData(query, selectedTag) {
+      const q = normalize(query);
+      return appState.flattened
+        .map(item => {
+          const text = [item.title, item.url || '', ...(item.tags || [])].join(' ');
+          const score = fuzzyScore(text, q);
+          const tagMatch = selectedTag ? item.tags.some(t => normalize(t) === normalize(selectedTag)) : true;
+          return { item, score, tagMatch };
+        })
+        .filter(({ item, score, tagMatch }) => item.type === 'link' && tagMatch && (!q || score >= 0.55))
+        .sort((a, b) => b.score - a.score)
+        .map(({ item }) => item);
+    }
 
-    // Create bookmark card element
-    function createCard(title, url, icon) {
+    function createTagBadge(tag, onClick, active = false) {
+      const badge = document.createElement('button');
+      badge.className = `tag-chip ${active ? 'tag-chip-active' : ''}`;
+      badge.textContent = `#${tag}`;
+      badge.addEventListener('click', onClick);
+      return badge;
+    }
+
+    function renderTagFilters() {
+      const tagCount = new Map();
+      appState.flattened.forEach(item => {
+        item.tags?.forEach(tag => {
+          tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+        });
+      });
+
+      DOM.tagFilters.innerHTML = '';
+      Array.from(tagCount.entries())
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 40)
+        .forEach(([tag, count]) => {
+          const badge = createTagBadge(tag, () => {
+            appState.activeTag = appState.activeTag === tag ? null : tag;
+            DOM.resetTagFilter.classList.toggle('hidden', !appState.activeTag);
+            performSearch();
+            renderTagFilters();
+          }, appState.activeTag === tag);
+          badge.title = `${count} ${t('records')}`;
+          DOM.tagFilters.appendChild(badge);
+        });
+    }
+
+    function createCard(title, url, icon, tags = []) {
       const card = document.createElement('div');
-      card.className = 'cursor-pointer flex items-center hover:shadow-sm transition-shadow p-4 bg-white shadow-sm ring-1 ring-gray-900/5 dark:pintree-ring-gray-800 rounded-lg hover:bg-gray-100 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
-      card.onclick = () => window.open(url, '_blank'); // Make the whole card clickable
+      card.className = 'bookmark-card cursor-pointer flex items-start hover:shadow-md transition-all p-4 bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl hover:-translate-y-0.5 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
+      card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
 
       const cardIcon = document.createElement('img');
-      cardIcon.src = icon || 'assets/default-icon.svg'; // Use provided icon or default icon
+      cardIcon.src = icon || 'assets/default-icon.svg';
       cardIcon.alt = title;
-      cardIcon.className = 'w-8 h-8 mr-4 rounded-full flex-shrink-0 card-icon-bg'; // Smaller size and rounded
-
-      // Check if the image URL returns 404 and replace it with the default icon if it does
-      cardIcon.onerror = () => {
-        cardIcon.src = 'assets/default-icon.svg';
-      };
+      cardIcon.className = 'w-10 h-10 mr-4 rounded-xl flex-shrink-0 card-icon-bg p-1';
+      cardIcon.onerror = () => { cardIcon.src = 'assets/default-icon.svg'; };
 
       const cardContent = document.createElement('div');
-      cardContent.className = 'flex flex-col overflow-hidden'; // Ensure the content is hidden if too long
+      cardContent.className = 'flex flex-col overflow-hidden w-full';
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-sm font-medium mb-1 text-balance dark:text-gray-400';
+      cardTitle.className = 'text-sm font-semibold mb-1 text-slate-700 dark:text-slate-100';
       cardTitle.innerText = title;
 
-      // Clean URL by removing http(s) and trailing slash
-      const cleanUrl = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
-
+      const cleanUrl = (url || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
       const cardUrl = document.createElement('p');
-      cardUrl.className = 'text-xs text-gray-400 dark:text-gray-600 dark:hover:text-gray-400 text-balance';
-      cardUrl.innerText = cleanUrl; // Use cleaned URL
+      cardUrl.className = 'text-xs text-slate-400 dark:text-slate-400 truncate';
+      cardUrl.innerText = cleanUrl;
 
-      cardContent.appendChild(cardTitle);
-      cardContent.appendChild(cardUrl); // Add URL paragraph
+      const tagWrap = document.createElement('div');
+      tagWrap.className = 'flex flex-wrap gap-1 mt-2';
+      tags.slice(0, 4).forEach(tag => {
+        const chip = document.createElement('span');
+        chip.className = 'mini-chip';
+        chip.textContent = `#${tag}`;
+        tagWrap.appendChild(chip);
+      });
 
-      card.appendChild(cardIcon);
-      card.appendChild(cardContent);
-
+      cardContent.append(cardTitle, cardUrl);
+      if (tags.length) cardContent.appendChild(tagWrap);
+      card.append(cardIcon, cardContent);
       return card;
     }
 
-    // Create folder card element
-    function createFolderCard(title, children, path) {
+    function createFolderCard(title, children, path, tags = []) {
       const card = document.createElement('div');
-      card.className = 'folder-card text-gray rounded-lg cursor-pointer flex flex-col items-center';
+      card.className = 'folder-card text-gray rounded-2xl cursor-pointer flex flex-col items-center p-2';
       card.onclick = () => {
         const newPath = path.concat({ title, children });
-        renderBookmarks(children, newPath);
-        updateSidebarActiveState(newPath); // Update sidebar active state
+        appState.query = '';
+        DOM.searchInput.value = '';
+        renderBookmarks(children || [], newPath);
       };
 
       const cardIcon = document.createElement('div');
@@ -407,369 +495,212 @@
           <rect x="0" y="10" width="100" height="70" class="folder__front right" />
         </svg>
       `;
-      cardIcon.className = 'mb-2';
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-xs font-normal text-center w-full text-balance dark:text-gray-400';
+      cardTitle.className = 'text-xs font-medium text-center w-full text-balance dark:text-gray-200';
       cardTitle.innerText = title;
 
-      card.appendChild(cardIcon);
-      card.appendChild(cardTitle);
-
+      card.append(cardIcon, cardTitle);
+      if (tags.length) {
+        const tag = document.createElement('span');
+        tag.className = 'mini-chip mt-1';
+        tag.textContent = `#${tags[0]}`;
+        card.appendChild(tag);
+      }
       return card;
     }
 
-    // Render sidebar navigation
-    function renderNavigation(folders, container, isFirstRender = false, path = []) {
-      container.innerHTML = ''; // Clear previous content
-      folders.forEach((folder, index) => {
-        if (folder.type === 'folder') {
-          const navItem = document.createElement('li');
-          navItem.className = 'items-center group flex justify-between gap-x-3 rounded-md p-2 text-gray-700 dark:text-gray-400 hover:text-main-500 hover:bg-gray-50 dark:hover:pintree-bg-gray-800 bg-opacity-50';
+    function renderNavigation(folders, container, path = []) {
+      container.innerHTML = '';
+      folders.forEach(folder => {
+        if (folder.type !== 'folder') return;
+        const navItem = document.createElement('li');
+        navItem.className = 'items-center group flex justify-between gap-x-3 rounded-xl p-2 text-gray-700 dark:text-gray-300 hover:text-main-500 hover:bg-slate-100 dark:hover:pintree-bg-gray-800 bg-opacity-50';
 
-          const navLinkContainer = document.createElement('div');
-          navLinkContainer.className = 'flex items-center space-x-2 text-balance';
+        const navLink = document.createElement('a');
+        navLink.className = 'flex text-sm leading-6 font-semibold dark:text-gray-300';
+        navLink.innerText = folder.title;
+        navItem.appendChild(navLink);
 
-          const folderIcon = document.createElement('span');
-          folderIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7a2 2 0 012-2h4l2 2h7a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2V7z" /></svg>';
-
-          const navLink = document.createElement('a');
-          navLink.className = 'flex text-sm leading-6 font-semibold dark:text-gray-400';
-          navLink.innerText = folder.title;
-
-          navLinkContainer.appendChild(folderIcon);
-          navLinkContainer.appendChild(navLink);
-
-          const toggleIcon = document.createElement('span');
-          toggleIcon.className = 'ml-2 transform transition-transform';
-          toggleIcon.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>';
-
-          navItem.appendChild(navLinkContainer);
-          if (folder.children && folder.children.length > 0) {
-            navItem.appendChild(toggleIcon);
-          }
-          container.appendChild(navItem);
-
-          if (folder.children && folder.children.length > 0) {
-            const subList = document.createElement('ul');
-            subList.className = 'ml-4 space-y-2 hidden';
-            renderNavigation(folder.children, subList, false, path.concat({ title: folder.title, children: folder.children }));
-            container.appendChild(subList);
-
-            if (isFirstRender && index === 0) {
-              // Expand the first item on initial render
-              subList.classList.remove('hidden');
-              toggleIcon.classList.add('rotate-90');
-            }
-
-            navItem.onclick = (e) => {
-              e.stopPropagation();
-              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-              navItem.classList.add('sidebar-active');
-              subList.classList.toggle('hidden');
-              if (subList.children.length > 0) {
-                toggleIcon.classList.toggle('rotate-90');
-              }
-              renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
-            };
-          } else {
-            navItem.onclick = (e) => {
-              e.stopPropagation();
-              document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-              navItem.classList.add('sidebar-active');
-              renderBookmarks(folder.children, path.concat({ title: folder.title, children: folder.children }));
-            };
-          }
-        }
+        navItem.onclick = (e) => {
+          e.stopPropagation();
+          renderBookmarks(folder.children || [], path.concat({ title: folder.title, children: folder.children || [] }));
+        };
+        container.appendChild(navItem);
       });
     }
 
-    // Render breadcrumbs for navigation
     function renderBreadcrumbs(path) {
-      const breadcrumbsPath = document.getElementById('breadcrumbs-path');
-      breadcrumbsPath.innerHTML = ''; // Clear previous breadcrumbs
-
+      DOM.breadcrumbsPath.innerHTML = '';
       path.forEach((item, index) => {
         const breadcrumb = document.createElement('span');
         breadcrumb.className = 'cursor-pointer hover:underline';
         breadcrumb.innerText = item.title;
         breadcrumb.onclick = () => {
-          // Render bookmarks for the selected breadcrumb
           const newPath = path.slice(0, index + 1);
-          renderBookmarks(item.children, newPath);
-          updateSidebarActiveState(newPath); // Update sidebar active state
-          document.getElementById('clearSearchButton').classList.add('hidden'); // Hide clear button when navigating through breadcrumbs
+          renderBookmarks(item.children || [], newPath);
         };
-
-        breadcrumbsPath.appendChild(breadcrumb);
-
+        DOM.breadcrumbsPath.appendChild(breadcrumb);
         if (index < path.length - 1) {
-          const separator = document.createElement('span');
-          separator.innerText = ' > ';
-          breadcrumbsPath.appendChild(separator);
+          const sep = document.createElement('span');
+          sep.innerText = ' > ';
+          DOM.breadcrumbsPath.appendChild(sep);
         }
       });
     }
 
-    // Update the active state of sidebar items
-    function updateSidebarActiveState(path) {
-      document.querySelectorAll('.navigation .sidebar-active').forEach(el => el.classList.remove('sidebar-active'));
-
-      let currentNav = document.querySelector('.navigation');
-
-      path.forEach((item, index) => {
-        const items = currentNav.querySelectorAll('li');
-        items.forEach(navItem => {
-          const navLink = navItem.querySelector('a');
-          if (navLink && navLink.innerText === item.title) {
-            if (index === path.length - 1) {
-              navItem.classList.add('sidebar-active');
-            }
-
-            if (index < path.length - 1) {
-              const subList = navItem.querySelector('ul');
-              if (subList) {
-                subList.classList.remove('hidden');
-                currentNav = subList;
-              }
-            }
-          }
-        });
-      });
-    }
-
-    // Show a message when no search results are found
     function showNoResultsMessage() {
-      const container = document.getElementById('bookmarks');
-      container.innerHTML = ''; // Clear previous content
-
-      const messageContainer = document.createElement('div');
-      messageContainer.className = 'flex flex-col items-center justify-center h-full';
-
-      const icon = document.createElement('svg');
-      icon.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-      icon.setAttribute('class', 'h-16 w-16 text-gray-500');
-      icon.setAttribute('fill', 'none');
-      icon.setAttribute('viewBox', '0 0 24 24');
-      icon.setAttribute('stroke', 'currentColor');
-      icon.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m9-3a9 9 0 11-18 0 9 9 0 0118 0z" />';
-
-      const title = document.createElement('h2');
-      title.className = 'text-gray-500 text-xl font-semibold mt-4';
-      title.innerText = 'Oops, Nothing to See Here!';
-
-      const message = document.createElement('p');
-      message.className = 'text-gray-500 mt-2';
-      message.innerText = 'Try another search or discover more cool stuff elsewhere!';
-
-      messageContainer.appendChild(icon);
-      messageContainer.appendChild(title);
-      messageContainer.appendChild(message);
-
-      container.appendChild(messageContainer);
+      DOM.bookmarks.innerHTML = '';
+      const message = document.createElement('div');
+      message.className = 'panel-card p-8 text-center text-slate-500 dark:text-slate-300';
+      message.innerHTML = `<h2 class="text-lg font-semibold">${t('noResultsTitle')}</h2><p class="text-sm mt-2">${t('noResultsDesc')}</p>`;
+      DOM.bookmarks.appendChild(message);
     }
 
-    // Render bookmarks
     function renderBookmarks(data, path) {
-      const container = document.getElementById('bookmarks');
-      container.innerHTML = ''; // Clear previous content
-
-      // Render breadcrumbs
+      appState.activePath = path;
+      DOM.bookmarks.innerHTML = '';
       renderBreadcrumbs(path);
 
-      // Separate folders and links
       const folders = data.filter(item => item.type === 'folder');
-      // const links = data.filter(item => item.type === 'link').sort((a, b) => b.addDate - a.addDate);
       const links = data.filter(item => item.type === 'link');
 
-      if (folders.length === 0 && links.length === 0) {
-        showNoResultsMessage();
+      if (!folders.length && !links.length) return showNoResultsMessage();
+
+      if (folders.length) {
+        const folderSection = document.createElement('div');
+        folderSection.className = 'panel-card p-4 grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-10 gap-x-4 gap-y-6';
+        folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, getItemTags(folder))));
+        DOM.bookmarks.appendChild(folderSection);
+      }
+
+      if (links.length) {
+        const linkSection = document.createElement('div');
+        linkSection.className = 'grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4';
+        links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, getItemTags(link))));
+        DOM.bookmarks.appendChild(linkSection);
+      }
+    }
+
+    function performSearch() {
+      const query = DOM.searchInput.value.trim();
+      appState.query = query;
+      DOM.clearSearchButton.classList.toggle('hidden', !query && !appState.activeTag);
+
+      if (!query && !appState.activeTag) {
+        const root = appState.rawData;
+        if (!root.length) return;
+        renderBookmarks(root[0]?.children || root, [{ title: t('bookmark'), children: root }, { title: root[0]?.title || t('home'), children: root[0]?.children || root }]);
         return;
       }
 
-      // Create folder section
-      if (folders.length > 0) {
-        const folderSection = document.createElement('div');
-        folderSection.className = 'grid grid-cols-3 sm:grid-cols-6 lg:grid-cols-8 2xl:grid-cols-12 gap-x-6 gap-y-8';
-        folders.forEach(folder => {
-          const card = createFolderCard(folder.title, folder.children, path);
-          folderSection.appendChild(card);
-        });
-        container.appendChild(folderSection);
-      }
-
-      // Add separator line if there are links
-      if (folders.length > 0 && links.length > 0) {
-        const separator = document.createElement('hr');
-        separator.className = 'my-1 border-t-1 border-gray-200 dark:pintree-border-gray-800';
-        container.appendChild(separator);
-      }
-
-      // Create link section
-      if (links.length > 0) {
-        const linkSection = document.createElement('div');
-        linkSection.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6';
-        links.forEach(link => {
-          const card = createCard(link.title, link.url, link.icon);
-          linkSection.appendChild(card);
-        });
-        container.appendChild(linkSection);
-      }
-
-      // Update sidebar active state
-      updateSidebarActiveState(path);
+      const results = searchInFlattenedData(query, appState.activeTag);
+      renderBookmarks(results, [{ title: t('searchResults'), children: results }]);
     }
 
-    // Unified load function to fetch and render bookmarks safely.
+    function closeSidebar() {
+      DOM.offCanvasBackdrop.classList.remove('opacity-100');
+      DOM.offCanvasContent.classList.remove('translate-x-0');
+      setTimeout(() => DOM.offCanvasMenu.classList.add('hidden'), 300);
+    }
+
     function loadAndRenderBookmarks(url) {
-      if (!url) return Promise.reject(new Error('No bookmark data URL'));
-      return fetch(url)
+      if (!url) return;
+      fetch(url)
         .then(response => {
-          if (!response.ok) throw new Error('HTTP error: ' + response.status);
+          if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
           return response.json();
         })
         .then(data => {
-          const firstLayer = data;
+          appState.rawData = data;
+          appState.flattened = flattenData(data);
           const navigationElements = document.getElementsByClassName('navigation');
           for (let i = 0; i < navigationElements.length; i++) {
-            const navElement = navigationElements[i];
-            renderNavigation(firstLayer, navElement, true);
+            renderNavigation(data, navigationElements[i], [{ title: t('bookmark'), children: data }]);
           }
-          renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
-
-          if (firstLayer.length > 0) {
-            const firstItem = firstLayer[0];
-            updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-            renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-          }
-          // Hide loading spinner once rendered
-          var spinner = document.getElementById('loading-spinner');
-          if (spinner) spinner.style.display = 'none';
+          const first = data[0];
+          renderBookmarks(first?.children || data, [{ title: t('bookmark'), children: data }, { title: first?.title || t('home'), children: first?.children || data }]);
+          renderTagFilters();
+          applyLocale();
+          DOM.loadingSpinner.style.display = 'none';
         })
         .catch(error => {
           console.error('Error loading bookmarks:', error);
-          var spinner = document.getElementById('loading-spinner');
-          if (spinner) spinner.style.display = 'none';
+          DOM.loadingSpinner.style.display = 'none';
           showNoResultsMessage();
         });
     }
-+
-+
-    // Try immediate load with whatever value is currently set, then wait for final URL event.
-+
-    window.addEventListener('load', function() {
-      if (window.bookmarkDataURL) {
-        loadAndRenderBookmarks(window.bookmarkDataURL);
-      }
-    });
-+
-+
-    // If data-url-config later dispatches the ready event, load/refresh using final URL.
-+
-+    document.addEventListener('bookmarkDataURLReady', function (e) {
-      if (e && e.detail && e.detail.url) {
-+        loadAndRenderBookmarks(e.detail.url);
-      }
-    });
 
-    // Search functionality on pressing Enter
-    document.getElementById('searchInput').addEventListener('keydown', function (event) {
-      if (event.key === 'Enter') {
-        const query = event.target.value;
-        searchBookmarks(query);
-      }
-    });
-
-    // Search functionality on button click
-    document.getElementById('searchButton').addEventListener('click', function () {
-      const query = document.getElementById('searchInput').value;
-      searchBookmarks(query);
-    });
-
-    // Theme toggle functionality
-    const themeToggleButton = document.getElementById('themeToggleButton');
-    const sunIcon = document.getElementById('sunIcon');
-    const moonIcon = document.getElementById('moonIcon');
-
-    // Apply dark theme
     function applyDarkTheme() {
       document.documentElement.classList.add('dark');
-      sunIcon.classList.add('hidden');
-      moonIcon.classList.remove('hidden');
+      DOM.sunIcon.classList.add('hidden');
+      DOM.moonIcon.classList.remove('hidden');
     }
 
-    // Apply light theme
     function applyLightTheme() {
       document.documentElement.classList.remove('dark');
-      sunIcon.classList.remove('hidden');
-      moonIcon.classList.add('hidden');
+      DOM.sunIcon.classList.remove('hidden');
+      DOM.moonIcon.classList.add('hidden');
     }
 
-    // Toggle theme between dark and light
-    function toggleTheme() {
+    DOM.openSidebarButton.addEventListener('click', () => {
+      DOM.offCanvasMenu.classList.remove('hidden');
+      setTimeout(() => {
+        DOM.offCanvasBackdrop.classList.add('opacity-100');
+        DOM.offCanvasContent.classList.add('translate-x-0');
+      }, 10);
+    });
+    DOM.closeSidebarButton.addEventListener('click', closeSidebar);
+    DOM.offCanvasBackdrop.addEventListener('click', closeSidebar);
+
+    DOM.searchButton.addEventListener('click', performSearch);
+    DOM.searchInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') performSearch();
+    });
+    DOM.searchInput.addEventListener('input', () => {
+      if (!DOM.searchInput.value.trim() && !appState.activeTag) performSearch();
+    });
+
+    DOM.clearSearchButton.addEventListener('click', () => {
+      DOM.searchInput.value = '';
+      appState.activeTag = null;
+      DOM.resetTagFilter.classList.add('hidden');
+      renderTagFilters();
+      performSearch();
+    });
+
+    DOM.resetTagFilter.addEventListener('click', () => {
+      appState.activeTag = null;
+      DOM.resetTagFilter.classList.add('hidden');
+      renderTagFilters();
+      performSearch();
+    });
+
+    DOM.languageToggleButton.addEventListener('click', () => {
+      appState.locale = appState.locale === 'zh' ? 'en' : 'zh';
+      localStorage.setItem('tblu-locale', appState.locale);
+      applyLocale();
+    });
+
+    DOM.themeToggleButton.addEventListener('click', () => {
       if (document.documentElement.classList.contains('dark')) {
         applyLightTheme();
       } else {
         applyDarkTheme();
       }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fetch and render data
-      window.addEventListener('load', function() {
-        fetch(window.bookmarkDataURL)
-          .then(response => response.json())
-          .then(data => {
-            // Hide loading spinner
-            document.getElementById('loading-spinner').style.display = 'none';
-
-            // Use the first layer of the data directly
-            const firstLayer = data;
-            // Render navigation using the first layer of data
-            const navigationElements = document.getElementsByClassName('navigation');
-            for (let i = 0; i < navigationElements.length; i++) {
-              const navElement = navigationElements[i];
-              renderNavigation(firstLayer, navElement, true);
-            }
-            // Render bookmarks using the first layer of data, starting from the Bookmark
-            renderBookmarks(firstLayer, [{ title: 'Bookmark', children: firstLayer }]);
-
-            // Automatically select and show the first item
-            if (firstLayer.length > 0) {
-              const firstItem = firstLayer[0];
-              updateSidebarActiveState([{ title: firstItem.title, children: firstItem.children }]);
-              renderBookmarks(firstItem.children, [{ title: 'Bookmark', children: firstLayer }, { title: firstItem.title, children: firstItem.children }]);
-            }
-          })
-          .catch(error => {
-            console.error('Error loading bookmarks:', error);
-            // Optionally hide the spinner and show an error message
-            document.getElementById('loading-spinner').style.display = 'none';
-          });
-      });
     });
 
-    // Event listener for theme toggle button
-    themeToggleButton.addEventListener('click', toggleTheme);
-
-    // Automatically apply theme according to system theme settings
-    function applyColorTheme(theme) {
-      if (theme === 'dark') {
-        applyDarkTheme();
-      } else {
-        applyLightTheme();
-      }
-    }
-
-    // Detect initial color theme
     const prefersDarkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    applyColorTheme(prefersDarkTheme ? 'dark' : 'light');
+    prefersDarkTheme ? applyDarkTheme() : applyLightTheme();
+    applyLocale();
 
-    // Listen for changes in the color theme
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-      applyColorTheme(event.matches ? 'dark' : 'light');
+    window.addEventListener('load', () => {
+      if (window.bookmarkDataURL) loadAndRenderBookmarks(window.bookmarkDataURL);
     });
 
+    document.addEventListener('bookmarkDataURLReady', (e) => {
+      if (e?.detail?.url) loadAndRenderBookmarks(e.detail.url);
+    });
   </script>
 
   <script>

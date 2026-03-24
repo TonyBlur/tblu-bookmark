@@ -20,6 +20,40 @@ tbluBookmark is an open-source project that aims to convert browser bookmarks in
 - Convert bookmark files to JSON format
 - Generate a static navigation website
 
+## 🆚 What's Different from Original Pintree
+
+- Added built-in search modal with tag-based filtering and UI interactions tailored for this repository.
+- Added theme mode selector (`system / light / dark`) and language switching.
+- Added optional rule-based tag mapping file: `json/tag-rules.json`.
+- Added support for optional manual `tags` field on each bookmark/folder item.
+
+## 🏷️ Bookmark JSON Format (Extended)
+
+This project is compatible with standard Pintree bookmark JSON, and also supports an optional `tags` array.
+
+Example:
+
+```json
+{
+  "type": "link",
+  "title": "Example",
+  "url": "https://example.com",
+  "icon": "https://logo.clearbit.com/example.com",
+  "tags": ["Docs", "Learning"]
+}
+```
+
+Tag behavior priority:
+1. If `tags` exists on an item, these tags are used directly.
+2. If `tags` is missing, fallback rule matching from `json/tag-rules.json` is used.
+
+Additional notes:
+- Folder tags are inherited by child bookmarks/folders.
+- `json/tag-rules.json` supports i18n tags via object format:
+  ```json
+  { "tag": { "zh": "文件传输", "en": "File Transfer" } }
+  ```
+
 ## 🚀 Quick Start
 
 ### Method 1 - Use GitHub Pages

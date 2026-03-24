@@ -153,6 +153,203 @@
   background-color: rgb(129 132 138 / 10%);
 }
 
+.app-shell {
+  background-image: radial-gradient(circle at top, rgba(14, 165, 233, 0.08), transparent 40%);
+}
+
+.panel-card {
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.dark .panel-card {
+  background: rgba(34, 37, 42, 0.75);
+  border-color: rgba(71, 85, 105, 0.35);
+}
+
+.tag-chip {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: rgb(71, 85, 105);
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 9999px;
+  font-size: 12px;
+  line-height: 1;
+  padding: 0.45rem 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.tag-chip:hover {
+  border-color: rgba(14, 165, 233, 0.8);
+  color: rgb(2, 132, 199);
+}
+
+.tag-chip-active {
+  color: white;
+  border-color: rgba(2, 132, 199, 0.9);
+  background: linear-gradient(135deg, rgba(2, 132, 199, 1), rgba(14, 116, 144, 1));
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.25);
+}
+
+.mini-chip {
+  font-size: 11px;
+  color: rgb(71, 85, 105);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(241, 245, 249, 0.85);
+  border-radius: 9999px;
+  padding: 0.2rem 0.5rem;
+}
+
+.dark .tag-chip {
+  color: rgb(203, 213, 225);
+  background: rgba(15, 23, 42, 0.75);
+  border-color: rgba(100, 116, 139, 0.4);
+}
+
+.dark .mini-chip {
+  color: rgb(203, 213, 225);
+  border-color: rgba(100, 116, 139, 0.35);
+  background: rgba(30, 41, 59, 0.75);
+}
+
+.icon-action-btn {
+  height: 38px;
+  width: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: rgb(71, 85, 105);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.menu-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 0.5rem);
+  min-width: 130px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.16);
+  padding: 6px;
+  z-index: 70;
+}
+
+.menu-item {
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  color: rgb(71, 85, 105);
+}
+
+.menu-item:hover {
+  background: rgba(241, 245, 249, 0.95);
+}
+
+.dark .icon-action-btn {
+  background: rgba(34, 37, 42, 0.95);
+  color: rgb(203, 213, 225);
+  border-color: rgba(71, 85, 105, 0.35);
+}
+
+.dark .menu-panel {
+  background: rgba(30, 41, 59, 0.98);
+  border-color: rgba(71, 85, 105, 0.35);
+}
+
+.dark .menu-item {
+  color: rgb(226, 232, 240);
+}
+
+.dark .menu-item:hover {
+  background: rgba(51, 65, 85, 0.8);
+}
+
+.card-wrap {
+  position: relative;
+  min-height: 124px;
+}
+
+.card-unified {
+  min-height: 124px;
+  height: 124px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-unified:hover {
+  transform: scale(1.06);
+  z-index: 8;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+  height: auto;
+}
+
+.dark .card-unified:hover {
+  box-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
+}
+
+.card-unified:hover h2,
+.card-unified:hover p,
+.card-unified:hover .mini-chip {
+  white-space: normal;
+  overflow: visible;
+  text-overflow: unset;
+}
+
+.search-no-native::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.menu-panel {
+  transform-origin: top right;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.menu-panel.menu-enter {
+  opacity: 0;
+  transform: scale(0.96) translateY(-4px);
+}
+
+#searchModal {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#searchModal.search-open {
+  opacity: 1;
+}
+
+#searchModal .panel-card {
+  transform: translateY(-8px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+#searchModal.search-open .panel-card {
+  transform: translateY(0) scale(1);
+}
+
+.nav-sublist {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.nav-sublist.open {
+  max-height: 900px;
+  opacity: 1;
+}
+
 
   .dark\:pintree-bg-gray-900:is(.dark *) {
     --tw-bg-opacity: 1;
@@ -224,4 +421,3 @@
     --tw-bg-opacity: 1;
     --tw-ring-color: rgb(45 49 57 / var(--tw-bg-opacity));
   }
-

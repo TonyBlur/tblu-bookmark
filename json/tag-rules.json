@@ -1,0 +1,27 @@
+[
+  {
+    "tag": { "zh": "开发工具", "en": "Dev Tools" },
+    "domains": ["github.com", "gitlab.com", "stackoverflow.com", "npmjs.com", "vercel.com"],
+    "keywords": ["api", "sdk", "code", "developer", "dev", "programming", "github", "gitlab"]
+  },
+  {
+    "tag": { "zh": "设计创作", "en": "Design" },
+    "domains": ["figma.com", "canva.com", "photopea.com", "behance.net", "dribbble.com"],
+    "keywords": ["design", "designer", "ui", "ux", "photo", "image", "icon", "mockup"]
+  },
+  {
+    "tag": { "zh": "文件传输", "en": "File Transfer" },
+    "domains": ["wenshushu.cn", "airportal.cn", "wetransfer.com", "pairdrop.net", "transfer.zip", "fastsend.ing"],
+    "keywords": ["transfer", "send", "upload", "file", "share", "传输", "快传"]
+  },
+  {
+    "tag": { "zh": "学习文档", "en": "Learning" },
+    "domains": ["wikipedia.org", "mdn.io", "developer.mozilla.org", "coursera.org", "edx.org", "udemy.com"],
+    "keywords": ["learn", "course", "tutorial", "doc", "wiki", "guide", "学习", "教程", "文档"]
+  },
+  {
+    "tag": { "zh": "AI 工具", "en": "AI Tools" },
+    "domains": ["openai.com", "claude.ai", "gemini.google.com", "midjourney.com", "huggingface.co"],
+    "keywords": ["ai", "gpt", "llm", "prompt", "chatbot", "模型"]
+  }
+]

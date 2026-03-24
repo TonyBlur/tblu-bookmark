@@ -1856,6 +1856,7 @@ select {
 
 .card-unified {
   min-height: 124px;
+  height: 124px;
   overflow: hidden;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -1870,13 +1871,53 @@ select {
 .card-unified:hover h2,
 .card-unified:hover p,
 .card-unified:hover .mini-chip {
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .search-no-native::-webkit-search-cancel-button {
   -webkit-appearance: none;
+}
+
+.menu-panel {
+  transform-origin: top right;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.menu-panel.menu-enter {
+  opacity: 0;
+  transform: scale(0.96) translateY(-4px);
+}
+
+#searchModal {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#searchModal.search-open {
+  opacity: 1;
+}
+
+#searchModal .panel-card {
+  transform: translateY(-8px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+#searchModal.search-open .panel-card {
+  transform: translateY(0) scale(1);
+}
+
+.nav-sublist {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+}
+
+.nav-sublist.open {
+  max-height: 900px;
+  opacity: 1;
 }
 
 .dark\:pintree-bg-gray-900:is(.dark *) {

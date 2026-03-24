@@ -154,7 +154,7 @@
               <button id="languageToggleButton" type="button" aria-label="Switch language" class="icon-action-btn">
                 <svg class="h-5 w-5 text-slate-500 dark:text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M12 2.5a9.5 9.5 0 1 0 0 19m0-19c2.8 2.6 4.3 6.2 4.3 9.5S14.8 18.9 12 21.5m0-19c-2.8 2.6-4.3 6.2-4.3 9.5s1.5 6.9 4.3 9.5M2.5 12h19"></path>
+                    d="M4 5h12M4 9h8m-8 4h12m-12 4h8m10-9 2 2-2 2m0-4 2 2m-2 6 2 2-2 2m0-4 2 2"></path>
                 </svg>
               </button>
               <div id="languageMenu" class="menu-panel hidden">
@@ -166,7 +166,7 @@
               <button id="themeToggleButton" type="button" aria-label="Switch theme" class="icon-action-btn">
                 <svg id="sunIcon" viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                   aria-hidden="true" class="h-5 w-5 text-slate-500 dark:text-slate-400 dark:hidden">
-                  <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
+                  <path fill="none" d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z"></path>
                   <path d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061" fill="none"></path>
                 </svg>
                 <svg id="moonIcon" viewBox="0 0 24 24" aria-hidden="true" class="hidden h-5 w-5 text-slate-500 dark:text-slate-400 dark:block">
@@ -476,7 +476,7 @@
     function createTagBadge(tag, onClick, active = false) {
       const badge = document.createElement('button');
       badge.className = `tag-chip ${active ? 'tag-chip-active' : ''}`;
-      badge.textContent = `#${tag}`;
+      badge.textContent = tag;
       badge.addEventListener('click', onClick);
       return badge;
     }
@@ -540,7 +540,7 @@
       tags.slice(0, 4).forEach(tag => {
         const chip = document.createElement('span');
         chip.className = 'mini-chip';
-        chip.textContent = `#${tag}`;
+        chip.textContent = tag;
         tagWrap.appendChild(chip);
       });
 
@@ -619,7 +619,7 @@
         container.appendChild(li);
 
         const subList = document.createElement('ul');
-        subList.className = 'space-y-1 hidden';
+        subList.className = 'space-y-1 nav-sublist';
         li.appendChild(subList);
 
         if (hasChildrenFolder) {
@@ -630,7 +630,7 @@
           e.stopPropagation();
           renderBookmarks(folder.children || [], path.concat({ title: folder.title, children: folder.children || [] }));
           if (hasChildrenFolder) {
-            subList.classList.toggle('hidden');
+            subList.classList.toggle('open');
             toggleIcon.classList.toggle('rotate-90');
           }
         });
@@ -699,7 +699,7 @@
       tags.forEach(tag => {
         const chip = document.createElement('span');
         chip.className = 'mini-chip';
-        chip.textContent = `#${tag}`;
+        chip.textContent = tag;
         DOM.folderTags.appendChild(chip);
       });
       DOM.folderTagSection.classList.remove('hidden');
@@ -754,13 +754,32 @@
     function openSearchModal() {
       DOM.searchModal.classList.remove('hidden');
       DOM.searchModal.classList.add('flex');
-      setTimeout(() => DOM.searchInput.focus(), 20);
+      requestAnimationFrame(() => DOM.searchModal.classList.add('search-open'));
+      setTimeout(() => DOM.searchInput.focus(), 120);
       performSearch();
     }
 
     function closeSearchModal() {
-      DOM.searchModal.classList.add('hidden');
-      DOM.searchModal.classList.remove('flex');
+      DOM.searchModal.classList.remove('search-open');
+      setTimeout(() => {
+        DOM.searchModal.classList.add('hidden');
+        DOM.searchModal.classList.remove('flex');
+      }, 180);
+    }
+
+    function toggleAnimatedMenu(menu) {
+      const opening = menu.classList.contains('hidden');
+      if (opening) {
+        menu.classList.remove('hidden');
+        menu.classList.add('menu-enter');
+        requestAnimationFrame(() => menu.classList.remove('menu-enter'));
+      } else {
+        menu.classList.add('menu-enter');
+        setTimeout(() => {
+          menu.classList.add('hidden');
+          menu.classList.remove('menu-enter');
+        }, 150);
+      }
     }
 
     function loadAndRenderBookmarks(url) {
@@ -859,12 +878,12 @@
     });
 
     DOM.languageToggleButton.addEventListener('click', () => {
-      DOM.languageMenu.classList.toggle('hidden');
+      toggleAnimatedMenu(DOM.languageMenu);
       DOM.themeMenu.classList.add('hidden');
     });
 
     DOM.themeToggleButton.addEventListener('click', () => {
-      DOM.themeMenu.classList.toggle('hidden');
+      toggleAnimatedMenu(DOM.themeMenu);
       DOM.languageMenu.classList.add('hidden');
     });
 

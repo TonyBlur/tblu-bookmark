@@ -423,6 +423,15 @@
   transform: translateY(0) scale(1);
 }
 
+#bookmarks {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#bookmarks.view-transitioning {
+  opacity: 0.55;
+  transform: translateY(4px);
+}
+
 .nav-sublist {
   max-height: 0;
   overflow: hidden;

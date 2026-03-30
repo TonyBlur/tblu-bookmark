@@ -78,7 +78,7 @@
     <div id="off-canvas-menu" class="relative z-50 lg:hidden hidden" role="dialog" aria-modal="true">
       <div class="fixed inset-0 flex">
         <div id="off-canvas-backdrop"
-          class="fixed inset-0 bg-gray-900/80 opacity-0 transition-opacity ease-linear duration-300" style="backdrop-filter: blur(20px);"></div>
+          class="fixed inset-0 bg-zinc-900/55 opacity-0 transition-opacity ease-linear duration-300" style="backdrop-filter: blur(14px);"></div>
         <div id="off-canvas-content"
           class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
           <!-- Close button for the off-canvas menu -->
@@ -131,7 +131,7 @@
     <!-- Main Content Area -->
     <div id="mainLayout" class="lg:pl-72 dark:pintree-bg-gray-900 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
       <div
-        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:bg-slate-900/80 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
+        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:bg-zinc-900/80 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
           <div class="flex gap-x-3 justify-between items-center">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
@@ -290,6 +290,15 @@
     </div>
   </div>
 
+  <button id="backToTopButton"
+    class="fixed bottom-6 right-6 z-50 hidden icon-action-btn"
+    aria-label="Back to top"
+    title="Back to top">
+    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 10l7-7 7 7M12 3v18"></path>
+    </svg>
+  </button>
+
   <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-slate-900/40 p-4 pt-20 backdrop-blur-sm">
     <div class="panel-card w-full max-w-2xl p-4">
       <div class="flex items-center gap-2 mb-3">
@@ -417,6 +426,7 @@
       viewModeSwitch: document.getElementById('viewModeSwitch'),
       gridViewButton: document.getElementById('gridViewButton'),
       listViewButton: document.getElementById('listViewButton'),
+      backToTopButton: document.getElementById('backToTopButton'),
     };
 
     function t(key) {
@@ -651,7 +661,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 dark:ring-slate-800/90 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -718,7 +728,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `folder-card card-unified text-gray rounded-2xl cursor-pointer ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `folder-card card-unified text-gray rounded-2xl cursor-pointer dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'folder-card-list flex items-center p-2'
         : 'flex flex-col items-center p-2'}`;
       card.onclick = () => {
@@ -799,15 +809,15 @@
       });
     }
 
-    function renderCollapsedBreadcrumbMenu(collapsedItems, fullPath) {
+    function renderCollapsedBreadcrumbMenu(ancestorsPath) {
       DOM.breadcrumbCollapseMenu.innerHTML = '';
-      collapsedItems.forEach((item, index) => {
+      ancestorsPath.forEach((item, index) => {
         const option = document.createElement('button');
         option.type = 'button';
         option.className = 'menu-item';
         option.textContent = item.title;
         option.addEventListener('click', () => {
-          const newPath = fullPath.slice(0, index + 1);
+          const newPath = ancestorsPath.slice(0, index + 1);
           renderBookmarks(item.children || [], newPath);
           DOM.breadcrumbCollapseMenu.classList.add('hidden');
         });
@@ -819,14 +829,14 @@
       DOM.breadcrumbsPath.innerHTML = '';
       const clippedPath = path.slice(collapseCount);
       if (collapseCount > 0) {
-        const collapsedItems = path.slice(0, collapseCount);
+        const ancestorsPath = path.slice(0, Math.max(path.length - 1, 0));
         const ellipsis = document.createElement('button');
         ellipsis.type = 'button';
         ellipsis.className = 'mini-chip leading-none px-2';
         ellipsis.textContent = '···';
         ellipsis.addEventListener('click', (event) => {
           event.stopPropagation();
-          renderCollapsedBreadcrumbMenu(collapsedItems, path);
+          renderCollapsedBreadcrumbMenu(ancestorsPath);
           toggleAnimatedMenu(DOM.breadcrumbCollapseMenu);
         });
         DOM.breadcrumbsPath.appendChild(ellipsis);
@@ -958,7 +968,15 @@
       localStorage.setItem('tblu-view-mode', appState.viewMode);
       DOM.gridViewButton.classList.toggle('is-active', appState.viewMode === 'grid');
       DOM.listViewButton.classList.toggle('is-active', appState.viewMode === 'list');
-      rerenderCurrentBookmarksView();
+      DOM.bookmarks.classList.add('view-transitioning');
+      requestAnimationFrame(() => {
+        rerenderCurrentBookmarksView();
+        setTimeout(() => DOM.bookmarks.classList.remove('view-transitioning'), 220);
+      });
+    }
+
+    function setBodyScrollLock(locked) {
+      document.body.classList.toggle('overflow-hidden', locked);
     }
 
     function performSearch() {
@@ -1005,6 +1023,7 @@
     function closeSidebar() {
       DOM.offCanvasBackdrop.classList.remove('opacity-100');
       DOM.offCanvasContent.classList.remove('translate-x-0');
+      setBodyScrollLock(false);
       setTimeout(() => DOM.offCanvasMenu.classList.add('hidden'), 300);
     }
 
@@ -1099,6 +1118,7 @@
         return;
       }
       DOM.offCanvasMenu.classList.remove('hidden');
+      setBodyScrollLock(true);
       setTimeout(() => {
         DOM.offCanvasBackdrop.classList.add('opacity-100');
         DOM.offCanvasContent.classList.add('translate-x-0');
@@ -1146,6 +1166,7 @@
 
     DOM.gridViewButton.addEventListener('click', () => applyViewMode('grid'));
     DOM.listViewButton.addEventListener('click', () => applyViewMode('list'));
+    DOM.backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
     DOM.languageToggleButton.addEventListener('click', () => {
       toggleAnimatedMenu(DOM.languageMenu);
@@ -1195,6 +1216,9 @@
     });
     window.addEventListener('resize', () => {
       if (appState.activePath?.length) renderBreadcrumbs(appState.activePath);
+    });
+    window.addEventListener('scroll', () => {
+      DOM.backToTopButton.classList.toggle('hidden', window.scrollY < 280);
     });
     applyThemeMode(appState.themeMode);
     applyDesktopSidebarState();

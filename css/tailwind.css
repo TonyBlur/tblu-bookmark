@@ -823,6 +823,10 @@ select {
   inset: 0px;
 }
 
+.bottom-6 {
+  bottom: 1.5rem;
+}
+
 .left-0 {
   left: 0px;
 }
@@ -845,6 +849,10 @@ select {
 
 .right-3 {
   right: 0.75rem;
+}
+
+.right-6 {
+  right: 1.5rem;
 }
 
 .right-auto {
@@ -1282,10 +1290,6 @@ select {
   border-color: rgb(226 232 240 / 0.7);
 }
 
-.bg-gray-900\/80 {
-  background-color: rgb(17 24 39 / 0.8);
-}
-
 .bg-green-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(22 163 74 / var(--tw-bg-opacity, 1));
@@ -1311,6 +1315,10 @@ select {
 
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
+}
+
+.bg-zinc-900\/55 {
+  background-color: rgb(24 24 27 / 0.55);
 }
 
 .fill-gray-100 {
@@ -2092,6 +2100,15 @@ select {
   transform: translateY(0) scale(1);
 }
 
+#bookmarks {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#bookmarks.view-transitioning {
+  opacity: 0.55;
+  transform: translateY(4px);
+}
+
 .nav-sublist {
   max-height: 0;
   overflow: hidden;
@@ -2277,8 +2294,8 @@ select {
   border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
 }
 
-.dark\:bg-slate-900\/80:is(.dark *) {
-  background-color: rgb(15 23 42 / 0.8);
+.dark\:bg-zinc-900\/80:is(.dark *) {
+  background-color: rgb(24 24 27 / 0.8);
 }
 
 .dark\:text-gray-300:is(.dark *) {
@@ -2319,6 +2336,10 @@ select {
 .dark\:text-white:is(.dark *) {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.dark\:ring-slate-800\/90:is(.dark *) {
+  --tw-ring-color: rgb(30 41 59 / 0.9);
 }
 
 .dark\:ring-white\/10:is(.dark *) {

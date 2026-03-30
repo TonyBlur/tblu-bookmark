@@ -291,9 +291,58 @@
   background: rgba(51, 65, 85, 0.8);
 }
 
+.view-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(248, 250, 252, 0.95);
+}
+
+.view-switch-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(100, 116, 139);
+  transition: all 0.2s ease;
+}
+
+.view-switch-btn:hover {
+  color: rgb(2, 132, 199);
+}
+
+.view-switch-btn.is-active {
+  color: rgb(2, 132, 199);
+  background: white;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+}
+
+.dark .view-switch-pill {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(71, 85, 105, 0.45);
+}
+
+.dark .view-switch-btn {
+  color: rgb(148, 163, 184);
+}
+
+.dark .view-switch-btn.is-active {
+  color: rgb(125, 211, 252);
+  background: rgba(30, 41, 59, 0.95);
+}
+
 .card-wrap {
   position: relative;
   min-height: 124px;
+}
+
+.card-wrap-list {
+  min-height: 72px;
 }
 
 .card-unified {
@@ -316,6 +365,17 @@
 
 .dark .card-unified:hover {
   box-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
+}
+
+.bookmark-card-list,
+.folder-card-list {
+  min-height: 72px;
+  height: 72px;
+}
+
+.folder-card-list .folder__svg {
+  width: 46px;
+  height: 36px;
 }
 
 .card-unified:hover h2,

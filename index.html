@@ -153,6 +153,18 @@
                   clip-rule="evenodd"></path>
               </svg>
             </button>
+            <div id="viewModeSwitch" class="view-switch-pill" role="group" aria-label="View mode switch">
+              <button id="gridViewButton" class="view-switch-btn is-active" type="button" title="Grid view">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z"></path>
+                </svg>
+              </button>
+              <button id="listViewButton" class="view-switch-btn" type="button" title="List view">
+                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"></path>
+                </svg>
+              </button>
+            </div>
           </div>
           <div class="relative flex items-center gap-2">
             <div class="relative">
@@ -315,6 +327,8 @@
       zh: {
         clear: '清除',
         clearTags: '清除标签',
+        gridView: '网格视图',
+        listView: '列表视图',
         tagFilter: 'Tag 筛选',
         searchPlaceholder: '搜索书签 / 标签 / 网址...',
         noResultsTitle: '没有找到匹配内容',
@@ -333,6 +347,8 @@
       en: {
         clear: 'Clear',
         clearTags: 'Clear tags',
+        gridView: 'Grid view',
+        listView: 'List view',
         tagFilter: 'Tag filters',
         searchPlaceholder: 'Search bookmarks / tags / URLs...',
         noResultsTitle: 'No matching results',
@@ -360,6 +376,7 @@
       locale: localStorage.getItem('tblu-locale') || (navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en'),
       themeMode: localStorage.getItem('tblu-theme-mode') || 'system',
       desktopSidebarCollapsed: localStorage.getItem('tblu-desktop-sidebar-collapsed') === '1',
+      viewMode: localStorage.getItem('tblu-view-mode') || 'grid',
     };
 
     const DOM = {
@@ -395,6 +412,9 @@
       desktopSidebarOpenIcon: document.getElementById('desktopSidebarOpenIcon'),
       desktopSidebarClosedIcon: document.getElementById('desktopSidebarClosedIcon'),
       githubReleaseVersion: document.getElementById('githubReleaseVersion'),
+      viewModeSwitch: document.getElementById('viewModeSwitch'),
+      gridViewButton: document.getElementById('gridViewButton'),
+      listViewButton: document.getElementById('listViewButton'),
     };
 
     function t(key) {
@@ -411,6 +431,8 @@
         rerenderCurrentBookmarksView();
       }
       DOM.searchInput.placeholder = t('searchPlaceholder');
+      DOM.gridViewButton.title = t('gridView');
+      DOM.listViewButton.title = t('listView');
       renderTagFilters();
       performSearch();
     }
@@ -624,16 +646,18 @@
 
     function createCard(title, url, icon, tags = []) {
       const wrap = document.createElement('div');
-      wrap.className = 'card-wrap';
+      wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = 'bookmark-card card-unified cursor-pointer flex items-start transition-all p-4 bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
+      card.className = `bookmark-card card-unified cursor-pointer transition-all bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+        ? 'bookmark-card-list p-2 flex items-center'
+        : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
 
       const cardIcon = document.createElement('img');
       cardIcon.src = getIconUrl(url, icon);
       cardIcon.alt = title;
-      cardIcon.className = 'w-10 h-10 mr-4 rounded-xl flex-shrink-0 card-icon-bg p-1';
+      cardIcon.className = `${appState.viewMode === 'list' ? 'w-8 h-8 mr-3 rounded-lg' : 'w-10 h-10 mr-4 rounded-xl'} flex-shrink-0 card-icon-bg p-1`;
       cardIcon.onerror = () => {
         if (cardIcon.dataset.fallbackApplied) {
           cardIcon.src = 'assets/default-icon.svg';
@@ -647,17 +671,17 @@
       cardContent.className = 'flex flex-col overflow-hidden w-full';
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-sm font-semibold mb-1 text-slate-700 dark:text-slate-300 truncate';
+      cardTitle.className = `${appState.viewMode === 'list' ? 'text-xs' : 'text-sm mb-1'} font-semibold text-slate-700 dark:text-slate-300 truncate`;
       cardTitle.innerText = title;
 
       const cleanUrl = cleanDisplayUrl(url || '');
       const cardUrl = document.createElement('p');
-      cardUrl.className = 'text-xs text-slate-400 dark:text-slate-500 truncate';
+      cardUrl.className = `${appState.viewMode === 'list' ? 'text-[11px]' : 'text-xs'} text-slate-400 dark:text-slate-500 truncate`;
       cardUrl.innerText = cleanUrl;
 
       const tagWrap = document.createElement('div');
-      tagWrap.className = 'flex flex-wrap gap-1 mt-2';
-      tags.slice(0, 4).forEach(tag => {
+      tagWrap.className = `flex flex-wrap gap-1 ${appState.viewMode === 'list' ? 'mt-1' : 'mt-2'}`;
+      tags.slice(0, appState.viewMode === 'list' ? 3 : 4).forEach(tag => {
         const chip = document.createElement('button');
         chip.type = 'button';
         chip.className = 'mini-chip';
@@ -689,10 +713,12 @@
 
     function createFolderCard(title, children, path, tags = []) {
       const wrap = document.createElement('div');
-      wrap.className = 'card-wrap';
+      wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = 'folder-card card-unified text-gray rounded-2xl cursor-pointer flex flex-col items-center p-2';
+      card.className = `folder-card card-unified text-gray rounded-2xl cursor-pointer ${appState.viewMode === 'list'
+        ? 'folder-card-list flex items-center p-2'
+        : 'flex flex-col items-center p-2'}`;
       card.onclick = () => {
         const newPath = path.concat({ title, children });
         appState.query = '';
@@ -712,7 +738,7 @@
       `;
 
       const cardTitle = document.createElement('h2');
-      cardTitle.className = 'text-xs font-medium text-center w-full truncate dark:text-gray-400';
+      cardTitle.className = `text-xs font-medium ${appState.viewMode === 'list' ? 'text-left pl-2' : 'text-center'} w-full truncate dark:text-gray-400`;
       cardTitle.innerText = title;
 
       card.append(cardIcon, cardTitle);
@@ -867,17 +893,29 @@
 
       if (folders.length) {
         const folderSection = document.createElement('div');
-        folderSection.className = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4';
+        folderSection.className = appState.viewMode === 'list'
+          ? 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2'
+          : 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4';
         folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, folder.__resolvedTags || getItemTags(folder))));
         DOM.bookmarks.appendChild(folderSection);
       }
 
       if (links.length) {
         const linkSection = document.createElement('div');
-        linkSection.className = 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4';
+        linkSection.className = appState.viewMode === 'list'
+          ? 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2'
+          : 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4';
         links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, link.__resolvedTags || getItemTags(link))));
         DOM.bookmarks.appendChild(linkSection);
       }
+    }
+
+    function applyViewMode(mode) {
+      appState.viewMode = mode === 'list' ? 'list' : 'grid';
+      localStorage.setItem('tblu-view-mode', appState.viewMode);
+      DOM.gridViewButton.classList.toggle('is-active', appState.viewMode === 'grid');
+      DOM.listViewButton.classList.toggle('is-active', appState.viewMode === 'list');
+      rerenderCurrentBookmarksView();
     }
 
     function performSearch() {
@@ -1063,6 +1101,9 @@
       toggleAnimatedMenu(DOM.searchTagPopup);
     });
 
+    DOM.gridViewButton.addEventListener('click', () => applyViewMode('grid'));
+    DOM.listViewButton.addEventListener('click', () => applyViewMode('list'));
+
     DOM.languageToggleButton.addEventListener('click', () => {
       toggleAnimatedMenu(DOM.languageMenu);
       DOM.themeMenu.classList.add('hidden');
@@ -1108,6 +1149,7 @@
     });
     applyThemeMode(appState.themeMode);
     applyDesktopSidebarState();
+    applyViewMode(appState.viewMode);
     applyLocale();
     fetchGithubReleaseVersion();
 

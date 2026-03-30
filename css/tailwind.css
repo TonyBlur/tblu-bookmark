@@ -900,8 +900,16 @@ select {
   margin-right: 4rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
 }
 
 .mt-2 {
@@ -1008,6 +1016,10 @@ select {
   width: 16rem;
 }
 
+.w-8 {
+  width: 2rem;
+}
+
 .w-9 {
   width: 2.25rem;
 }
@@ -1078,6 +1090,10 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 
 .grid-cols-2 {
@@ -1193,6 +1209,10 @@ select {
 
 .rounded-full {
   border-radius: 9999px;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
 }
 
 .rounded-xl {
@@ -1422,6 +1442,10 @@ select {
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
+}
+
+.text-\[11px\] {
+  font-size: 11px;
 }
 
 .text-\[22px\] {
@@ -1912,9 +1936,58 @@ select {
   background: rgba(51, 65, 85, 0.8);
 }
 
+.view-switch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  border-radius: 9999px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: rgba(248, 250, 252, 0.95);
+}
+
+.view-switch-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(100, 116, 139);
+  transition: all 0.2s ease;
+}
+
+.view-switch-btn:hover {
+  color: rgb(2, 132, 199);
+}
+
+.view-switch-btn.is-active {
+  color: rgb(2, 132, 199);
+  background: white;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+}
+
+.dark .view-switch-pill {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(71, 85, 105, 0.45);
+}
+
+.dark .view-switch-btn {
+  color: rgb(148, 163, 184);
+}
+
+.dark .view-switch-btn.is-active {
+  color: rgb(125, 211, 252);
+  background: rgba(30, 41, 59, 0.95);
+}
+
 .card-wrap {
   position: relative;
   min-height: 124px;
+}
+
+.card-wrap-list {
+  min-height: 72px;
 }
 
 .card-unified {
@@ -1937,6 +2010,17 @@ select {
 
 .dark .card-unified:hover {
   box-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
+}
+
+.bookmark-card-list,
+.folder-card-list {
+  min-height: 72px;
+  height: 72px;
+}
+
+.folder-card-list .folder__svg {
+  width: 46px;
+  height: 36px;
 }
 
 .card-unified:hover h2,
@@ -2299,6 +2383,10 @@ select {
     width: 18rem;
   }
 
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .lg\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -2327,6 +2415,10 @@ select {
 }
 
 @media (min-width: 1280px) {
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }

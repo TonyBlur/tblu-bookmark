@@ -353,6 +353,13 @@
         themeSystem: '跟随系统',
         themeLight: '浅色',
         themeDark: '深色',
+        toggleSidebar: '切换侧边栏',
+        searchButton: '搜索书签',
+        switchLanguage: '切换语言',
+        switchTheme: '切换主题',
+        filterTagsButton: '按标签筛选',
+        backToTop: '回到顶部',
+        closeSidebar: '关闭侧边栏',
       },
       en: {
         clear: 'Clear',
@@ -373,6 +380,13 @@
         themeSystem: 'System',
         themeLight: 'Light',
         themeDark: 'Dark',
+        toggleSidebar: 'Toggle sidebar',
+        searchButton: 'Search bookmarks',
+        switchLanguage: 'Switch language',
+        switchTheme: 'Switch theme',
+        filterTagsButton: 'Filter by tags',
+        backToTop: 'Back to top',
+        closeSidebar: 'Close sidebar',
       }
     };
 
@@ -427,6 +441,7 @@
       gridViewButton: document.getElementById('gridViewButton'),
       listViewButton: document.getElementById('listViewButton'),
       backToTopButton: document.getElementById('backToTopButton'),
+      closeSidebarSrOnly: document.querySelector('#close-sidebar-button .sr-only'),
     };
 
     function t(key) {
@@ -445,6 +460,19 @@
       DOM.searchInput.placeholder = t('searchPlaceholder');
       DOM.gridViewButton.title = t('gridView');
       DOM.listViewButton.title = t('listView');
+      DOM.sidebarToggleButton.title = t('toggleSidebar');
+      DOM.sidebarToggleButton.setAttribute('aria-label', t('toggleSidebar'));
+      DOM.openSearchModalButton.title = t('searchButton');
+      DOM.openSearchModalButton.setAttribute('aria-label', t('searchButton'));
+      DOM.languageToggleButton.title = t('switchLanguage');
+      DOM.languageToggleButton.setAttribute('aria-label', t('switchLanguage'));
+      DOM.themeToggleButton.title = t('switchTheme');
+      DOM.themeToggleButton.setAttribute('aria-label', t('switchTheme'));
+      DOM.searchTagFilterButton.title = t('filterTagsButton');
+      DOM.searchTagFilterButton.setAttribute('aria-label', t('filterTagsButton'));
+      DOM.backToTopButton.title = t('backToTop');
+      DOM.backToTopButton.setAttribute('aria-label', t('backToTop'));
+      if (DOM.closeSidebarSrOnly) DOM.closeSidebarSrOnly.textContent = t('closeSidebar');
       renderTagFilters();
       performSearch();
     }

@@ -110,6 +110,70 @@ Tag 生效优先级：
 - JSON格式处理
 - 静态网站托管
 
+## 🌐 i18n：新增与翻译你自己的语言
+
+界面多语言文案在 `index.html` 的 `I18N` 对象里维护。
+
+### 1）新增语言对象
+
+找到：
+
+```js
+const I18N = {
+  zh: { ... },
+  en: { ... }
+}
+```
+
+新增一个语言（示例：日语 `ja`）：
+
+```js
+ja: {
+  clear: 'クリア',
+  clearTags: 'タグをクリア',
+  tagFilter: 'タグフィルター',
+  searchPlaceholder: 'ブックマーク / タグ / URL を検索...',
+  noResultsTitle: '一致する結果がありません',
+  noResultsDesc: 'キーワードを短くするか、タグを切り替えてください。',
+  searchResults: '検索結果',
+  bookmark: 'ブックマーク',
+  home: 'ホーム',
+  records: '件',
+  languageLabel: 'JA',
+  close: '閉じる',
+  folderTags: 'フォルダタグ',
+  themeSystem: 'システム',
+  themeLight: 'ライト',
+  themeDark: 'ダーク',
+  toggleSidebar: 'サイドバーを切り替え',
+  searchButton: 'ブックマークを検索',
+  switchLanguage: '言語を切り替え',
+  switchTheme: 'テーマを切り替え',
+  filterTagsButton: 'タグで絞り込み',
+  backToTop: 'トップへ戻る',
+  closeSidebar: 'サイドバーを閉じる',
+  gridView: 'グリッド表示',
+  listView: 'リスト表示'
+}
+```
+
+### 2）在语言切换菜单增加入口
+
+在 `#languageMenu` 中新增按钮：
+
+```html
+<button class="menu-item" data-locale="ja">日本語</button>
+```
+
+### 3）保证所有语言 key 一致
+
+每种语言都应包含同样的 key。缺失时会回退到中文（`zh`）或直接显示 key 名称。
+
+### 4）验证 title / aria 是否也已翻译
+
+除了正文文案，项目还会本地化按钮的 `title` 与 `aria-label`（例如搜索、侧边栏切换、回到顶部、主题/语言切换等）。  
+新增语言后请切换一次语言，检查这些提示文案是否全部正确。
+
 ## 🤝 贡献指南
 
 欢迎贡献代码和提出建议！请遵循以下步骤参与项目：

@@ -661,7 +661,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 hover:ring-slate-200/70 dark:ring-slate-800/90 dark:hover:ring-slate-800/90 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `bookmark-card card-unified cursor-pointer bg-white border border-slate-200/70 dark:border-slate-800/90 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -980,7 +980,8 @@
     }
 
     function updateBackToTopVisibility() {
-      DOM.backToTopButton.classList.toggle('hidden', window.scrollY < 280);
+      const y = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0);
+      DOM.backToTopButton.classList.toggle('hidden', y <= 8 || y < 280);
     }
 
     function performSearch() {

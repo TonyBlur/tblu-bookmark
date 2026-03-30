@@ -131,7 +131,7 @@
     <!-- Main Content Area -->
     <div id="mainLayout" class="lg:pl-72 dark:pintree-bg-gray-900 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
       <div
-        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:pintree-bg-gray-900 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
+        class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:bg-slate-900/80 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
           <div class="flex gap-x-3 justify-between items-center">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
@@ -202,9 +202,9 @@
           <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-400 h-6 w-6"></div>
         </div>
         <div id="breadcrumbs" class="mt-2 px-6 lg:px-8 text-sm text-gray-400 flex justify-between items-center gap-3">
-          <div id="breadcrumbs-path" class="relative flex items-center gap-1 min-w-0 flex-1 whitespace-nowrap overflow-hidden">
+          <div id="breadcrumbs-path" class="relative flex items-center gap-1 min-w-0 flex-1 whitespace-nowrap">
             <!-- Breadcrumbs / collapse menu will be inserted here -->
-            <div id="breadcrumbCollapseMenu" class="menu-panel hidden min-w-[180px]"></div>
+            <div id="breadcrumbCollapseMenu" class="menu-panel hidden min-w-[180px] left-0 right-auto"></div>
           </div>
           <div id="viewModeSwitch" class="view-switch-pill shrink-0" role="group" aria-label="View mode switch">
             <button id="gridViewButton" class="view-switch-btn is-active" type="button" title="Grid view">
@@ -651,7 +651,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `bookmark-card card-unified cursor-pointer bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -718,7 +718,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `folder-card card-unified text-gray rounded-2xl cursor-pointer ${appState.viewMode === 'list'
+      card.className = `folder-card card-unified text-gray rounded-2xl cursor-pointer ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'folder-card-list flex items-center p-2'
         : 'flex flex-col items-center p-2'}`;
       card.onclick = () => {

@@ -823,6 +823,10 @@ select {
   inset: 0px;
 }
 
+.left-0 {
+  left: 0px;
+}
+
 .left-3 {
   left: 0.75rem;
 }
@@ -841,6 +845,10 @@ select {
 
 .right-3 {
   right: 0.75rem;
+}
+
+.right-auto {
+  right: auto;
 }
 
 .top-0 {
@@ -1958,8 +1966,9 @@ select {
   gap: 2px;
   padding: 2px;
   border-radius: 9999px;
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  background: rgba(248, 250, 252, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
 }
 
 .view-switch-btn {
@@ -1970,7 +1979,7 @@ select {
   align-items: center;
   justify-content: center;
   color: rgb(100, 116, 139);
-  transition: all 0.2s ease;
+  transition: all 0.22s ease;
 }
 
 .view-switch-btn:hover {
@@ -1981,11 +1990,13 @@ select {
   color: rgb(2, 132, 199);
   background: white;
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+  transform: translateY(-1px) scale(1.03);
 }
 
 .dark .view-switch-pill {
-  background: rgba(15, 23, 42, 0.9);
-  border-color: rgba(71, 85, 105, 0.45);
+  background: rgba(34, 37, 42, 0.95);
+  border-color: rgba(71, 85, 105, 0.35);
+  box-shadow: 0 4px 10px rgba(2, 6, 23, 0.45);
 }
 
 .dark .view-switch-btn {
@@ -1995,6 +2006,7 @@ select {
 .dark .view-switch-btn.is-active {
   color: rgb(125, 211, 252);
   background: rgba(30, 41, 59, 0.95);
+  box-shadow: 0 6px 12px rgba(2, 132, 199, 0.22);
 }
 
 .card-wrap {
@@ -2027,7 +2039,6 @@ select {
 
 .dark .card-unified {
   --card-hover-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
-  box-shadow: 0 1px 2px rgba(2, 6, 23, 0.55);
 }
 
 .bookmark-card-list,
@@ -2264,6 +2275,10 @@ select {
 .dark\:border-gray-800:is(.dark *) {
   --tw-border-opacity: 1;
   border-color: rgb(31 41 55 / var(--tw-border-opacity, 1));
+}
+
+.dark\:bg-slate-900\/80:is(.dark *) {
+  background-color: rgb(15 23 42 / 0.8);
 }
 
 .dark\:text-gray-300:is(.dark *) {

@@ -110,6 +110,70 @@ Now you can enjoy your own navigation website! 🎉
 - JSON format processing
 - Static website hosting
 
+## 🌐 i18n: Add / Translate Your Own Language
+
+The UI language strings are defined in `index.html` inside the `I18N` object.
+
+### 1) Add a new locale entry
+
+Find:
+
+```js
+const I18N = {
+  zh: { ... },
+  en: { ... }
+}
+```
+
+Add your locale (example: Japanese):
+
+```js
+ja: {
+  clear: 'クリア',
+  clearTags: 'タグをクリア',
+  tagFilter: 'タグフィルター',
+  searchPlaceholder: 'ブックマーク / タグ / URL を検索...',
+  noResultsTitle: '一致する結果がありません',
+  noResultsDesc: 'キーワードを短くするか、タグを切り替えてください。',
+  searchResults: '検索結果',
+  bookmark: 'ブックマーク',
+  home: 'ホーム',
+  records: '件',
+  languageLabel: 'JA',
+  close: '閉じる',
+  folderTags: 'フォルダタグ',
+  themeSystem: 'システム',
+  themeLight: 'ライト',
+  themeDark: 'ダーク',
+  toggleSidebar: 'サイドバーを切り替え',
+  searchButton: 'ブックマークを検索',
+  switchLanguage: '言語を切り替え',
+  switchTheme: 'テーマを切り替え',
+  filterTagsButton: 'タグで絞り込み',
+  backToTop: 'トップへ戻る',
+  closeSidebar: 'サイドバーを閉じる',
+  gridView: 'グリッド表示',
+  listView: 'リスト表示'
+}
+```
+
+### 2) Add the language option in the language menu
+
+In `index.html`, add a button in `#languageMenu`:
+
+```html
+<button class="menu-item" data-locale="ja">日本語</button>
+```
+
+### 3) Keep keys consistent across all locales
+
+Every locale should contain the same keys. If a key is missing, UI will fallback to Chinese (`zh`) or show the key name.
+
+### 4) Verify title / aria texts after switching language
+
+This project also localizes many button `title` and `aria-label` values (e.g. search, sidebar toggle, back-to-top, theme/language switch).  
+After adding a locale, switch language in UI and confirm these tooltips/labels are translated correctly.
+
 ## 🤝 Contribution Guidelines
 
 Contributions are welcome! Please follow these steps to participate in the project:

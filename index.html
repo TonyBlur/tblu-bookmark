@@ -111,7 +111,7 @@
     </div>
 
     <!-- Static Sidebar for Desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+    <div id="desktopSidebarContainer" class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col transition-transform duration-300 ease-in-out">
       <div
         class="flex flex-col border-r border-gray-200 dark:pintree-border-gray-800 bg-white px-4 h-full font-semibold dark:pintree-bg-gray-900">
         <div class="flex p-0 h-16 shrink-0 items-center">
@@ -129,12 +129,20 @@
     </div>
 
     <!-- Main Content Area -->
-    <div class="lg:pl-72 dark:pintree-bg-gray-900 flex flex-col min-h-screen">
+    <div id="mainLayout" class="lg:pl-72 dark:pintree-bg-gray-900 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
       <div
         class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-slate-200/70 dark:pintree-border-gray-800 bg-white/85 dark:pintree-bg-gray-900 px-4 shadow-sm backdrop-blur sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
           <div class="flex gap-x-3 justify-between items-center">
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
+            <button id="toggle-desktop-sidebar-button" class="hidden lg:flex items-center justify-center w-9 h-9 icon-action-btn" aria-label="Toggle desktop sidebar">
+              <svg id="desktopSidebarOpenIcon" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
+              </svg>
+              <svg id="desktopSidebarClosedIcon" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
             <button id="open-sidebar-button" class="lg:hidden flex items-center justify-center w-9 h-9">
               <span class="sr-only">Open sidebar</span>
               <svg class="h-5 w-5 text-gray-400" viewBox="0 0 1024 1024" width="20" height="20" fill="currentColor">
@@ -232,7 +240,19 @@
               </svg>
             </a>
           </div> -->
-          <div class="mt-8 md:order-1 md:mt-0">
+          <div class="mt-8 md:order-1 md:mt-0 space-y-2">
+            <div class="flex justify-center items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+              <a href="https://github.com/TonyBlur/tblu-bookmark" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200">
+                <span class="sr-only">GitHub repository</span>
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clip-rule="evenodd" />
+                </svg>
+                <span>GitHub</span>
+              </a>
+              <span id="githubReleaseVersion" class="inline-flex items-center px-2 py-0.5 rounded-full border border-slate-200 dark:pintree-border-gray-700">Loading release…</span>
+            </div>
             <p class="text-center text-xs leading-5 text-gray-500 dark:text-gray-400 flex justify-center items-center">
               &copy; <span id="currentYear"></span>&nbsp;Built with
               <a href="https://pintree.io" class="text-green-600 hover:text-green-500 flex items-center ml-1"
@@ -336,12 +356,13 @@
     const appState = {
       rawData: [],
       activePath: [],
-      activeTag: null,
+      activeTags: [],
       query: '',
       flattened: [],
       tagRules: [],
       locale: localStorage.getItem('tblu-locale') || (navigator.language?.toLowerCase().startsWith('zh') ? 'zh' : 'en'),
       themeMode: localStorage.getItem('tblu-theme-mode') || 'system',
+      desktopSidebarCollapsed: localStorage.getItem('tblu-desktop-sidebar-collapsed') === '1',
     };
 
     const DOM = {
@@ -372,6 +393,12 @@
       themeMenu: document.getElementById('themeMenu'),
       sunIcon: document.getElementById('sunIcon'),
       moonIcon: document.getElementById('moonIcon'),
+      desktopSidebarContainer: document.getElementById('desktopSidebarContainer'),
+      mainLayout: document.getElementById('mainLayout'),
+      toggleDesktopSidebarButton: document.getElementById('toggle-desktop-sidebar-button'),
+      desktopSidebarOpenIcon: document.getElementById('desktopSidebarOpenIcon'),
+      desktopSidebarClosedIcon: document.getElementById('desktopSidebarClosedIcon'),
+      githubReleaseVersion: document.getElementById('githubReleaseVersion'),
     };
 
     function t(key) {
@@ -404,16 +431,18 @@
       renderBookmarks(first?.children || rootFolders, [{ title: first?.title || t('home'), children: first?.children || rootFolders }]);
     }
 
-    function remapActiveTagForLocale(previousLocale, nextLocale) {
-      if (!appState.activeTag || !appState.tagRules.length) return;
-      const rule = appState.tagRules.find(r => {
-        if (!r || typeof r.tag !== 'object') return false;
-        const prevLabel = r.tag[previousLocale];
-        const nextLabel = r.tag[nextLocale];
-        return appState.activeTag === prevLabel || appState.activeTag === nextLabel;
+    function remapActiveTagsForLocale(previousLocale, nextLocale) {
+      if (!appState.activeTags.length || !appState.tagRules.length) return;
+      appState.activeTags = appState.activeTags.map(activeTag => {
+        const rule = appState.tagRules.find(r => {
+          if (!r || typeof r.tag !== 'object') return false;
+          const prevLabel = r.tag[previousLocale];
+          const nextLabel = r.tag[nextLocale];
+          return activeTag === prevLabel || activeTag === nextLabel;
+        });
+        if (!rule || typeof rule.tag !== 'object') return activeTag;
+        return rule.tag[nextLocale] || rule.tag.zh || rule.tag.en || activeTag;
       });
-      if (!rule || typeof rule.tag !== 'object') return;
-      appState.activeTag = rule.tag[nextLocale] || rule.tag.zh || rule.tag.en || appState.activeTag;
     }
 
     function normalize(str = '') {
@@ -522,13 +551,16 @@
       return dp[a.length][b.length];
     }
 
-    function searchInFlattenedData(query, selectedTag) {
+    function searchInFlattenedData(query, selectedTags = []) {
       const q = normalize(query);
       return appState.flattened
         .map(item => {
           const text = [item.title, item.url || '', ...(item.tags || [])].join(' ');
           const score = fuzzyScore(text, q);
-          const tagMatch = selectedTag ? item.tags.some(t => normalize(t) === normalize(selectedTag)) : true;
+          const normalizedTags = (item.tags || []).map(tag => normalize(tag));
+          const tagMatch = selectedTags.length
+            ? selectedTags.every(tag => normalizedTags.includes(normalize(tag)))
+            : true;
           const keywordMatch = !q || score >= 0.55;
           return { item, score, tagMatch, keywordMatch };
         })
@@ -538,8 +570,19 @@
         .sort((a, b) => b.score - a.score)
         .map(({ item, tagMatch }) => ({
           item,
-          hitType: selectedTag && tagMatch ? 'tag' : item.type,
+          hitType: selectedTags.length && tagMatch ? 'tag' : item.type,
         }));
+    }
+
+    function setTagFilter(tag) {
+      if (!tag) return;
+      if (!appState.activeTags.some(item => normalize(item) === normalize(tag))) {
+        appState.activeTags.push(tag);
+      }
+      DOM.resetTagFilter.classList.toggle('hidden', !appState.activeTags.length);
+      renderTagFilters();
+      if (DOM.searchModal.classList.contains('hidden')) openSearchModal();
+      performSearch();
     }
 
     function createTagBadge(tag, onClick, active = false) {
@@ -565,16 +608,20 @@
         .slice(0, 40)
         .forEach(([tag, count]) => {
           const badge = createTagBadge(tag, () => {
-            appState.activeTag = appState.activeTag === tag ? null : tag;
-            DOM.resetTagFilter.classList.toggle('hidden', !appState.activeTag);
+            if (appState.activeTags.some(item => normalize(item) === normalize(tag))) {
+              appState.activeTags = appState.activeTags.filter(item => normalize(item) !== normalize(tag));
+            } else {
+              appState.activeTags.push(tag);
+            }
+            DOM.resetTagFilter.classList.toggle('hidden', !appState.activeTags.length);
             performSearch();
             renderTagFilters();
-          }, appState.activeTag === tag);
+          }, appState.activeTags.some(item => normalize(item) === normalize(tag)));
           badge.title = `${count} ${t('records')}`;
           DOM.searchTagFilters.appendChild(badge);
         });
-      if (appState.activeTag) {
-        DOM.selectedTagIndicator.textContent = `${t('tagFilter')}: ${appState.activeTag}`;
+      if (appState.activeTags.length) {
+        DOM.selectedTagIndicator.textContent = `${t('tagFilter')}: ${appState.activeTags.join(', ')}`;
         DOM.selectedTagIndicator.classList.remove('hidden');
       } else {
         DOM.selectedTagIndicator.classList.add('hidden');
@@ -617,9 +664,14 @@
       const tagWrap = document.createElement('div');
       tagWrap.className = 'flex flex-wrap gap-1 mt-2';
       tags.slice(0, 4).forEach(tag => {
-        const chip = document.createElement('span');
+        const chip = document.createElement('button');
+        chip.type = 'button';
         chip.className = 'mini-chip';
         chip.textContent = tag;
+        chip.addEventListener('click', event => {
+          event.stopPropagation();
+          setTagFilter(tag);
+        });
         tagWrap.appendChild(chip);
       });
 
@@ -798,9 +850,11 @@
         return;
       }
       tags.forEach(tag => {
-        const chip = document.createElement('span');
+        const chip = document.createElement('button');
+        chip.type = 'button';
         chip.className = 'mini-chip';
         chip.textContent = tag;
+        chip.addEventListener('click', () => setTagFilter(tag));
         DOM.folderTags.appendChild(chip);
       });
       DOM.folderTagSection.classList.remove('hidden');
@@ -835,15 +889,36 @@
     function performSearch() {
       const query = DOM.searchInput.value.trim();
       appState.query = query;
-      DOM.clearSearchButton.classList.toggle('hidden', !query && !appState.activeTag);
+      DOM.clearSearchButton.classList.toggle('hidden', !query && !appState.activeTags.length);
 
-      if (!query && !appState.activeTag) {
+      if (!query && !appState.activeTags.length) {
         DOM.searchResultsPanel.innerHTML = '';
         return;
       }
 
-      const results = searchInFlattenedData(query, appState.activeTag);
+      const results = searchInFlattenedData(query, appState.activeTags);
       renderSearchResultsPanel(results);
+    }
+
+    function applyDesktopSidebarState() {
+      DOM.desktopSidebarContainer.classList.toggle('-translate-x-full', appState.desktopSidebarCollapsed);
+      DOM.mainLayout.classList.toggle('lg:pl-0', appState.desktopSidebarCollapsed);
+      DOM.mainLayout.classList.toggle('lg:pl-72', !appState.desktopSidebarCollapsed);
+      DOM.desktopSidebarOpenIcon.classList.toggle('hidden', appState.desktopSidebarCollapsed);
+      DOM.desktopSidebarClosedIcon.classList.toggle('hidden', !appState.desktopSidebarCollapsed);
+      localStorage.setItem('tblu-desktop-sidebar-collapsed', appState.desktopSidebarCollapsed ? '1' : '0');
+    }
+
+    async function fetchGithubReleaseVersion() {
+      if (!DOM.githubReleaseVersion) return;
+      try {
+        const response = await fetch('https://api.github.com/repos/TonyBlur/tblu-bookmark/releases/latest');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        DOM.githubReleaseVersion.textContent = data.tag_name || data.name || 'No release';
+      } catch (error) {
+        DOM.githubReleaseVersion.textContent = 'No release';
+      }
     }
 
     function closeSidebar() {
@@ -959,23 +1034,28 @@
       if (event.key === 'Escape') closeSearchModal();
     });
     DOM.searchInput.addEventListener('input', () => {
-      DOM.clearSearchButton.classList.toggle('hidden', !DOM.searchInput.value.trim() && !appState.activeTag);
+      DOM.clearSearchButton.classList.toggle('hidden', !DOM.searchInput.value.trim() && !appState.activeTags.length);
       performSearch();
     });
 
     DOM.clearSearchButton.addEventListener('click', () => {
       DOM.searchInput.value = '';
-      appState.activeTag = null;
+      appState.activeTags = [];
       DOM.resetTagFilter.classList.add('hidden');
       renderTagFilters();
       performSearch();
     });
 
     DOM.resetTagFilter.addEventListener('click', () => {
-      appState.activeTag = null;
+      appState.activeTags = [];
       DOM.resetTagFilter.classList.add('hidden');
       renderTagFilters();
       performSearch();
+    });
+
+    DOM.toggleDesktopSidebarButton.addEventListener('click', () => {
+      appState.desktopSidebarCollapsed = !appState.desktopSidebarCollapsed;
+      applyDesktopSidebarState();
     });
 
     DOM.searchTagFilterButton.addEventListener('click', (e) => {
@@ -997,7 +1077,7 @@
       btn.addEventListener('click', () => {
         const previousLocale = appState.locale;
         appState.locale = btn.dataset.locale;
-        remapActiveTagForLocale(previousLocale, appState.locale);
+        remapActiveTagsForLocale(previousLocale, appState.locale);
         localStorage.setItem('tblu-locale', appState.locale);
         DOM.languageMenu.classList.add('hidden');
         applyLocale();
@@ -1027,7 +1107,9 @@
       if (appState.themeMode === 'system') applyThemeMode('system');
     });
     applyThemeMode(appState.themeMode);
+    applyDesktopSidebarState();
     applyLocale();
+    fetchGithubReleaseVersion();
 
     window.addEventListener('load', () => {
       if (window.bookmarkDataURL) loadAndRenderBookmarks(window.bookmarkDataURL);

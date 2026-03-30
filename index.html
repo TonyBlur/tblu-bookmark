@@ -651,7 +651,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `bookmark-card card-unified cursor-pointer transition-all bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `bookmark-card card-unified cursor-pointer bg-white shadow-sm ring-1 ring-slate-200/70 dark:pintree-ring-gray-800 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -839,7 +839,7 @@
       clippedPath.forEach((item, index) => {
         const actualIndex = index + collapseCount;
         const breadcrumb = document.createElement('span');
-        breadcrumb.className = 'cursor-pointer hover:underline truncate max-w-[220px]';
+        breadcrumb.className = 'cursor-pointer hover:underline shrink-0';
         breadcrumb.innerText = item.title;
         breadcrumb.onclick = () => {
           const newPath = path.slice(0, actualIndex + 1);

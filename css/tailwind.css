@@ -1116,6 +1116,10 @@ select {
   gap: 0.5rem;
 }
 
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .gap-4 {
   gap: 1rem;
 }
@@ -1343,6 +1347,11 @@ select {
 .px-6 {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
 }
 
 .py-1 {
@@ -1836,6 +1845,19 @@ select {
   color: rgb(71, 85, 105);
   box-shadow: 0 4px 10px rgba(15, 23, 42, 0.08);
   border: 1px solid rgba(148, 163, 184, 0.25);
+  transition: all 0.2s ease;
+}
+
+.icon-action-btn:hover {
+  color: rgb(2, 132, 199);
+  border-color: rgba(14, 165, 233, 0.5);
+  background: rgba(240, 249, 255, 0.95);
+  box-shadow: 0 6px 14px rgba(14, 165, 233, 0.2);
+}
+
+.icon-action-btn:focus-visible {
+  outline: 2px solid rgba(14, 165, 233, 0.45);
+  outline-offset: 2px;
 }
 
 .menu-panel {
@@ -1868,6 +1890,13 @@ select {
   background: rgba(34, 37, 42, 0.95);
   color: rgb(203, 213, 225);
   border-color: rgba(71, 85, 105, 0.35);
+}
+
+.dark .icon-action-btn:hover {
+  color: rgb(125, 211, 252);
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 8px 16px rgba(2, 132, 199, 0.28);
 }
 
 .dark .menu-panel {
@@ -2057,6 +2086,11 @@ select {
   color: rgb(107 114 128 / var(--tw-text-opacity, 1));
 }
 
+.hover\:text-gray-700:hover {
+  --tw-text-opacity: 1;
+  color: rgb(55 65 81 / var(--tw-text-opacity, 1));
+}
+
 .hover\:text-green-500:hover {
   --tw-text-opacity: 1;
   color: rgb(34 197 94 / var(--tw-text-opacity, 1));
@@ -2174,6 +2208,11 @@ select {
   --tw-ring-color: rgb(255 255 255 / 0.1);
 }
 
+.dark\:hover\:text-gray-200:hover:is(.dark *) {
+  --tw-text-opacity: 1;
+  color: rgb(229 231 235 / var(--tw-text-opacity, 1));
+}
+
 .dark\:hover\:ring-white\/20:hover:is(.dark *) {
   --tw-ring-color: rgb(255 255 255 / 0.2);
 }
@@ -2244,6 +2283,10 @@ select {
     z-index: 50;
   }
 
+  .lg\:block {
+    display: block;
+  }
+
   .lg\:flex {
     display: flex;
   }
@@ -2272,6 +2315,10 @@ select {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+  }
+
+  .lg\:pl-0 {
+    padding-left: 0px;
   }
 
   .lg\:pl-72 {

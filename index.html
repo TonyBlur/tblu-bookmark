@@ -299,7 +299,7 @@
     </svg>
   </button>
 
-  <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-slate-900/40 p-4 pt-20 backdrop-blur-sm">
+  <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-zinc-900/55 p-4 pt-20 backdrop-blur" style="backdrop-filter: blur(14px);">
     <div class="panel-card w-full max-w-2xl p-4">
       <div class="flex items-center gap-2 mb-3">
         <div class="relative flex-1">
@@ -661,7 +661,7 @@
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
       const card = document.createElement('div');
-      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 dark:ring-slate-800/90 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
+      card.className = `bookmark-card card-unified cursor-pointer bg-white ring-1 ring-slate-200/70 hover:ring-slate-200/70 dark:ring-slate-800/90 dark:hover:ring-slate-800/90 rounded-2xl dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800 ${appState.viewMode === 'list'
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
@@ -979,6 +979,10 @@
       document.body.classList.toggle('overflow-hidden', locked);
     }
 
+    function updateBackToTopVisibility() {
+      DOM.backToTopButton.classList.toggle('hidden', window.scrollY < 280);
+    }
+
     function performSearch() {
       const query = DOM.searchInput.value.trim();
       appState.query = query;
@@ -1218,12 +1222,13 @@
       if (appState.activePath?.length) renderBreadcrumbs(appState.activePath);
     });
     window.addEventListener('scroll', () => {
-      DOM.backToTopButton.classList.toggle('hidden', window.scrollY < 280);
+      updateBackToTopVisibility();
     });
     applyThemeMode(appState.themeMode);
     applyDesktopSidebarState();
     applyViewMode(appState.viewMode);
     applyLocale();
+    updateBackToTopVisibility();
     fetchGithubReleaseVersion();
 
     window.addEventListener('load', () => {

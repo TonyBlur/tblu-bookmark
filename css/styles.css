@@ -253,6 +253,7 @@
 }
 
 .menu-item {
+  display: block;
   width: 100%;
   text-align: left;
   font-size: 13px;

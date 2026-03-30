@@ -799,6 +799,10 @@ select {
   pointer-events: none;
 }
 
+.collapse {
+  visibility: collapse;
+}
+
 .fixed {
   position: fixed;
 }
@@ -1036,8 +1040,16 @@ select {
   min-width: 0px;
 }
 
+.min-w-\[180px\] {
+  min-width: 180px;
+}
+
 .max-w-2xl {
   max-width: 42rem;
+}
+
+.max-w-\[220px\] {
+  max-width: 220px;
 }
 
 .max-w-xs {
@@ -1090,6 +1102,10 @@ select {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.resize {
+  resize: both;
 }
 
 .grid-cols-1 {
@@ -1196,6 +1212,10 @@ select {
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.whitespace-nowrap {
   white-space: nowrap;
 }
 
@@ -1999,17 +2019,18 @@ select {
   left: 0;
   right: 0;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  --card-hover-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
 }
 
 .card-unified:hover {
   transform: scale(1.06);
   z-index: 8;
-  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18);
+  box-shadow: var(--card-hover-shadow);
   height: auto;
 }
 
-.dark .card-unified:hover {
-  box-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
+.dark .card-unified {
+  --card-hover-shadow: 0 16px 34px rgba(2, 6, 23, 0.72);
 }
 
 .bookmark-card-list,

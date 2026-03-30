@@ -153,18 +153,6 @@
                   clip-rule="evenodd"></path>
               </svg>
             </button>
-            <div id="viewModeSwitch" class="view-switch-pill" role="group" aria-label="View mode switch">
-              <button id="gridViewButton" class="view-switch-btn is-active" type="button" title="Grid view">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z"></path>
-                </svg>
-              </button>
-              <button id="listViewButton" class="view-switch-btn" type="button" title="List view">
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"></path>
-                </svg>
-              </button>
-            </div>
           </div>
           <div class="relative flex items-center gap-2">
             <div class="relative">
@@ -213,9 +201,22 @@
         <div id="loading-spinner" class="flex justify-center items-center h-full">
           <div class="loader ease-linear rounded-full border-2 border-t-2 border-gray-400 h-6 w-6"></div>
         </div>
-        <div id="breadcrumbs" class="mt-2 px-6 lg:px-8 text-sm text-gray-400 flex justify-between items-center">
-          <div id="breadcrumbs-path" class="">
-            <!-- Breadcrumbs will be inserted here -->
+        <div id="breadcrumbs" class="mt-2 px-6 lg:px-8 text-sm text-gray-400 flex justify-between items-center gap-3">
+          <div id="breadcrumbs-path" class="relative flex items-center gap-1 min-w-0 flex-1 whitespace-nowrap overflow-hidden">
+            <!-- Breadcrumbs / collapse menu will be inserted here -->
+            <div id="breadcrumbCollapseMenu" class="menu-panel hidden min-w-[180px]"></div>
+          </div>
+          <div id="viewModeSwitch" class="view-switch-pill shrink-0" role="group" aria-label="View mode switch">
+            <button id="gridViewButton" class="view-switch-btn is-active" type="button" title="Grid view">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4h6v6H4V4Zm10 0h6v6h-6V4ZM4 14h6v6H4v-6Zm10 0h6v6h-6v-6Z"></path>
+              </svg>
+            </button>
+            <button id="listViewButton" class="view-switch-btn" type="button" title="List view">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"></path>
+              </svg>
+            </button>
           </div>
         </div>
         <section id="folderTagSection" class="px-6 lg:px-8 mt-2 hidden">
@@ -397,6 +398,7 @@
       searchTagFilters: document.getElementById('searchTagFilters'),
       bookmarks: document.getElementById('bookmarks'),
       breadcrumbsPath: document.getElementById('breadcrumbs-path'),
+      breadcrumbCollapseMenu: document.getElementById('breadcrumbCollapseMenu'),
       folderTagSection: document.getElementById('folderTagSection'),
       folderTags: document.getElementById('folderTags'),
       loadingSpinner: document.getElementById('loading-spinner'),
@@ -797,23 +799,64 @@
       });
     }
 
-    function renderBreadcrumbs(path) {
+    function renderCollapsedBreadcrumbMenu(collapsedItems, fullPath) {
+      DOM.breadcrumbCollapseMenu.innerHTML = '';
+      collapsedItems.forEach((item, index) => {
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.className = 'menu-item';
+        option.textContent = item.title;
+        option.addEventListener('click', () => {
+          const newPath = fullPath.slice(0, index + 1);
+          renderBookmarks(item.children || [], newPath);
+          DOM.breadcrumbCollapseMenu.classList.add('hidden');
+        });
+        DOM.breadcrumbCollapseMenu.appendChild(option);
+      });
+    }
+
+    function renderBreadcrumbs(path, collapseCount = 0) {
       DOM.breadcrumbsPath.innerHTML = '';
-      path.forEach((item, index) => {
+      const clippedPath = path.slice(collapseCount);
+      if (collapseCount > 0) {
+        const collapsedItems = path.slice(0, collapseCount);
+        const ellipsis = document.createElement('button');
+        ellipsis.type = 'button';
+        ellipsis.className = 'mini-chip leading-none px-2';
+        ellipsis.textContent = '···';
+        ellipsis.addEventListener('click', (event) => {
+          event.stopPropagation();
+          renderCollapsedBreadcrumbMenu(collapsedItems, path);
+          toggleAnimatedMenu(DOM.breadcrumbCollapseMenu);
+        });
+        DOM.breadcrumbsPath.appendChild(ellipsis);
+        if (clippedPath.length) {
+          const sep = document.createElement('span');
+          sep.innerText = ' > ';
+          DOM.breadcrumbsPath.appendChild(sep);
+        }
+      }
+      clippedPath.forEach((item, index) => {
+        const actualIndex = index + collapseCount;
         const breadcrumb = document.createElement('span');
-        breadcrumb.className = 'cursor-pointer hover:underline';
+        breadcrumb.className = 'cursor-pointer hover:underline truncate max-w-[220px]';
         breadcrumb.innerText = item.title;
         breadcrumb.onclick = () => {
-          const newPath = path.slice(0, index + 1);
+          const newPath = path.slice(0, actualIndex + 1);
           renderBookmarks(item.children || [], newPath);
         };
         DOM.breadcrumbsPath.appendChild(breadcrumb);
-        if (index < path.length - 1) {
+        if (index < clippedPath.length - 1) {
           const sep = document.createElement('span');
           sep.innerText = ' > ';
           DOM.breadcrumbsPath.appendChild(sep);
         }
       });
+
+      DOM.breadcrumbsPath.appendChild(DOM.breadcrumbCollapseMenu);
+      if (DOM.breadcrumbsPath.scrollWidth > DOM.breadcrumbsPath.clientWidth && collapseCount < path.length) {
+        renderBreadcrumbs(path, collapseCount + 1);
+      }
     }
 
     function showNoResultsMessage() {
@@ -1142,10 +1185,16 @@
       if (!DOM.searchTagFilterButton.contains(e.target) && !DOM.searchTagPopup.contains(e.target)) {
         DOM.searchTagPopup.classList.add('hidden');
       }
+      if (!DOM.breadcrumbsPath.contains(e.target) && !DOM.breadcrumbCollapseMenu.contains(e.target)) {
+        DOM.breadcrumbCollapseMenu.classList.add('hidden');
+      }
     });
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
       if (appState.themeMode === 'system') applyThemeMode('system');
+    });
+    window.addEventListener('resize', () => {
+      if (appState.activePath?.length) renderBreadcrumbs(appState.activePath);
     });
     applyThemeMode(appState.themeMode);
     applyDesktopSidebarState();

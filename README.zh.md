@@ -96,7 +96,11 @@ Tag 生效优先级：
 
 您也可以使用 Vercel 免费部署 tbluBookmark 项目。点击下面的按钮，跟随指引即可轻松将项目部署到 Vercel 平台。
 
-在Vercel上，您还可以通过设置环境变量 `BOOKMARK_DATA_URL` 来指定书签文件的URL。
+在 Vercel 上，您还可以通过环境变量配置：
+- `BOOKMARK_DATA_URL`：书签 JSON 文件 URL
+
+页脚版本号会从项目自身 `package.json` 的 `version` 字段动态读取。  
+如果 GitHub 上有更高版本发布，会在当前版本旁显示一个低调的红点提示。
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FTonyBlur%2Ftblu-bookmark%2Ftree%2Fmain&project-name=tblu-bookmark&repository-name=tblu-bookmark)
 
@@ -112,14 +116,14 @@ Tag 生效优先级：
 
 ## 🌐 i18n：新增与翻译你自己的语言
 
-界面多语言文案在 `index.html` 的 `I18N` 对象里维护。
+界面多语言文案在 `js/i18n.js` 的 `window.I18N_MESSAGES` 对象中维护。
 
 ### 1）新增语言对象
 
 找到：
 
 ```js
-const I18N = {
+window.I18N_MESSAGES = {
   zh: { ... },
   en: { ... }
 }
@@ -133,8 +137,9 @@ ja: {
   clearTags: 'タグをクリア',
   tagFilter: 'タグフィルター',
   searchPlaceholder: 'ブックマーク / タグ / URL を検索...',
-  noResultsTitle: '一致する結果がありません',
-  noResultsDesc: 'キーワードを短くするか、タグを切り替えてください。',
+  noBookmarksTitle: 'このパスにはブックマークがありません',
+  noBookmarksDesc: '上位フォルダに戻るか、データ同期を確認してください。',
+  searchNoResults: '一致する検索結果がありません。キーワードやタグを見直してください。',
   searchResults: '検索結果',
   bookmark: 'ブックマーク',
   home: 'ホーム',

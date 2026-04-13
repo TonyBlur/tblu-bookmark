@@ -243,6 +243,23 @@
   outline-offset: 2px;
 }
 
+.search-filter-btn {
+  border-radius: 0.7rem;
+  height: 44px;
+  width: 44px;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+}
+
+.search-input-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-glow:focus {
+  border-color: rgba(14, 165, 233, 0.55);
+  box-shadow: 0 6px 14px rgba(14, 165, 233, 0.2);
+}
+
 .menu-panel {
   position: absolute;
   right: 0;
@@ -320,6 +337,8 @@
 
 .view-switch-btn:hover {
   color: rgb(2, 132, 199);
+  box-shadow: 0 6px 14px rgba(14, 165, 233, 0.18);
+  transform: translateY(-1px);
 }
 
 .view-switch-btn.is-active {
@@ -343,6 +362,29 @@
   color: rgb(125, 211, 252);
   background: rgba(30, 41, 59, 0.95);
   box-shadow: 0 6px 12px rgba(2, 132, 199, 0.22);
+}
+
+.themed-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.5) rgba(148, 163, 184, 0.12);
+}
+
+.themed-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.themed-scrollbar::-webkit-scrollbar-track {
+  background: rgba(148, 163, 184, 0.12);
+  border-radius: 9999px;
+}
+
+.themed-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.85), rgba(14, 165, 233, 0.65));
+  border-radius: 9999px;
+}
+
+.themed-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.95), rgba(2, 132, 199, 0.8));
 }
 
 .card-wrap {

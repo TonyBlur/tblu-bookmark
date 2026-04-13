@@ -96,7 +96,11 @@ Additional notes:
 
 You can also deploy the tbluBookmark project for free using Vercel. Click the button below and follow the instructions to easily deploy the project to the Vercel platform.
 
-On Vercel, you can also specify the URL of the bookmark file by setting the environment variable `BOOKMARK_DATA_URL`.
+On Vercel, you can also specify:
+- `BOOKMARK_DATA_URL`: bookmark JSON URL
+
+The footer version is dynamically read from the project's own `package.json` `version` field.  
+If a newer release exists on GitHub, a subtle red-dot marker appears next to the current version.
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FTonyBlur%2Ftblu-bookmark%2Ftree%2Fmain&project-name=tblu-bookmark&repository-name=tblu-bookmark)
 
@@ -112,14 +116,14 @@ Now you can enjoy your own navigation website! 🎉
 
 ## 🌐 i18n: Add / Translate Your Own Language
 
-The UI language strings are defined in `index.html` inside the `I18N` object.
+The UI language strings are defined in `js/i18n.js` via `window.I18N_MESSAGES`.
 
 ### 1) Add a new locale entry
 
 Find:
 
 ```js
-const I18N = {
+window.I18N_MESSAGES = {
   zh: { ... },
   en: { ... }
 }
@@ -133,8 +137,9 @@ ja: {
   clearTags: 'タグをクリア',
   tagFilter: 'タグフィルター',
   searchPlaceholder: 'ブックマーク / タグ / URL を検索...',
-  noResultsTitle: '一致する結果がありません',
-  noResultsDesc: 'キーワードを短くするか、タグを切り替えてください。',
+  noBookmarksTitle: 'このパスにはブックマークがありません',
+  noBookmarksDesc: '上位フォルダに戻るか、データ同期を確認してください。',
+  searchNoResults: '一致する検索結果がありません。キーワードやタグを見直してください。',
   searchResults: '検索結果',
   bookmark: 'ブックマーク',
   home: 'ホーム',

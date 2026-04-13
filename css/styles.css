@@ -245,9 +245,19 @@
 
 .search-filter-btn {
   border-radius: 0.7rem;
-  width: auto;
+  height: 44px;
+  width: 44px;
   padding-left: 0.65rem;
   padding-right: 0.65rem;
+}
+
+.search-input-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input-glow:focus {
+  border-color: rgba(14, 165, 233, 0.55);
+  box-shadow: 0 6px 14px rgba(14, 165, 233, 0.2);
 }
 
 .menu-panel {

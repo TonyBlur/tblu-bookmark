@@ -305,6 +305,11 @@
     <div class="w-full max-w-2xl space-y-3">
       <div class="relative z-20">
         <div class="flex items-center gap-2">
+          <button id="closeSearchModalButton" class="icon-action-btn search-filter-btn" aria-label="Close search" title="Close search">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </button>
           <div class="relative flex-1">
             <svg class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20"
               fill="currentColor" aria-hidden="true">
@@ -313,10 +318,13 @@
                 clip-rule="evenodd"></path>
             </svg>
             <input id="searchInput" type="search"
-              class="search-no-native w-full text-sm text-gray-900 dark:text-gray-300 pl-10 pr-24 h-11 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-400/50 dark:pintree-bg-gray-800"
+              class="search-no-native search-input-glow w-full text-sm text-gray-900 dark:text-gray-300 pl-10 pr-12 h-11 border border-slate-200 dark:pintree-border-gray-700 rounded-xl focus:outline-none dark:pintree-bg-gray-800"
               placeholder="搜索书签 / 标签 / 网址...">
-            <button id="clearSearchButton" class="absolute right-16 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded hidden" data-i18n="clear">Clear</button>
-            <button id="closeSearchModalButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded" data-i18n="close">关闭</button>
+            <button id="clearSearchButton" class="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full hidden inline-flex items-center justify-center text-slate-500 hover:text-sky-600 hover:bg-sky-50 dark:text-slate-400 dark:hover:text-sky-300 dark:hover:bg-slate-700/70" aria-label="Clear search" title="Clear">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 6l12 12M18 6l-12 12"></path>
+              </svg>
+            </button>
           </div>
           <div class="relative">
             <button id="searchTagFilterButton" class="icon-action-btn search-filter-btn" aria-label="Filter tags" title="Filter by tags">
@@ -331,7 +339,7 @@
           </div>
         </div>
       </div>
-      <div id="searchResultsContainer" class="hidden panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80 mr-[44px]">
+      <div id="searchResultsContainer" class="hidden panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80 ml-[46px] mr-[44px]">
         <div id="searchResultsPanel" class="max-h-[55vh] overflow-y-auto space-y-2"></div>
       </div>
       <div id="selectedTagIndicator" class="text-xs text-sky-600 dark:text-sky-400 pt-2 hidden"></div>
@@ -422,6 +430,10 @@
       DOM.themeToggleButton.setAttribute('aria-label', t('switchTheme'));
       DOM.searchTagFilterButton.title = t('filterTagsButton');
       DOM.searchTagFilterButton.setAttribute('aria-label', t('filterTagsButton'));
+      DOM.closeSearchModalButton.title = t('close');
+      DOM.closeSearchModalButton.setAttribute('aria-label', t('close'));
+      DOM.clearSearchButton.title = t('clear');
+      DOM.clearSearchButton.setAttribute('aria-label', t('clear'));
       DOM.backToTopButton.title = t('backToTop');
       DOM.backToTopButton.setAttribute('aria-label', t('backToTop'));
       if (DOM.closeSidebarSrOnly) DOM.closeSidebarSrOnly.textContent = t('closeSidebar');

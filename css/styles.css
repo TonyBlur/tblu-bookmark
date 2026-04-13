@@ -243,6 +243,13 @@
   outline-offset: 2px;
 }
 
+.search-filter-btn {
+  border-radius: 0.7rem;
+  width: auto;
+  padding-left: 0.65rem;
+  padding-right: 0.65rem;
+}
+
 .menu-panel {
   position: absolute;
   right: 0;

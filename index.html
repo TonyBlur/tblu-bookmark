@@ -319,7 +319,7 @@
             <button id="closeSearchModalButton" class="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 rounded" data-i18n="close">关闭</button>
           </div>
           <div class="relative">
-            <button id="searchTagFilterButton" class="icon-action-btn" aria-label="Filter tags" title="Filter by tags">
+            <button id="searchTagFilterButton" class="icon-action-btn search-filter-btn" aria-label="Filter tags" title="Filter by tags">
               <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5.25h18M6 12h12m-9 6.75h6"></path>
               </svg>
@@ -331,7 +331,7 @@
           </div>
         </div>
       </div>
-      <div id="searchResultsContainer" class="hidden panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80">
+      <div id="searchResultsContainer" class="hidden panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80 mr-[44px]">
         <div id="searchResultsPanel" class="max-h-[55vh] overflow-y-auto space-y-2"></div>
       </div>
       <div id="selectedTagIndicator" class="text-xs text-sky-600 dark:text-sky-400 pt-2 hidden"></div>
@@ -1264,9 +1264,9 @@
     applyViewMode(appState.viewMode);
     applyLocale();
     updateBackToTopVisibility();
-    fetchGithubReleaseVersion();
 
     window.addEventListener('load', () => {
+      fetchGithubReleaseVersion();
       if (window.bookmarkDataURL) loadAndRenderBookmarks(window.bookmarkDataURL);
     });
 

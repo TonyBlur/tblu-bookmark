@@ -382,6 +382,19 @@
       closeSidebarSrOnly: document.querySelector('#close-sidebar-button .sr-only'),
     };
 
+    const appState = {
+      locale: localStorage.getItem('tblu-locale') || 'zh',
+      rawData: [],
+      flattened: [],
+      query: '',
+      activeTags: [],
+      activePath: [],
+      tagRules: [],
+      themeMode: localStorage.getItem('tblu-theme-mode') || 'system',
+      desktopSidebarCollapsed: localStorage.getItem('tblu-desktop-sidebar-collapsed') === '1',
+      viewMode: localStorage.getItem('tblu-view-mode') || 'grid',
+    };
+
     function t(key) {
       return I18N[appState.locale]?.[key] || I18N.zh[key] || key;
     }

@@ -302,8 +302,8 @@
   </button>
 
   <div id="searchModal" class="fixed inset-0 z-[60] hidden items-start justify-center bg-zinc-900/55 p-4 pt-20 backdrop-blur" style="backdrop-filter: blur(14px);">
-    <div class="panel-card w-full max-w-2xl p-4">
-      <div class="panel-card p-3 mb-3">
+    <div class="w-full max-w-2xl space-y-3">
+      <div class="panel-card p-3 relative z-20">
         <div class="flex items-center gap-2">
           <div class="relative flex-1">
             <svg class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" viewBox="0 0 20 20"
@@ -324,14 +324,14 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5.25h18M6 12h12m-9 6.75h6"></path>
               </svg>
             </button>
-            <div id="searchTagPopup" class="menu-panel hidden max-h-56 overflow-y-auto w-64">
+            <div id="searchTagPopup" class="menu-panel hidden max-h-56 overflow-y-auto w-64 z-30">
               <div id="searchTagFilters" class="flex flex-wrap gap-2"></div>
               <button id="resetTagFilter" class="mt-2 text-xs px-2 py-1 rounded border border-slate-200 dark:pintree-border-gray-700 text-slate-500 dark:text-slate-300 hidden" data-i18n="clearTags">清除标签</button>
             </div>
           </div>
         </div>
       </div>
-      <div class="panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80">
+      <div id="searchResultsContainer" class="hidden panel-card p-3 border border-slate-200/80 dark:pintree-border-gray-700/80">
         <div id="searchResultsPanel" class="max-h-[55vh] overflow-y-auto space-y-2"></div>
       </div>
       <div id="selectedTagIndicator" class="text-xs text-sky-600 dark:text-sky-400 pt-2 hidden"></div>
@@ -353,6 +353,7 @@
       searchInput: document.getElementById('searchInput'),
       clearSearchButton: document.getElementById('clearSearchButton'),
       searchResultsPanel: document.getElementById('searchResultsPanel'),
+      searchResultsContainer: document.getElementById('searchResultsContainer'),
       selectedTagIndicator: document.getElementById('selectedTagIndicator'),
       searchTagFilterButton: document.getElementById('searchTagFilterButton'),
       searchTagPopup: document.getElementById('searchTagPopup'),
@@ -963,9 +964,11 @@
 
       if (!query && !appState.activeTags.length) {
         DOM.searchResultsPanel.innerHTML = '';
+        DOM.searchResultsContainer.classList.add('hidden');
         return;
       }
 
+      DOM.searchResultsContainer.classList.remove('hidden');
       const results = searchInFlattenedData(query, appState.activeTags);
       renderSearchResultsPanel(results);
     }

@@ -1014,8 +1014,19 @@
         return normalizeTag(latest) !== normalizeTag(current);
       };
 
-      const stableVersion = String(window.env?.APP_PACKAGE_VERSION || '').trim();
+      let stableVersion = String(window.env?.APP_PACKAGE_VERSION || '').trim();
       const commitShort = String(window.env?.COMMIT_SHORT || '').trim();
+      if (!stableVersion) {
+        try {
+          const pkgResp = await fetch('package.json', { cache: 'no-store' });
+          if (pkgResp.ok) {
+            const pkg = await pkgResp.json();
+            stableVersion = String(pkg?.version || '').trim();
+          }
+        } catch (_) {
+          stableVersion = '';
+        }
+      }
       const alphaVersion = commitShort ? `alpha-${commitShort}` : '';
       const fallbackVersion = alphaVersion || stableVersion || 'unknown';
       setVersionBadge(fallbackVersion, false);
@@ -1260,6 +1271,7 @@
     });
 
     document.addEventListener('bookmarkDataURLReady', (e) => {
+      fetchGithubReleaseVersion();
       if (e?.detail?.url) loadAndRenderBookmarks(e.detail.url);
     });
   </script>

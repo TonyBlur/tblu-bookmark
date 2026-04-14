@@ -52,6 +52,27 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/tailwind.css">
+  <style>
+    .folder-grid-auto {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    }
+    .bookmark-grid-auto {
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    }
+    .bookmark-highlight {
+      animation: bookmarkPulse 3s ease;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.85);
+      border-radius: 1rem;
+    }
+    @keyframes bookmarkPulse {
+      0%, 100% { background: transparent; }
+      20%, 80% { background: rgba(186, 230, 253, 0.42); }
+    }
+    .dark .bookmark-highlight {
+      box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.8);
+      background: rgba(14, 116, 144, 0.22);
+    }
+  </style>
 
   <!-- Structured Data for SEO -->
   <script type="application/ld+json">
@@ -546,7 +567,8 @@
     function flattenData(nodes, parentPath = [], inheritedTags = []) {
       const items = [];
       if (!Array.isArray(nodes)) return items;
-      nodes.forEach(node => {
+      nodes.forEach((node, index) => {
+        if (!node.__id) node.__id = `bookmark-${Date.now()}-${Math.random().toString(36).slice(2, 8)}-${index}`;
         const currentPath = parentPath.concat({ title: node.title, children: node.children || [] });
         const ownTags = getItemTags(node);
         const tags = [...new Set([...(inheritedTags || []), ...ownTags])];
@@ -668,7 +690,7 @@
       }
     }
 
-    function createCard(title, url, icon, tags = []) {
+    function createCard(title, url, icon, tags = [], bookmarkId = '') {
       const wrap = document.createElement('div');
       wrap.className = `card-wrap ${appState.viewMode === 'list' ? 'card-wrap-list' : ''}`;
 
@@ -677,18 +699,22 @@
         ? 'bookmark-card-list p-2 flex items-center'
         : 'p-4 flex items-start'}`;
       card.onclick = () => window.open(url, '_blank', 'noopener,noreferrer');
+      if (bookmarkId) card.dataset.bookmarkId = bookmarkId;
 
       const cardIcon = document.createElement('img');
-      cardIcon.src = getIconUrl(url, icon);
+      const iconCandidates = getIconCandidates(url, icon);
+      cardIcon.src = iconCandidates[0];
       cardIcon.alt = title;
       cardIcon.className = `${appState.viewMode === 'list' ? 'w-8 h-8 mr-3 rounded-lg' : 'w-10 h-10 mr-4 rounded-xl'} flex-shrink-0 card-icon-bg p-1`;
+      cardIcon.dataset.iconFallbackIndex = '0';
       cardIcon.onerror = () => {
-        if (cardIcon.dataset.fallbackApplied) {
-          cardIcon.src = 'assets/default-icon.svg';
+        const currentIndex = Number(cardIcon.dataset.iconFallbackIndex || 0) + 1;
+        cardIcon.dataset.iconFallbackIndex = String(currentIndex);
+        if (currentIndex < iconCandidates.length) {
+          cardIcon.src = iconCandidates[currentIndex];
           return;
         }
-        cardIcon.dataset.fallbackApplied = '1';
-        cardIcon.src = getIconUrl(url);
+        cardIcon.src = 'assets/default-icon.svg';
       };
 
       const cardContent = document.createElement('div');
@@ -724,14 +750,55 @@
       return wrap;
     }
 
-    function getIconUrl(url, icon) {
-      if (icon && !icon.includes('logo.clearbit.com')) return icon;
-      if (!url) return icon || 'assets/default-icon.svg';
+    function getIconCandidates(url, icon) {
+      if (!url && icon) return [icon, 'assets/default-icon.svg'];
+      if (!url) return ['assets/default-icon.svg'];
       try {
-        const hostname = new URL(url).hostname;
-        return `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`;
+        const parsed = new URL(url);
+        const hostname = parsed.hostname;
+        const origin = parsed.origin;
+        const candidates = [];
+        if (icon && !icon.includes('logo.clearbit.com')) candidates.push(icon);
+        candidates.push(
+          `${origin}/favicon.ico`,
+          `${origin}/apple-touch-icon.png`,
+          `https://icons.duckduckgo.com/ip3/${hostname}.ico`,
+          `https://icon.horse/icon/${hostname}`,
+          'assets/default-icon.svg',
+        );
+        return [...new Set(candidates)];
       } catch {
-        return icon || 'assets/default-icon.svg';
+        return icon ? [icon, 'assets/default-icon.svg'] : ['assets/default-icon.svg'];
+      }
+    }
+
+    function openBookmarkInNewTab(item) {
+      if (!item || !item.url) return;
+      window.open(item.url, '_blank', 'noopener,noreferrer');
+    }
+
+    function highlightBookmarkCard(bookmarkId) {
+      if (!bookmarkId) return;
+      const target = DOM.bookmarks.querySelector(`[data-bookmark-id="${bookmarkId}"]`);
+      if (!target) return;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+      target.classList.add('bookmark-highlight');
+      setTimeout(() => target.classList.remove('bookmark-highlight'), 3000);
+    }
+
+    function revealBookmarkPath(item, options = {}) {
+      if (!item) return;
+      const targetPath = item.path || [];
+      if (item.type === 'folder') {
+        renderBookmarks(item.children || [], targetPath);
+        return;
+      }
+      const parent = targetPath[targetPath.length - 1];
+      renderBookmarks(parent?.children || [], targetPath);
+      if (options.highlightBookmark) {
+        requestAnimationFrame(() => {
+          setTimeout(() => highlightBookmarkCard(item.__id), 120);
+        });
       }
     }
 
@@ -894,7 +961,8 @@
         results,
         t,
         cleanDisplayUrl,
-        renderBookmarks,
+        openBookmarkInNewTab,
+        revealBookmarkPath,
         closeSearchModal,
       });
     }
@@ -933,7 +1001,7 @@
         const folderSection = document.createElement('div');
         folderSection.className = appState.viewMode === 'list'
           ? 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2'
-          : 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-4';
+          : 'grid folder-grid-auto gap-4';
         folders.forEach(folder => folderSection.appendChild(createFolderCard(folder.title, folder.children, path, folder.__resolvedTags || getItemTags(folder))));
         DOM.bookmarks.appendChild(folderSection);
       }
@@ -942,8 +1010,8 @@
         const linkSection = document.createElement('div');
         linkSection.className = appState.viewMode === 'list'
           ? 'grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-2'
-          : 'grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4';
-        links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, link.__resolvedTags || getItemTags(link))));
+          : 'grid bookmark-grid-auto gap-4';
+        links.forEach(link => linkSection.appendChild(createCard(link.title, link.url, link.icon, link.__resolvedTags || getItemTags(link), link.__id)));
         DOM.bookmarks.appendChild(linkSection);
       }
     }

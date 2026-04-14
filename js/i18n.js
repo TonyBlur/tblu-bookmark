@@ -26,6 +26,8 @@ window.I18N_MESSAGES = {
     filterTagsButton: '按标签筛选',
     backToTop: '回到顶部',
     closeSidebar: '关闭侧边栏',
+    searchOpenLink: '新标签页打开',
+    searchLocatePath: '定位所在文件夹',
   },
   en: {
     clear: 'Clear',
@@ -54,5 +56,7 @@ window.I18N_MESSAGES = {
     filterTagsButton: 'Filter by tags',
     backToTop: 'Back to top',
     closeSidebar: 'Close sidebar',
+    searchOpenLink: 'Open in new tab',
+    searchLocatePath: 'Locate in folder',
   },
 };

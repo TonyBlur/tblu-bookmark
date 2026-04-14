@@ -54,7 +54,7 @@
   <link rel="stylesheet" href="css/tailwind.css">
   <style>
     .folder-grid-auto {
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
     }
     .bookmark-grid-auto {
       grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -71,6 +71,11 @@
     .dark .bookmark-highlight {
       box-shadow: 0 0 0 2px rgba(125, 211, 252, 0.8);
       background: rgba(14, 116, 144, 0.22);
+    }
+    @media (min-width: 1024px) {
+      .folder-grid-auto {
+        grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      }
     }
   </style>
 

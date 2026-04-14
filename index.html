@@ -57,7 +57,7 @@
       grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
     }
     .bookmark-grid-auto {
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(158px, 1fr));
     }
     .bookmark-highlight {
       animation: bookmarkPulse 3s ease;
@@ -75,6 +75,9 @@
     @media (min-width: 1024px) {
       .folder-grid-auto {
         grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+      }
+      .bookmark-grid-auto {
+        grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
       }
     }
   </style>
@@ -511,7 +514,9 @@
 
     function deriveTagsFromRules(item) {
       if (!appState.tagRules.length) return [];
-      const text = `${item.title || ''} ${item.url || ''}`.toLowerCase();
+      if (item.type !== 'link') return [];
+      const titleText = `${item.title || ''}`.toLowerCase();
+      const urlText = `${item.url || ''}`.toLowerCase();
       let hostname = '';
       try {
         hostname = item.url ? new URL(item.url).hostname.toLowerCase() : '';
@@ -522,8 +527,18 @@
       const matched = appState.tagRules
         .filter(rule => {
           const byDomain = (rule.domains || []).some(domain => hostname === domain || hostname.endsWith(`.${domain}`));
-          const byKeyword = (rule.keywords || []).some(keyword => keywordMatch(text, String(keyword).toLowerCase()));
-          return byDomain || byKeyword;
+          if (byDomain) return true;
+          const keywordHits = (rule.keywords || []).filter(keyword => {
+            const normalizedKeyword = String(keyword).toLowerCase().trim();
+            if (!normalizedKeyword) return false;
+            const hasCJK = /[\u4e00-\u9fff]/.test(normalizedKeyword);
+            if (hasCJK) {
+              return keywordMatch(titleText, normalizedKeyword) || keywordMatch(urlText, normalizedKeyword);
+            }
+            return keywordMatch(urlText, normalizedKeyword);
+          });
+          const preciseKeywordMatch = keywordHits.length >= 2;
+          return preciseKeywordMatch;
         })
         .map(rule => getRuleTagLabel(rule))
         .filter(Boolean);
